@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Sidebar } from "@/components/layout/Sidebar";
-import { Header } from "@/components/layout/Header";
+import { Navbar } from "@/components/layout/Navbar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 const geistMono = Geist_Mono({
@@ -18,10 +17,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aerospace Study — AI Aerospace Study Tool",
+  title: "AeroStudy — Master Aerospace Engineering",
   description:
-    "AI-powered study tool for aerospace engineering students. Step-by-step problem solving, Socratic tutoring, practice problems, and more.",
-  keywords: ["aerospace engineering", "study tool", "AI tutor"],
+    "AI-powered study platform for aerospace engineering students. Step-by-step problem solving, Socratic tutoring, formula reference, practice problems, and gamified learning.",
+  keywords: ["aerospace engineering", "study tool", "AI tutor", "LaTeX", "orbital mechanics"],
 };
 
 export default function RootLayout({
@@ -33,26 +32,13 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${inter.variable} ${geistMono.variable} antialiased`}
-        style={{ background: '#F0F4F8', color: '#37474F' }}
+        style={{ background: '#0A0A0A', color: '#FFFFFF' }}
       >
         <TooltipProvider>
-          <div className="flex h-screen overflow-hidden">
-            {/* Desktop sidebar */}
-            <div className="hidden lg:flex shrink-0">
-              <Sidebar />
-            </div>
-
-            {/* Main content */}
-            <div className="flex-1 flex flex-col overflow-hidden">
-              {/* Mobile header */}
-              <Header />
-
-              {/* Page content */}
-              <main className="flex-1 overflow-y-auto lg:pt-0 pt-14" style={{ background: '#F0F4F8' }}>
-                {children}
-              </main>
-            </div>
-          </div>
+          <Navbar />
+          <main style={{ paddingTop: '60px', minHeight: '100vh', background: '#0A0A0A' }}>
+            {children}
+          </main>
         </TooltipProvider>
       </body>
     </html>

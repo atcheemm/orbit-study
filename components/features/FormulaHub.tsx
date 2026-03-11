@@ -110,53 +110,80 @@ export function FormulaHub() {
   const allTopics = allFormulas.map((g) => g.topic);
 
   return (
-    <div className="flex flex-col gap-5 max-w-4xl mx-auto">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       {/* Search & controls */}
-      <div style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)', padding: '16px' }} className="space-y-4">
-        <div className="flex items-center gap-3">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: '#546E7A' }} />
+      <div style={{ background: '#111111', border: '1px solid #1F1F1F', padding: '20px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ position: 'relative', flex: 1 }}>
+            <Search style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', width: '15px', height: '15px', color: '#888888' }} />
             <input
               type="text"
               placeholder="Search formulas..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 text-sm focus:outline-none"
-              style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', color: '#37474F' }}
-              onFocus={(e) => (e.currentTarget.style.borderColor = '#1565C0')}
-              onBlur={(e) => (e.currentTarget.style.borderColor = '#B0BEC5')}
+              style={{
+                width: '100%',
+                paddingLeft: '36px',
+                paddingRight: '16px',
+                paddingTop: '10px',
+                paddingBottom: '10px',
+                fontSize: '14px',
+                background: '#0A0A0A',
+                border: '1px solid #1F1F1F',
+                color: '#FFFFFF',
+                outline: 'none',
+                transition: 'border-color 0.15s',
+              }}
+              onFocus={(e) => (e.currentTarget.style.borderColor = '#4ADE80')}
+              onBlur={(e) => (e.currentTarget.style.borderColor = '#1F1F1F')}
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2"
-                style={{ color: '#546E7A' }}
+                style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', color: '#888888', background: 'none', border: 'none', cursor: 'pointer' }}
               >
-                <X className="w-3.5 h-3.5" />
+                <X style={{ width: '14px', height: '14px' }} />
               </button>
             )}
           </div>
-          <Button
-            variant="outline"
-            size="sm"
+          <button
             onClick={() => setShowUploader(!showUploader)}
-            className="shrink-0 gap-1.5"
-            style={{ borderColor: '#B0BEC5', color: '#1565C0' }}
+            style={{
+              flexShrink: 0,
+              border: '1px solid #1F1F1F',
+              background: 'transparent',
+              color: '#888888',
+              padding: '10px 16px',
+              fontSize: '13px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              transition: 'border-color 0.15s, color 0.15s',
+            }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = '#4ADE80'; (e.currentTarget as HTMLElement).style.color = '#4ADE80'; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = '#1F1F1F'; (e.currentTarget as HTMLElement).style.color = '#888888'; }}
           >
-            <Upload className="w-3.5 h-3.5" />
+            <Upload style={{ width: '14px', height: '14px' }} />
             Extract from PDF
-          </Button>
+          </button>
         </div>
 
         {/* Topic filter */}
-        <div className="flex flex-wrap gap-1.5">
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
           <button
             onClick={() => setActiveTopic(null)}
-            className="px-3 py-1 text-xs font-medium transition-colors"
             style={{
-              border: !activeTopic ? '1px solid #1565C0' : '1px solid #B0BEC5',
-              background: !activeTopic ? '#1565C0' : '#FFFFFF',
-              color: !activeTopic ? '#FFFFFF' : '#546E7A',
+              padding: '5px 12px',
+              fontSize: '12px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              border: !activeTopic ? '1px solid #4ADE80' : '1px solid #1F1F1F',
+              background: !activeTopic ? '#4ADE80' : 'transparent',
+              color: !activeTopic ? '#0A0A0A' : '#888888',
+              letterSpacing: '0.04em',
+              transition: 'all 0.15s',
             }}
           >
             All
@@ -165,11 +192,16 @@ export function FormulaHub() {
             <button
               key={topic}
               onClick={() => setActiveTopic(activeTopic === topic ? null : topic)}
-              className="px-3 py-1 text-xs font-medium transition-colors"
               style={{
-                border: activeTopic === topic ? '1px solid #1565C0' : '1px solid #B0BEC5',
-                background: activeTopic === topic ? '#1565C0' : '#FFFFFF',
-                color: activeTopic === topic ? '#FFFFFF' : '#546E7A',
+                padding: '5px 12px',
+                fontSize: '12px',
+                fontWeight: 600,
+                cursor: 'pointer',
+                border: activeTopic === topic ? '1px solid #4ADE80' : '1px solid #1F1F1F',
+                background: activeTopic === topic ? '#4ADE80' : 'transparent',
+                color: activeTopic === topic ? '#0A0A0A' : '#888888',
+                letterSpacing: '0.04em',
+                transition: 'all 0.15s',
               }}
             >
               {topic}
@@ -178,22 +210,33 @@ export function FormulaHub() {
         </div>
 
         {showUploader && (
-          <div style={{ border: '1px solid #B0BEC5', padding: '16px' }} className="space-y-3">
+          <div style={{ border: '1px solid #1F1F1F', padding: '16px', background: '#0A0A0A', display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <FileUploader compact />
             {uploadedFiles.length > 0 && (
-              <Button
+              <button
                 onClick={handleExtractFromFiles}
                 disabled={extracting}
-                size="sm"
-                className="w-full"
-                style={{ background: '#1565C0', color: '#FFFFFF' }}
+                style={{
+                  width: '100%',
+                  background: extracting ? '#1F1F1F' : '#4ADE80',
+                  color: extracting ? '#888888' : '#0A0A0A',
+                  padding: '10px',
+                  fontWeight: 700,
+                  fontSize: '13px',
+                  border: 'none',
+                  cursor: extracting ? 'not-allowed' : 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                }}
               >
                 {extracting ? (
-                  <><Loader2 className="w-3.5 h-3.5 mr-2 animate-spin" />Extracting...</>
+                  <><Loader2 style={{ width: '14px', height: '14px', animation: 'spin 1s linear infinite' }} />Extracting...</>
                 ) : (
-                  <><Plus className="w-3.5 h-3.5 mr-2" />Extract Formulas from {uploadedFiles.length} File(s)</>
+                  <><Plus style={{ width: '14px', height: '14px' }} />Extract Formulas from {uploadedFiles.length} File(s)</>
                 )}
-              </Button>
+              </button>
             )}
           </div>
         )}
@@ -201,9 +244,9 @@ export function FormulaHub() {
 
       {/* Formula groups */}
       {displayedFormulas.length === 0 ? (
-        <div className="text-center py-12" style={{ color: '#546E7A' }}>
-          <BookOpen className="w-10 h-10 mx-auto mb-3 opacity-30" />
-          <p>No formulas found for &quot;{searchQuery}&quot;</p>
+        <div style={{ textAlign: 'center', padding: '60px 0', color: '#888888' }}>
+          <BookOpen style={{ width: '40px', height: '40px', margin: '0 auto 12px', opacity: 0.3 }} />
+          <p style={{ fontSize: '15px' }}>No formulas found for &ldquo;{searchQuery}&rdquo;</p>
         </div>
       ) : (
         displayedFormulas.map((group) => (
@@ -211,30 +254,34 @@ export function FormulaHub() {
             key={group.topic}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)', overflow: 'hidden' }}
+            style={{ background: '#111111', border: '1px solid #1F1F1F', overflow: 'hidden' }}
           >
-            <div className="px-5 py-3 flex items-center justify-between" style={{ borderBottom: '1px solid #B0BEC5', background: '#F0F4F8' }}>
-              <h3 className="font-semibold" style={{ color: '#0A1628' }}>{group.topic}</h3>
-              <span className="text-xs" style={{ color: '#546E7A' }}>{group.formulas.length} formulas</span>
+            <div style={{ padding: '14px 20px', borderBottom: '1px solid #1F1F1F', background: '#0A0A0A', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <h3 style={{ color: '#FFFFFF', fontWeight: 700, fontSize: '14px', letterSpacing: '-0.02em' }}>{group.topic}</h3>
+              <span style={{ color: '#888888', fontSize: '12px' }}>{group.formulas.length} formulas</span>
             </div>
-            <div className="p-4 grid gap-3">
+            <div style={{ padding: '16px', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '12px' }}>
               {group.formulas.map((formula) => (
                 <div
                   key={formula.id}
-                  className="p-4 transition-colors"
-                  style={{ background: '#FFFFFF', border: '1px solid #B0BEC5' }}
-                  onMouseEnter={(e) => (e.currentTarget.style.borderColor = '#1565C0')}
-                  onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#B0BEC5')}
+                  style={{
+                    padding: '16px',
+                    background: '#0A0A0A',
+                    border: '1px solid #1F1F1F',
+                    transition: 'border-color 0.15s',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.borderColor = '#4ADE80')}
+                  onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#1F1F1F')}
                 >
-                  <div className="flex items-start justify-between gap-3 mb-3">
-                    <h4 className="font-medium text-sm" style={{ color: '#0A1628' }}>{formula.name}</h4>
-                  </div>
-                  <div className="overflow-x-auto py-2 text-center">
+                  <h4 style={{ color: '#FFFFFF', fontWeight: 600, fontSize: '13px', marginBottom: '12px', letterSpacing: '-0.01em' }}>
+                    {formula.name}
+                  </h4>
+                  <div style={{ overflowX: 'auto', paddingTop: '8px', paddingBottom: '8px', textAlign: 'center' }}>
                     <BlockMath math={formula.latex} />
                   </div>
                   {formula.variables && (
-                    <p className="text-xs mt-2 leading-relaxed" style={{ color: '#546E7A' }}>
-                      <span className="font-medium" style={{ color: '#37474F' }}>Where: </span>
+                    <p style={{ color: '#888888', fontSize: '12px', marginTop: '8px', lineHeight: 1.6 }}>
+                      <span style={{ color: '#CCCCCC', fontWeight: 500 }}>Where: </span>
                       {formula.variables}
                     </p>
                   )}

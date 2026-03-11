@@ -13,34 +13,32 @@ export function XPBar({ compact = false }: XPBarProps) {
 
   if (compact) {
     return (
-      <div className="flex items-center gap-2">
-        <span className="text-xs" style={{ color: '#64748B' }}>{xp} XP</span>
-        <div className="flex-1 h-[4px] overflow-hidden min-w-[60px]" style={{ background: 'rgba(255,255,255,0.12)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <span style={{ color: '#888888', fontSize: '12px' }}>{xp} XP</span>
+        <div style={{ flex: 1, height: '3px', background: '#1F1F1F', overflow: 'hidden', minWidth: '60px' }}>
           <div
-            className="h-full transition-all duration-500"
-            style={{ width: `${progress}%`, background: '#FF6D00' }}
+            style={{ width: `${progress}%`, height: '100%', background: '#4ADE80', transition: 'width 0.5s ease' }}
           />
         </div>
-        <span className="text-xs" style={{ color: '#64748B' }}>Lv.{level}</span>
+        <span style={{ color: '#4ADE80', fontSize: '12px', fontWeight: 700 }}>Lv.{level}</span>
       </div>
     );
   }
 
   return (
-    <div className="space-y-1.5">
-      <div className="flex items-center justify-between text-sm">
-        <span className="font-semibold" style={{ color: '#0A1628' }}>Level {level}</span>
-        <span className="text-xs" style={{ color: '#546E7A' }}>{xp} XP</span>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <span style={{ color: '#FFFFFF', fontWeight: 700, fontSize: '15px', letterSpacing: '-0.02em' }}>Level {level}</span>
+        <span style={{ color: '#888888', fontSize: '13px' }}>{xp} XP</span>
       </div>
-      <div className="h-[4px] overflow-hidden" style={{ background: '#B0BEC5' }}>
+      <div style={{ height: '4px', background: '#1F1F1F', overflow: 'hidden' }}>
         <div
-          className="h-full transition-all duration-700"
-          style={{ width: `${progress}%`, background: '#FF6D00' }}
+          style={{ width: `${progress}%`, height: '100%', background: '#4ADE80', transition: 'width 0.7s ease' }}
         />
       </div>
-      <div className="flex justify-between text-xs" style={{ color: '#546E7A' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#888888' }}>
         <span>{current} / {needed} XP to next level</span>
-        <span>{Math.round(progress)}%</span>
+        <span style={{ color: '#4ADE80', fontWeight: 600 }}>{Math.round(progress)}%</span>
       </div>
     </div>
   );

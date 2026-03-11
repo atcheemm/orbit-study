@@ -89,24 +89,29 @@ export function PracticeGenerator() {
   };
 
   return (
-    <div className="flex flex-col gap-6 max-w-3xl mx-auto">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '860px' }}>
       {/* Configuration */}
-      <div style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)', padding: '20px' }} className="space-y-5">
-        <h2 className="font-semibold" style={{ color: '#0A1628' }}>Configure Practice Problem</h2>
+      <div style={{ background: '#111111', border: '1px solid #1F1F1F', padding: '24px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <h2 style={{ color: '#FFFFFF', fontWeight: 700, fontSize: '15px', letterSpacing: '-0.02em' }}>Configure Practice Problem</h2>
 
         {/* Topic selector */}
-        <div className="space-y-2">
-          <label className="text-xs uppercase tracking-widest font-medium" style={{ color: '#546E7A' }}>Topic</label>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <label style={{ color: '#888888', fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em' }}>TOPIC</label>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '6px' }}>
             {TOPICS.map((topic) => (
               <button
                 key={topic.id}
                 onClick={() => setSelectedTopic(topic.id)}
-                className="p-2.5 text-sm font-medium transition-colors text-left"
                 style={{
-                  border: selectedTopic === topic.id ? '1px solid #1565C0' : '1px solid #B0BEC5',
-                  background: selectedTopic === topic.id ? '#E3F2FD' : '#FFFFFF',
-                  color: selectedTopic === topic.id ? '#1565C0' : '#546E7A',
+                  padding: '10px 12px',
+                  fontSize: '13px',
+                  fontWeight: 500,
+                  textAlign: 'left',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s',
+                  border: selectedTopic === topic.id ? '1px solid #4ADE80' : '1px solid #1F1F1F',
+                  background: selectedTopic === topic.id ? '#0D1A12' : '#0A0A0A',
+                  color: selectedTopic === topic.id ? '#4ADE80' : '#888888',
                 }}
               >
                 {topic.label}
@@ -116,16 +121,12 @@ export function PracticeGenerator() {
         </div>
 
         {/* Difficulty slider */}
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <label className="text-xs uppercase tracking-widest font-medium" style={{ color: '#546E7A' }}>Difficulty</label>
-            <Badge
-              variant="outline"
-              className="text-xs"
-              style={{ borderColor: '#B0BEC5', color: '#0A1628' }}
-            >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <label style={{ color: '#888888', fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em' }}>DIFFICULTY</label>
+            <span style={{ color: '#4ADE80', fontSize: '12px', fontWeight: 700, border: '1px solid #1A2E1A', background: '#0D1A12', padding: '3px 10px' }}>
               {DIFFICULTY_LABELS[difficulty]}
-            </Badge>
+            </span>
           </div>
           <Slider
             value={difficulty}
@@ -135,31 +136,47 @@ export function PracticeGenerator() {
             step={1}
             className="w-full"
           />
-          <div className="flex justify-between text-xs" style={{ color: '#546E7A' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             {DIFFICULTY_LABELS.slice(1).map((label) => (
-              <span key={label}>{label}</span>
+              <span key={label} style={{ color: '#888888', fontSize: '11px' }}>{label}</span>
             ))}
           </div>
         </div>
 
-        <Button
+        <button
           onClick={handleGenerate}
           disabled={isLoading}
-          className="w-full gap-2"
-          style={{ background: '#1565C0', color: '#FFFFFF' }}
+          style={{
+            width: '100%',
+            padding: '12px',
+            background: isLoading ? '#1F1F1F' : '#4ADE80',
+            color: isLoading ? '#888888' : '#0A0A0A',
+            fontWeight: 700,
+            fontSize: '14px',
+            letterSpacing: '-0.02em',
+            border: 'none',
+            cursor: isLoading ? 'not-allowed' : 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+            transition: 'opacity 0.15s',
+          }}
+          onMouseEnter={(e) => { if (!isLoading) (e.currentTarget as HTMLElement).style.opacity = '0.85'; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = '1'; }}
         >
           {isLoading ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin" />
+              <Loader2 style={{ width: '16px', height: '16px', animation: 'spin 1s linear infinite' }} />
               Generating...
             </>
           ) : (
             <>
-              <RefreshCw className="w-4 h-4" />
+              <RefreshCw style={{ width: '16px', height: '16px' }} />
               Generate Problem
             </>
           )}
-        </Button>
+        </button>
       </div>
 
       {/* Problem display */}
@@ -168,64 +185,98 @@ export function PracticeGenerator() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)', padding: '20px' }}
-            className="space-y-4"
+            style={{ background: '#111111', border: '1px solid #1F1F1F', padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}
           >
-            <div className="flex items-center justify-between">
-              <div className="text-sm font-semibold" style={{ color: '#0A1628' }}>
-                {TOPICS.find((t) => t.id === selectedTopic)?.label} —{' '}
-                <span className="font-normal" style={{ color: '#546E7A' }}>{DIFFICULTY_LABELS[difficulty]}</span>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <span style={{ background: '#0A0A0A', border: '1px solid #1F1F1F', color: '#888888', fontSize: '11px', fontWeight: 600, padding: '3px 10px', letterSpacing: '0.06em' }}>
+                  {TOPICS.find((t) => t.id === selectedTopic)?.label?.toUpperCase()}
+                </span>
+                <span style={{ background: '#0D1A12', border: '1px solid #1A2E1A', color: '#4ADE80', fontSize: '11px', fontWeight: 600, padding: '3px 10px', letterSpacing: '0.06em' }}>
+                  {DIFFICULTY_LABELS[difficulty].toUpperCase()}
+                </span>
               </div>
               {problem.solved && (
-                <span className="text-xs" style={{ color: '#546E7A' }}>+{xpGained} XP earned</span>
+                <span style={{ color: '#4ADE80', fontSize: '13px', fontWeight: 700 }}>+{xpGained} XP earned</span>
               )}
             </div>
 
-            <div className="leading-relaxed" style={{ color: '#37474F' }}>
+            <div style={{ color: '#CCCCCC', lineHeight: 1.7, fontSize: '15px' }}>
               <RichContent content={getDisplayContent(problem.raw, problem.showAnswer)} />
             </div>
 
-            <div className="flex items-center gap-3 pt-2" style={{ borderTop: '1px solid #B0BEC5' }}>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() =>
-                  setProblem({ ...problem, showAnswer: !problem.showAnswer })
-                }
-                className="gap-2"
-                style={{ borderColor: '#B0BEC5', color: '#546E7A' }}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingTop: '16px', borderTop: '1px solid #1F1F1F', flexWrap: 'wrap' }}>
+              <button
+                onClick={() => setProblem({ ...problem, showAnswer: !problem.showAnswer })}
+                style={{
+                  border: '1px solid #1F1F1F',
+                  background: 'transparent',
+                  color: '#888888',
+                  padding: '8px 16px',
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  transition: 'border-color 0.15s, color 0.15s',
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = '#4ADE80'; (e.currentTarget as HTMLElement).style.color = '#FFFFFF'; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = '#1F1F1F'; (e.currentTarget as HTMLElement).style.color = '#888888'; }}
               >
                 {problem.showAnswer ? (
-                  <><EyeOff className="w-3.5 h-3.5" />Hide Answer</>
+                  <><EyeOff style={{ width: '14px', height: '14px' }} />Hide Answer</>
                 ) : (
-                  <><Eye className="w-3.5 h-3.5" />Reveal Answer</>
+                  <><Eye style={{ width: '14px', height: '14px' }} />Reveal Answer</>
                 )}
-              </Button>
+              </button>
 
               {!problem.solved ? (
-                <Button
-                  size="sm"
+                <button
                   onClick={handleMarkSolved}
-                  className="gap-2"
-                  style={{ background: '#1565C0', color: '#FFFFFF' }}
+                  style={{
+                    background: '#4ADE80',
+                    color: '#0A0A0A',
+                    padding: '8px 16px',
+                    fontSize: '13px',
+                    fontWeight: 700,
+                    border: 'none',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    letterSpacing: '-0.01em',
+                    transition: 'opacity 0.15s',
+                  }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = '0.85'; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = '1'; }}
                 >
                   Mark as Solved (+{difficulty * 10} XP)
-                </Button>
+                </button>
               ) : (
-                <span className="text-sm font-medium" style={{ color: '#1565C0' }}>
-                  Problem solved
+                <span style={{ color: '#4ADE80', fontSize: '13px', fontWeight: 700 }}>
+                  ✓ Problem solved
                 </span>
               )}
 
-              <Button
-                variant="outline"
-                size="sm"
+              <button
                 onClick={handleGenerate}
-                className="ml-auto"
-                style={{ borderColor: '#B0BEC5', color: '#546E7A' }}
+                style={{
+                  border: '1px solid #1F1F1F',
+                  background: 'transparent',
+                  color: '#888888',
+                  padding: '8px 16px',
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  marginLeft: 'auto',
+                  transition: 'border-color 0.15s, color 0.15s',
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = '#4ADE80'; (e.currentTarget as HTMLElement).style.color = '#FFFFFF'; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = '#1F1F1F'; (e.currentTarget as HTMLElement).style.color = '#888888'; }}
               >
                 Next Problem
-              </Button>
+              </button>
             </div>
           </motion.div>
         )}

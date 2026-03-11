@@ -8,7 +8,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { RichContent } from '@/components/math/LatexRenderer';
 import { FileUploader } from '@/components/features/FileUploader';
 import { useStore } from '@/lib/store';
-import { cn } from '@/lib/utils';
 
 type Step = {
   id: string;
@@ -114,17 +113,38 @@ export function StepSolver() {
   ];
 
   return (
-    <div className="flex flex-col gap-6 max-w-4xl mx-auto">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '900px' }}>
       {/* Input section */}
-      <div style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)', padding: '20px' }} className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h2 className="font-semibold" style={{ color: '#0A1628' }}>Problem Input</h2>
+      <div
+        style={{
+          background: '#111111',
+          border: '1px solid #1F1F1F',
+          padding: '24px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '16px',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <h2 style={{ color: '#FFFFFF', fontWeight: 700, fontSize: '15px', letterSpacing: '-0.02em' }}>Problem Input</h2>
           <button
             onClick={() => setShowUploader(!showUploader)}
-            className="text-xs flex items-center gap-1.5 transition-colors"
-            style={{ color: '#546E7A' }}
+            style={{
+              color: '#888888',
+              fontSize: '12px',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              fontWeight: 500,
+              transition: 'color 0.15s',
+            }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = '#FFFFFF'; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = '#888888'; }}
           >
-            <FileText className="w-3.5 h-3.5" />
+            <FileText style={{ width: '14px', height: '14px' }} />
             {uploadedFiles.length > 0
               ? `${uploadedFiles.length} file(s) loaded`
               : 'Add context files'}
@@ -132,30 +152,42 @@ export function StepSolver() {
         </div>
 
         {showUploader && (
-          <div style={{ border: '1px solid #B0BEC5', padding: '16px' }}>
+          <div style={{ border: '1px solid #1F1F1F', padding: '16px', background: '#0A0A0A' }}>
             <FileUploader compact />
           </div>
         )}
 
         <Textarea
-          placeholder="Enter your aerospace engineering problem here...&#10;&#10;Example: A gas turbine has a compression ratio of 15:1. The intake air temperature is 300K. Find the temperature after isentropic compression (γ = 1.4)."
+          placeholder="Enter your aerospace engineering problem here...&#10;&#10;Example: A gas turbine has a compression ratio of 15:1. Intake air temp is 300K. Find temperature after isentropic compression (γ = 1.4)."
           value={problem}
           onChange={(e) => setProblem(e.target.value)}
           className="min-h-[120px] resize-none"
-          style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', color: '#37474F' }}
+          style={{
+            background: '#0A0A0A',
+            border: '1px solid #1F1F1F',
+            color: '#FFFFFF',
+          }}
           onKeyDown={(e) => {
             if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) handleSolve();
           }}
         />
 
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex gap-3 flex-wrap">
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
             {exampleProblems.slice(0, 2).map((ex, i) => (
               <button
                 key={i}
                 onClick={() => setProblem(ex)}
-                className="text-xs underline underline-offset-2 transition-colors"
-                style={{ color: '#1565C0' }}
+                style={{
+                  color: '#4ADE80',
+                  fontSize: '12px',
+                  fontWeight: 600,
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  textDecoration: 'underline',
+                  textUnderlineOffset: '3px',
+                }}
               >
                 Example {i + 1}
               </button>
@@ -164,32 +196,49 @@ export function StepSolver() {
           <Button
             onClick={handleSolve}
             disabled={!problem.trim() || isLoading}
-            className="gap-2 min-w-[120px]"
-            style={{ background: '#1565C0', color: '#FFFFFF' }}
+            style={{
+              background: !problem.trim() || isLoading ? '#1F1F1F' : '#4ADE80',
+              color: !problem.trim() || isLoading ? '#888888' : '#0A0A0A',
+              fontWeight: 700,
+              fontSize: '13px',
+              letterSpacing: '-0.02em',
+              padding: '10px 20px',
+              gap: '8px',
+            }}
           >
             {isLoading ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin" />
+                <Loader2 style={{ width: '14px', height: '14px', animation: 'spin 1s linear infinite' }} />
                 Solving...
               </>
             ) : (
               <>
-                <Send className="w-4 h-4" />
+                <Send style={{ width: '14px', height: '14px' }} />
                 Solve
               </>
             )}
           </Button>
         </div>
-        <p className="text-xs" style={{ color: '#546E7A' }}>Tip: Press Cmd/Ctrl + Enter to solve</p>
+        <p style={{ color: '#888888', fontSize: '12px' }}>Tip: Press Cmd/Ctrl + Enter to solve</p>
       </div>
 
       {/* Steps output */}
       <AnimatePresence>
         {steps.length > 0 && (
-          <div className="space-y-3">
-            <h2 className="text-xs font-semibold uppercase tracking-widest flex items-center gap-2" style={{ color: '#546E7A' }}>
-              <ChevronRight className="w-3.5 h-3.5" style={{ color: '#1565C0' }} />
-              Solution Steps
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <h2
+              style={{
+                color: '#888888',
+                fontSize: '11px',
+                fontWeight: 600,
+                letterSpacing: '0.08em',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+              }}
+            >
+              <ChevronRight style={{ width: '14px', height: '14px', color: '#4ADE80' }} />
+              SOLUTION STEPS
             </h2>
             {steps.map((step, index) => (
               <motion.div
@@ -197,19 +246,38 @@ export function StepSolver() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.04 }}
-                className="step-card p-5"
+                className="step-card"
+                style={{ padding: '20px' }}
               >
-                <div className="flex items-start gap-3">
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
                   <div
-                    className="w-7 h-7 flex items-center justify-center shrink-0 mt-0.5"
-                    style={{ border: '1px solid #B0BEC5', background: '#E3F2FD' }}
+                    style={{
+                      width: '28px',
+                      height: '28px',
+                      border: '1px solid #2A2A2A',
+                      background: '#1A1A1A',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      marginTop: '2px',
+                    }}
                   >
-                    <span className="text-xs font-bold" style={{ color: '#1565C0' }}>{index + 1}</span>
+                    <span style={{ color: '#4ADE80', fontSize: '11px', fontWeight: 700 }}>{index + 1}</span>
                   </div>
-                  <div className="flex-1 min-w-0 leading-relaxed" style={{ color: '#37474F' }}>
+                  <div style={{ flex: 1, minWidth: 0, lineHeight: 1.7, color: '#CCCCCC' }}>
                     <RichContent content={step.content} />
                     {step.isStreaming && (
-                      <span className="inline-block w-2 h-4 ml-1 animate-pulse" style={{ background: '#1565C0' }} />
+                      <span
+                        style={{
+                          display: 'inline-block',
+                          width: '8px',
+                          height: '16px',
+                          marginLeft: '4px',
+                          background: '#4ADE80',
+                          animation: 'pulse 1s ease-in-out infinite',
+                        }}
+                      />
                     )}
                   </div>
                 </div>
