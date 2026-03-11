@@ -121,17 +121,17 @@ export function StepSolver() {
   return (
     <div className="flex flex-col gap-6 max-w-4xl mx-auto">
       {/* Input section */}
-      <div className="bg-[#1a1a2e] border border-purple-900/30 rounded-xl p-5 space-y-4">
+      <div className="bg-[#2e2924] border border-[#3A5253] rounded-xl p-5 space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="font-semibold text-white flex items-center gap-2">
-            <Lightbulb className="w-4 h-4 text-yellow-400" />
+          <h2 className="font-semibold text-[#FFF5F5] flex items-center gap-2">
+            <Lightbulb className="w-4 h-4 text-[#E07A5F]" />
             Problem Input
           </h2>
           <Button
             variant="ghost"
             size="sm"
             onClick={() => setShowUploader(!showUploader)}
-            className="text-gray-400 hover:text-white text-xs"
+            className="text-[rgba(255,245,245,0.5)] hover:text-[#FFF5F5] text-xs"
           >
             <FileText className="w-3.5 h-3.5 mr-1.5" />
             {uploadedFiles.length > 0
@@ -141,7 +141,7 @@ export function StepSolver() {
         </div>
 
         {showUploader && (
-          <div className="border border-gray-700/50 rounded-lg p-4">
+          <div className="border border-[#3A5253]/50 rounded-lg p-4">
             <FileUploader compact />
           </div>
         )}
@@ -150,7 +150,7 @@ export function StepSolver() {
           placeholder="Enter your aerospace engineering problem here...&#10;&#10;Example: A gas turbine has a compression ratio of 15:1. The intake air temperature is 300K. Find the temperature after isentropic compression (γ = 1.4)."
           value={problem}
           onChange={(e) => setProblem(e.target.value)}
-          className="min-h-[120px] bg-[#0d0d1a] border-gray-700 text-white placeholder-gray-600 resize-none focus:border-purple-600"
+          className="min-h-[120px] bg-[#27231E] border-[#3A5253] text-[#FFF5F5] placeholder-[rgba(255,245,245,0.3)] resize-none focus:border-[#81B29A]"
           onKeyDown={(e) => {
             if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) handleSolve();
           }}
@@ -162,7 +162,7 @@ export function StepSolver() {
               <button
                 key={i}
                 onClick={() => setProblem(ex)}
-                className="text-xs text-purple-400 hover:text-purple-300 underline underline-offset-2 transition-colors"
+                className="text-xs text-[#81B29A] hover:text-[#FFF5F5] underline underline-offset-2 transition-colors"
               >
                 Example {i + 1}
               </button>
@@ -171,7 +171,7 @@ export function StepSolver() {
           <Button
             onClick={handleSolve}
             disabled={!problem.trim() || isLoading}
-            className="bg-purple-600 hover:bg-purple-500 text-white gap-2 min-w-[120px]"
+            className="bg-[#81B29A] hover:bg-[#81B29A]/80 text-[#27231E] gap-2 min-w-[120px]"
           >
             {isLoading ? (
               <>
@@ -186,15 +186,15 @@ export function StepSolver() {
             )}
           </Button>
         </div>
-        <p className="text-xs text-gray-600">Tip: Press Cmd/Ctrl + Enter to solve</p>
+        <p className="text-xs text-[rgba(255,245,245,0.3)]">Tip: Press Cmd/Ctrl + Enter to solve</p>
       </div>
 
       {/* Steps output */}
       <AnimatePresence>
         {steps.length > 0 && (
           <div className="space-y-3">
-            <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wide flex items-center gap-2">
-              <ChevronRight className="w-4 h-4 text-purple-400" />
+            <h2 className="text-sm font-semibold text-[rgba(255,245,245,0.5)] uppercase tracking-wide flex items-center gap-2">
+              <ChevronRight className="w-4 h-4 text-[#81B29A]" />
               Solution Steps
             </h2>
             {steps.map((step, index) => (
@@ -209,13 +209,13 @@ export function StepSolver() {
                 )}
               >
                 <div className="flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-full bg-purple-600/30 border border-purple-600/50 flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-xs font-bold text-purple-300">{index + 1}</span>
+                  <div className="w-7 h-7 rounded-full bg-[#81B29A]/20 border border-[#81B29A]/50 flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="text-xs font-bold text-[#81B29A]">{index + 1}</span>
                   </div>
-                  <div className="flex-1 min-w-0 text-gray-200 leading-relaxed">
+                  <div className="flex-1 min-w-0 text-[#FFF5F5] leading-relaxed">
                     <RichContent content={step.content} />
                     {step.isStreaming && (
-                      <span className="inline-block w-2 h-4 bg-purple-400 ml-1 animate-pulse" />
+                      <span className="inline-block w-2 h-4 bg-[#81B29A] ml-1 animate-pulse" />
                     )}
                   </div>
                 </div>

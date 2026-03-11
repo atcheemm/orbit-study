@@ -64,13 +64,13 @@ export function PomodoroTimer({ mini = false }: PomodoroTimerProps) {
       <div className="flex items-center gap-2">
         <div className="relative w-8 h-8">
           <svg className="w-8 h-8 -rotate-90" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="45" fill="none" stroke="#1a1a2e" strokeWidth="8" />
+            <circle cx="50" cy="50" r="45" fill="none" stroke="#2e2924" strokeWidth="8" />
             <circle
               cx="50"
               cy="50"
               r="45"
               fill="none"
-              stroke={pomodoro.isBreak ? '#06b6d4' : '#7c3aed'}
+              stroke={pomodoro.isBreak ? '#E07A5F' : '#81B29A'}
               strokeWidth="8"
               strokeDasharray={circumference}
               strokeDashoffset={strokeDashoffset}
@@ -80,28 +80,28 @@ export function PomodoroTimer({ mini = false }: PomodoroTimerProps) {
           </svg>
           <div className="absolute inset-0 flex items-center justify-center">
             {pomodoro.isBreak ? (
-              <Coffee className="w-3 h-3 text-cyan-400" />
+              <Coffee className="w-3 h-3 text-[#E07A5F]" />
             ) : (
-              <Brain className="w-3 h-3 text-purple-400" />
+              <Brain className="w-3 h-3 text-[#81B29A]" />
             )}
           </div>
         </div>
         <div>
-          <div className="text-xs font-mono font-bold text-white">
+          <div className="text-xs font-mono font-bold text-[#FFF5F5]">
             {formatTime(pomodoro.timeLeft)}
           </div>
-          <div className="text-xs text-gray-400">
+          <div className="text-xs text-[rgba(255,245,245,0.5)]">
             {pomodoro.isBreak ? 'Break' : 'Focus'}
           </div>
         </div>
         <button
           onClick={() => setPomodoroRunning(!pomodoro.isRunning)}
-          className="w-6 h-6 rounded-full bg-purple-600 hover:bg-purple-500 flex items-center justify-center transition-colors"
+          className="w-6 h-6 rounded-full bg-[#81B29A] hover:bg-[#81B29A]/80 flex items-center justify-center transition-colors"
         >
           {pomodoro.isRunning ? (
-            <Pause className="w-2.5 h-2.5 text-white" />
+            <Pause className="w-2.5 h-2.5 text-[#27231E]" />
           ) : (
-            <Play className="w-2.5 h-2.5 text-white ml-0.5" />
+            <Play className="w-2.5 h-2.5 text-[#27231E] ml-0.5" />
           )}
         </button>
       </div>
@@ -114,13 +114,13 @@ export function PomodoroTimer({ mini = false }: PomodoroTimerProps) {
       <div className="flex items-center gap-2">
         {pomodoro.isBreak ? (
           <>
-            <Coffee className="w-5 h-5 text-cyan-400" />
-            <span className="text-cyan-400 font-semibold">Break Time</span>
+            <Coffee className="w-5 h-5 text-[#E07A5F]" />
+            <span className="text-[#E07A5F] font-semibold">Break Time</span>
           </>
         ) : (
           <>
-            <Brain className="w-5 h-5 text-purple-400" />
-            <span className="text-purple-400 font-semibold">Focus Mode</span>
+            <Brain className="w-5 h-5 text-[#81B29A]" />
+            <span className="text-[#81B29A] font-semibold">Focus Mode</span>
           </>
         )}
       </div>
@@ -128,13 +128,13 @@ export function PomodoroTimer({ mini = false }: PomodoroTimerProps) {
       {/* Timer ring */}
       <div className="relative w-48 h-48">
         <svg className="w-48 h-48 -rotate-90 pomodoro-ring" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="45" fill="none" stroke="#1a1a2e" strokeWidth="6" />
+          <circle cx="50" cy="50" r="45" fill="none" stroke="#2e2924" strokeWidth="6" />
           <motion.circle
             cx="50"
             cy="50"
             r="45"
             fill="none"
-            stroke={pomodoro.isBreak ? '#06b6d4' : '#7c3aed'}
+            stroke={pomodoro.isBreak ? '#E07A5F' : '#81B29A'}
             strokeWidth="6"
             strokeDasharray={circumference}
             strokeDashoffset={strokeDashoffset}
@@ -143,10 +143,10 @@ export function PomodoroTimer({ mini = false }: PomodoroTimerProps) {
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-4xl font-mono font-bold text-white">
+          <span className="text-4xl font-mono font-bold text-[#FFF5F5]">
             {formatTime(pomodoro.timeLeft)}
           </span>
-          <span className="text-sm text-gray-400 mt-1">
+          <span className="text-sm text-[rgba(255,245,245,0.5)] mt-1">
             Session {pomodoro.sessionsCompleted + 1}
           </span>
         </div>
@@ -158,14 +158,14 @@ export function PomodoroTimer({ mini = false }: PomodoroTimerProps) {
           variant="outline"
           size="sm"
           onClick={resetPomodoro}
-          className="border-gray-600 text-gray-400 hover:text-white"
+          className="border-[#3A5253] text-[rgba(255,245,245,0.5)] hover:text-[#FFF5F5]"
         >
           <RotateCcw className="w-4 h-4" />
         </Button>
         <Button
           size="lg"
           onClick={() => setPomodoroRunning(!pomodoro.isRunning)}
-          className="w-24 bg-purple-600 hover:bg-purple-500 text-white font-bold"
+          className="w-24 bg-[#81B29A] hover:bg-[#81B29A]/80 text-[#27231E] font-bold"
         >
           {pomodoro.isRunning ? (
             <><Pause className="w-4 h-4 mr-2" />Pause</>
@@ -177,7 +177,7 @@ export function PomodoroTimer({ mini = false }: PomodoroTimerProps) {
           variant="outline"
           size="sm"
           onClick={() => setPomodoroBreak(!pomodoro.isBreak)}
-          className="border-gray-600 text-gray-400 hover:text-white text-xs"
+          className="border-[#3A5253] text-[rgba(255,245,245,0.5)] hover:text-[#FFF5F5] text-xs"
         >
           {pomodoro.isBreak ? 'Work' : 'Break'}
         </Button>
@@ -190,12 +190,12 @@ export function PomodoroTimer({ mini = false }: PomodoroTimerProps) {
             key={i}
             className={`w-3 h-3 rounded-full transition-colors ${
               i < pomodoro.sessionsCompleted % 4
-                ? 'bg-purple-400'
-                : 'bg-gray-700'
+                ? 'bg-[#E07A5F]'
+                : 'bg-[#3A5253]'
             }`}
           />
         ))}
-        <span className="text-xs text-gray-500 ml-1">
+        <span className="text-xs text-[rgba(255,245,245,0.4)] ml-1">
           {pomodoro.sessionsCompleted} completed
         </span>
       </div>

@@ -100,15 +100,15 @@ export function TutorChat() {
   return (
     <div className="flex flex-col h-[calc(100vh-10rem)] max-w-3xl mx-auto">
       {/* Header */}
-      <div className="bg-[#1a1a2e] border border-purple-900/30 rounded-t-xl p-4 flex items-center justify-between">
+      <div className="bg-[#2e2924] border border-[#3A5253] rounded-t-xl p-4 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-cyan-500 flex items-center justify-center">
-            <Bot className="w-4 h-4 text-white" />
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#81B29A] to-[#E07A5F] flex items-center justify-center">
+            <Bot className="w-4 h-4 text-[#27231E]" />
           </div>
           <div>
-            <h2 className="font-semibold text-white text-sm">OrbitStudy AI Tutor</h2>
-            <p className="text-xs text-green-400 flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block" />
+            <h2 className="font-semibold text-[#FFF5F5] text-sm">OrbitStudy AI Tutor</h2>
+            <p className="text-xs text-[#81B29A] flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#81B29A] inline-block" />
               Socratic method
             </p>
           </div>
@@ -118,7 +118,7 @@ export function TutorChat() {
             variant="ghost"
             size="sm"
             onClick={() => setMessages([])}
-            className="text-gray-500 hover:text-red-400 text-xs gap-1.5"
+            className="text-[rgba(255,245,245,0.4)] hover:text-[#E07A5F] text-xs gap-1.5"
           >
             <Trash2 className="w-3 h-3" />
             Clear
@@ -127,15 +127,15 @@ export function TutorChat() {
       </div>
 
       {/* Messages area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#0f0f1a] border-x border-purple-900/30">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#27231E] border-x border-[#3A5253]">
         {messages.length === 0 && !isStreaming && (
           <div className="flex flex-col items-center gap-6 pt-8 text-center">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-600/30 to-cyan-500/30 border border-purple-600/30 flex items-center justify-center">
-              <MessageCircle className="w-8 h-8 text-purple-400" />
+            <div className="w-16 h-16 rounded-full bg-[#81B29A]/20 border border-[#81B29A]/30 flex items-center justify-center">
+              <MessageCircle className="w-8 h-8 text-[#81B29A]" />
             </div>
             <div>
-              <h3 className="text-white font-semibold mb-1">Ask me anything!</h3>
-              <p className="text-gray-500 text-sm max-w-sm">
+              <h3 className="text-[#FFF5F5] font-semibold mb-1">Ask me anything!</h3>
+              <p className="text-[rgba(255,245,245,0.5)] text-sm max-w-sm">
                 I use the Socratic method to help you discover answers yourself.
                 {uploadedFiles.length > 0
                   ? ` I can see your ${uploadedFiles.length} uploaded file(s) for context.`
@@ -143,12 +143,12 @@ export function TutorChat() {
               </p>
             </div>
             <div className="w-full space-y-2">
-              <p className="text-xs text-gray-600 uppercase tracking-wide">Try asking:</p>
+              <p className="text-xs text-[rgba(255,245,245,0.3)] uppercase tracking-wide">Try asking:</p>
               {suggestedQuestions.map((q, i) => (
                 <button
                   key={i}
                   onClick={() => setInput(q)}
-                  className="w-full text-left p-3 bg-[#1a1a2e] border border-gray-800 hover:border-purple-700/50 rounded-lg text-sm text-gray-400 hover:text-white transition-all"
+                  className="w-full text-left p-3 bg-[#2e2924] border border-[#3A5253] hover:border-[#81B29A]/50 rounded-lg text-sm text-[rgba(255,245,245,0.5)] hover:text-[#FFF5F5] transition-all"
                 >
                   {q}
                 </button>
@@ -166,16 +166,16 @@ export function TutorChat() {
               className={cn('flex gap-3', msg.role === 'user' ? 'justify-end' : 'justify-start')}
             >
               {msg.role === 'assistant' && (
-                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-600 to-cyan-500 flex items-center justify-center shrink-0 mt-1">
-                  <Bot className="w-3.5 h-3.5 text-white" />
+                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#81B29A] to-[#E07A5F] flex items-center justify-center shrink-0 mt-1">
+                  <Bot className="w-3.5 h-3.5 text-[#27231E]" />
                 </div>
               )}
               <div
                 className={cn(
                   'max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed',
                   msg.role === 'user'
-                    ? 'chat-bubble-user text-white rounded-tr-sm'
-                    : 'chat-bubble-ai text-gray-200 rounded-tl-sm'
+                    ? 'chat-bubble-user text-[#FFF5F5] rounded-tr-sm'
+                    : 'chat-bubble-ai text-[#FFF5F5] rounded-tl-sm'
                 )}
               >
                 {msg.role === 'assistant' ? (
@@ -185,8 +185,8 @@ export function TutorChat() {
                 )}
               </div>
               {msg.role === 'user' && (
-                <div className="w-7 h-7 rounded-full bg-gray-700 flex items-center justify-center shrink-0 mt-1">
-                  <User className="w-3.5 h-3.5 text-gray-400" />
+                <div className="w-7 h-7 rounded-full bg-[#3A5253] flex items-center justify-center shrink-0 mt-1">
+                  <User className="w-3.5 h-3.5 text-[rgba(255,245,245,0.6)]" />
                 </div>
               )}
             </motion.div>
@@ -198,27 +198,27 @@ export function TutorChat() {
               animate={{ opacity: 1, y: 0 }}
               className="flex gap-3 justify-start"
             >
-              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-600 to-cyan-500 flex items-center justify-center shrink-0 mt-1">
-                <Bot className="w-3.5 h-3.5 text-white" />
+              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#81B29A] to-[#E07A5F] flex items-center justify-center shrink-0 mt-1">
+                <Bot className="w-3.5 h-3.5 text-[#27231E]" />
               </div>
-              <div className="max-w-[80%] chat-bubble-ai rounded-2xl rounded-tl-sm px-4 py-3 text-sm leading-relaxed text-gray-200">
+              <div className="max-w-[80%] chat-bubble-ai rounded-2xl rounded-tl-sm px-4 py-3 text-sm leading-relaxed text-[#FFF5F5]">
                 <RichContent content={streamingContent} />
-                <span className="inline-block w-1.5 h-4 bg-purple-400 ml-1 animate-pulse" />
+                <span className="inline-block w-1.5 h-4 bg-[#81B29A] ml-1 animate-pulse" />
               </div>
             </motion.div>
           )}
 
           {isStreaming && !streamingContent && (
             <div className="flex gap-3 justify-start">
-              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-600 to-cyan-500 flex items-center justify-center">
-                <Bot className="w-3.5 h-3.5 text-white" />
+              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#81B29A] to-[#E07A5F] flex items-center justify-center">
+                <Bot className="w-3.5 h-3.5 text-[#27231E]" />
               </div>
               <div className="chat-bubble-ai rounded-2xl rounded-tl-sm px-4 py-3">
                 <div className="flex gap-1.5 items-center h-5">
                   {[0, 1, 2].map((i) => (
                     <div
                       key={i}
-                      className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce"
+                      className="w-1.5 h-1.5 rounded-full bg-[#81B29A] animate-bounce"
                       style={{ animationDelay: `${i * 0.15}s` }}
                     />
                   ))}
@@ -231,7 +231,7 @@ export function TutorChat() {
       </div>
 
       {/* Input area */}
-      <div className="bg-[#1a1a2e] border border-purple-900/30 rounded-b-xl p-3">
+      <div className="bg-[#2e2924] border border-[#3A5253] rounded-b-xl p-3">
         <div className="flex gap-2">
           <Textarea
             placeholder="Ask about any aerospace concept..."
@@ -243,13 +243,13 @@ export function TutorChat() {
                 handleSend();
               }
             }}
-            className="min-h-[44px] max-h-[120px] bg-[#0d0d1a] border-gray-700 text-white placeholder-gray-600 resize-none focus:border-purple-600 text-sm"
+            className="min-h-[44px] max-h-[120px] bg-[#27231E] border-[#3A5253] text-[#FFF5F5] placeholder-[rgba(255,245,245,0.3)] resize-none focus:border-[#81B29A] text-sm"
             rows={1}
           />
           <Button
             onClick={handleSend}
             disabled={!input.trim() || isStreaming}
-            className="bg-purple-600 hover:bg-purple-500 text-white shrink-0 self-end h-11 w-11 p-0"
+            className="bg-[#81B29A] hover:bg-[#81B29A]/80 text-[#27231E] shrink-0 self-end h-11 w-11 p-0"
           >
             {isStreaming ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -258,7 +258,7 @@ export function TutorChat() {
             )}
           </Button>
         </div>
-        <p className="text-xs text-gray-600 mt-1.5 pl-1">
+        <p className="text-xs text-[rgba(255,245,245,0.3)] mt-1.5 pl-1">
           Press Enter to send, Shift+Enter for new line
         </p>
       </div>

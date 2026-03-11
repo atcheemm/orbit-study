@@ -74,9 +74,9 @@ export function ConceptExplainer() {
   return (
     <div className="flex flex-col gap-6 max-w-3xl mx-auto">
       {/* Input */}
-      <div className="bg-[#1a1a2e] border border-purple-900/30 rounded-xl p-5 space-y-4">
-        <h2 className="font-semibold text-white flex items-center gap-2">
-          <Lightbulb className="w-4 h-4 text-yellow-400" />
+      <div className="bg-[#2e2924] border border-[#3A5253] rounded-xl p-5 space-y-4">
+        <h2 className="font-semibold text-[#FFF5F5] flex items-center gap-2">
+          <Lightbulb className="w-4 h-4 text-[#E07A5F]" />
           What would you like to understand?
         </h2>
 
@@ -87,12 +87,12 @@ export function ConceptExplainer() {
             value={concept}
             onChange={(e) => setConcept(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleExplain()}
-            className="flex-1 bg-[#0d0d1a] border border-gray-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-gray-600 focus:border-purple-600 focus:outline-none"
+            className="flex-1 bg-[#27231E] border border-[#3A5253] rounded-lg px-4 py-2.5 text-sm text-[#FFF5F5] placeholder-[rgba(255,245,245,0.3)] focus:border-[#81B29A] focus:outline-none"
           />
           <Button
             onClick={() => handleExplain()}
             disabled={!concept.trim() || isLoading}
-            className="bg-purple-600 hover:bg-purple-500 text-white gap-2 shrink-0"
+            className="bg-[#81B29A] hover:bg-[#81B29A]/80 text-[#27231E] gap-2 shrink-0"
           >
             {isLoading ? (
               <><Loader2 className="w-4 h-4 animate-spin" />Explaining...</>
@@ -104,7 +104,7 @@ export function ConceptExplainer() {
 
         {/* Quick concept buttons */}
         <div className="space-y-2">
-          <p className="text-xs text-gray-500 uppercase tracking-wide">Quick picks:</p>
+          <p className="text-xs text-[rgba(255,245,245,0.3)] uppercase tracking-wide">Quick picks:</p>
           <div className="flex flex-wrap gap-2">
             {QUICK_CONCEPTS.map((c) => (
               <button
@@ -116,8 +116,8 @@ export function ConceptExplainer() {
                 className={cn(
                   'px-3 py-1.5 rounded-lg text-xs font-medium transition-all border',
                   currentConcept === c && !isLoading
-                    ? 'bg-purple-600/30 border-purple-600/60 text-purple-200'
-                    : 'bg-gray-800/50 border-gray-700/50 text-gray-400 hover:border-purple-700/50 hover:text-gray-200'
+                    ? 'bg-[#81B29A]/20 border-[#81B29A]/60 text-[#81B29A]'
+                    : 'bg-[#3A5253]/40 border-[#3A5253]/50 text-[rgba(255,245,245,0.5)] hover:border-[#81B29A]/40 hover:text-[rgba(255,245,245,0.8)]'
                 )}
               >
                 {c}
@@ -133,17 +133,17 @@ export function ConceptExplainer() {
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-[#1a1a2e] border border-purple-900/30 rounded-xl overflow-hidden"
+            className="bg-[#2e2924] border border-[#3A5253] rounded-xl overflow-hidden"
           >
             {/* Topic header */}
-            <div className="px-5 py-4 border-b border-purple-900/20 flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-cyan-400" />
-              <h3 className="font-semibold text-white">
+            <div className="px-5 py-4 border-b border-[#3A5253]/50 flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-[#E07A5F]" />
+              <h3 className="font-semibold text-[#FFF5F5]">
                 {currentConcept}
               </h3>
               {!isLoading && (
-                <span className="ml-auto text-xs text-green-400 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                <span className="ml-auto text-xs text-[#81B29A] flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#81B29A]" />
                   +5 XP earned
                 </span>
               )}
@@ -151,8 +151,8 @@ export function ConceptExplainer() {
 
             <div className="p-5">
               {isLoading && !explanation && (
-                <div className="flex items-center gap-3 text-gray-400">
-                  <Loader2 className="w-4 h-4 animate-spin text-purple-400" />
+                <div className="flex items-center gap-3 text-[rgba(255,245,245,0.5)]">
+                  <Loader2 className="w-4 h-4 animate-spin text-[#81B29A]" />
                   <span className="text-sm">Preparing your explanation...</span>
                 </div>
               )}
@@ -161,7 +161,7 @@ export function ConceptExplainer() {
                 <div className="space-y-4">
                   <RichContent content={explanation} />
                   {isLoading && (
-                    <span className="inline-block w-2 h-4 bg-purple-400 animate-pulse" />
+                    <span className="inline-block w-2 h-4 bg-[#81B29A] animate-pulse" />
                   )}
                 </div>
               )}
@@ -172,12 +172,12 @@ export function ConceptExplainer() {
 
       {/* Empty state */}
       {!explanation && !isLoading && (
-        <div className="text-center py-8 text-gray-600">
-          <div className="w-16 h-16 rounded-full bg-yellow-900/20 border border-yellow-800/30 flex items-center justify-center mx-auto mb-4">
-            <Lightbulb className="w-8 h-8 text-yellow-600/50" />
+        <div className="text-center py-8 text-[rgba(255,245,245,0.3)]">
+          <div className="w-16 h-16 rounded-full bg-[#E07A5F]/10 border border-[#E07A5F]/20 flex items-center justify-center mx-auto mb-4">
+            <Lightbulb className="w-8 h-8 text-[#E07A5F]/40" />
           </div>
           <p className="text-sm">Select a concept above or type your own</p>
-          <p className="text-xs mt-1 text-gray-700">Get bite-sized explanations optimized for focus</p>
+          <p className="text-xs mt-1 text-[rgba(255,245,245,0.2)]">Get bite-sized explanations optimized for focus</p>
         </div>
       )}
     </div>

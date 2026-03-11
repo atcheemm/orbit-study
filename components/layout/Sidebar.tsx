@@ -38,20 +38,20 @@ export function Sidebar({ onClose }: SidebarProps) {
   const { streak } = useStore();
 
   return (
-    <div className="flex flex-col h-full bg-[#0d0d1a] border-r border-purple-900/30 w-64">
+    <div className="flex flex-col h-full bg-[#3A5253] border-r border-[#3A5253]/60 w-64">
       {/* Logo */}
-      <div className="p-5 border-b border-purple-900/30 flex items-center justify-between">
+      <div className="p-5 border-b border-[#27231E]/40 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-600 to-cyan-500 flex items-center justify-center orbit-glow">
-            <Rocket className="w-5 h-5 text-white" />
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#81B29A] to-[#E07A5F] flex items-center justify-center orbit-glow">
+            <Rocket className="w-5 h-5 text-[#27231E]" />
           </div>
           <div>
-            <h1 className="font-bold text-white text-lg leading-none">OrbitStudy</h1>
-            <p className="text-xs text-gray-500 leading-none mt-0.5">Aerospace AI</p>
+            <h1 className="font-bold text-[#FFF5F5] text-lg leading-none">OrbitStudy</h1>
+            <p className="text-xs text-[rgba(255,245,245,0.5)] leading-none mt-0.5">Aerospace AI</p>
           </div>
         </div>
         {onClose && (
-          <button onClick={onClose} className="text-gray-400 hover:text-white lg:hidden">
+          <button onClick={onClose} className="text-[rgba(255,245,245,0.5)] hover:text-[#FFF5F5] lg:hidden">
             <X className="w-5 h-5" />
           </button>
         )}
@@ -70,26 +70,26 @@ export function Sidebar({ onClose }: SidebarProps) {
               className={cn(
                 'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group relative',
                 isActive
-                  ? 'bg-purple-600/20 text-white border border-purple-600/40'
-                  : 'text-gray-400 hover:text-white hover:bg-white/5'
+                  ? 'bg-[#81B29A]/20 text-[#FFF5F5] border border-[#81B29A]/40'
+                  : 'text-[rgba(255,245,245,0.6)] hover:text-[#FFF5F5] hover:bg-[#27231E]/20'
               )}
             >
               {isActive && (
                 <motion.div
                   layoutId="sidebar-active"
-                  className="absolute inset-0 bg-purple-600/10 rounded-lg"
+                  className="absolute inset-0 bg-[#81B29A]/10 rounded-lg"
                   transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
                 />
               )}
               <Icon
                 className={cn(
                   'w-4 h-4 shrink-0 relative',
-                  isActive ? 'text-purple-400' : 'text-gray-500 group-hover:text-purple-400'
+                  isActive ? 'text-[#81B29A]' : 'text-[rgba(255,245,245,0.4)] group-hover:text-[#81B29A]'
                 )}
               />
               <span className="text-sm font-medium relative">{item.label}</span>
               {isActive && (
-                <div className="ml-auto w-1.5 h-1.5 rounded-full bg-purple-400 relative" />
+                <div className="ml-auto w-1.5 h-1.5 rounded-full bg-[#81B29A] relative" />
               )}
             </Link>
           );
@@ -97,12 +97,12 @@ export function Sidebar({ onClose }: SidebarProps) {
       </nav>
 
       {/* Bottom section */}
-      <div className="p-4 space-y-4 border-t border-purple-900/30">
+      <div className="p-4 space-y-4 border-t border-[#27231E]/40">
         {/* Streak */}
         <div className="flex items-center gap-2 px-2">
-          <Flame className="w-4 h-4 text-orange-400" />
-          <span className="text-sm text-gray-300">
-            <span className="font-bold text-orange-400">{streak}</span> day streak
+          <Flame className="w-4 h-4 text-[#E07A5F]" />
+          <span className="text-sm text-[rgba(255,245,245,0.8)]">
+            <span className="font-bold text-[#E07A5F]">{streak}</span> day streak
           </span>
         </div>
 
@@ -112,8 +112,8 @@ export function Sidebar({ onClose }: SidebarProps) {
         </div>
 
         {/* Mini Pomodoro */}
-        <div className="px-2 py-3 bg-gray-800/50 rounded-lg border border-gray-700/40">
-          <p className="text-xs text-gray-500 uppercase tracking-wide mb-2">Focus Timer</p>
+        <div className="px-2 py-3 bg-[#27231E]/40 rounded-lg border border-[#27231E]/50">
+          <p className="text-xs text-[rgba(255,245,245,0.4)] uppercase tracking-wide mb-2">Focus Timer</p>
           <PomodoroTimer mini />
         </div>
       </div>

@@ -16,31 +16,31 @@ export function Header({ title }: HeaderProps) {
 
   return (
     <>
-      <header className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-[#0a0a0f]/95 backdrop-blur-sm border-b border-purple-900/30 h-14 flex items-center px-4 gap-3">
+      <header className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-[#27231E]/95 backdrop-blur-sm border-b border-[#3A5253]/60 h-14 flex items-center px-4 gap-3">
         <button
           onClick={() => setMobileMenuOpen(true)}
-          className="text-gray-400 hover:text-white transition-colors"
+          className="text-[rgba(255,245,245,0.5)] hover:text-[#FFF5F5] transition-colors"
         >
           <Menu className="w-5 h-5" />
         </button>
 
         <div className="flex items-center gap-2 flex-1">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-purple-600 to-cyan-500 flex items-center justify-center">
-            <Rocket className="w-4 h-4 text-white" />
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#81B29A] to-[#E07A5F] flex items-center justify-center">
+            <Rocket className="w-4 h-4 text-[#27231E]" />
           </div>
-          <span className="font-bold text-white">
+          <span className="font-bold text-[#FFF5F5]">
             {title || 'OrbitStudy'}
           </span>
         </div>
 
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1">
-            <Flame className="w-3.5 h-3.5 text-orange-400" />
-            <span className="text-xs text-orange-400 font-bold">{streak}</span>
+            <Flame className="w-3.5 h-3.5 text-[#E07A5F]" />
+            <span className="text-xs text-[#E07A5F] font-bold">{streak}</span>
           </div>
           <div className="flex items-center gap-1">
-            <Zap className="w-3.5 h-3.5 text-yellow-400" />
-            <span className="text-xs text-yellow-400 font-bold">{xp}</span>
+            <Zap className="w-3.5 h-3.5 text-[#E07A5F]" />
+            <span className="text-xs text-[#E07A5F] font-bold">{xp}</span>
           </div>
         </div>
       </header>

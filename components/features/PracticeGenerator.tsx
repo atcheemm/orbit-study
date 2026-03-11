@@ -92,15 +92,15 @@ export function PracticeGenerator() {
   return (
     <div className="flex flex-col gap-6 max-w-3xl mx-auto">
       {/* Configuration */}
-      <div className="bg-[#1a1a2e] border border-purple-900/30 rounded-xl p-5 space-y-5">
-        <h2 className="font-semibold text-white flex items-center gap-2">
-          <FlaskConical className="w-4 h-4 text-cyan-400" />
+      <div className="bg-[#2e2924] border border-[#3A5253] rounded-xl p-5 space-y-5">
+        <h2 className="font-semibold text-[#FFF5F5] flex items-center gap-2">
+          <FlaskConical className="w-4 h-4 text-[#E07A5F]" />
           Configure Practice Problem
         </h2>
 
         {/* Topic selector */}
         <div className="space-y-2">
-          <label className="text-sm text-gray-400">Topic</label>
+          <label className="text-sm text-[rgba(255,245,245,0.5)]">Topic</label>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {TOPICS.map((topic) => (
               <button
@@ -108,8 +108,8 @@ export function PracticeGenerator() {
                 onClick={() => setSelectedTopic(topic.id)}
                 className={`p-2.5 rounded-lg text-sm font-medium transition-all text-left ${
                   selectedTopic === topic.id
-                    ? 'bg-purple-600/30 border border-purple-500/60 text-white'
-                    : 'bg-gray-800/50 border border-gray-700/50 text-gray-400 hover:border-purple-700/50 hover:text-gray-200'
+                    ? 'bg-[#81B29A]/20 border border-[#81B29A]/60 text-[#FFF5F5]'
+                    : 'bg-[#3A5253]/40 border border-[#3A5253]/50 text-[rgba(255,245,245,0.5)] hover:border-[#81B29A]/40 hover:text-[rgba(255,245,245,0.8)]'
                 }`}
               >
                 <span className="mr-1.5">{topic.emoji}</span>
@@ -122,15 +122,15 @@ export function PracticeGenerator() {
         {/* Difficulty slider */}
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <label className="text-sm text-gray-400">Difficulty</label>
+            <label className="text-sm text-[rgba(255,245,245,0.5)]">Difficulty</label>
             <Badge
               variant="outline"
-              className={`text-xs border-purple-600/50 ${
+              className={`text-xs border-[#81B29A]/50 ${
                 difficulty >= 4
-                  ? 'text-red-400 border-red-600/40'
+                  ? 'text-[#E07A5F] border-[#E07A5F]/40'
                   : difficulty >= 3
-                  ? 'text-yellow-400 border-yellow-600/40'
-                  : 'text-green-400 border-green-600/40'
+                  ? 'text-[#E07A5F] border-[#E07A5F]/30'
+                  : 'text-[#81B29A] border-[#81B29A]/40'
               }`}
             >
               {DIFFICULTY_LABELS[difficulty]}
@@ -144,7 +144,7 @@ export function PracticeGenerator() {
             step={1}
             className="w-full"
           />
-          <div className="flex justify-between text-xs text-gray-600">
+          <div className="flex justify-between text-xs text-[rgba(255,245,245,0.3)]">
             {DIFFICULTY_LABELS.slice(1).map((label) => (
               <span key={label}>{label}</span>
             ))}
@@ -154,7 +154,7 @@ export function PracticeGenerator() {
         <Button
           onClick={handleGenerate}
           disabled={isLoading}
-          className="w-full bg-purple-600 hover:bg-purple-500 text-white gap-2"
+          className="w-full bg-[#81B29A] hover:bg-[#81B29A]/80 text-[#27231E] gap-2"
         >
           {isLoading ? (
             <>
@@ -176,11 +176,11 @@ export function PracticeGenerator() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-[#1a1a2e] border border-purple-900/30 rounded-xl p-5 space-y-4"
+            className="bg-[#2e2924] border border-[#3A5253] rounded-xl p-5 space-y-4"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="text-sm font-semibold text-white">
+                <span className="text-sm font-semibold text-[#FFF5F5]">
                   {TOPICS.find((t) => t.id === selectedTopic)?.emoji}{' '}
                   {TOPICS.find((t) => t.id === selectedTopic)?.label} —{' '}
                   {DIFFICULTY_LABELS[difficulty]}
@@ -192,7 +192,7 @@ export function PracticeGenerator() {
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      className="flex items-center gap-1 text-yellow-400"
+                      className="flex items-center gap-1 text-[#E07A5F]"
                     >
                       <Zap className="w-4 h-4" />
                       <span className="text-sm font-bold">+{xpGained} XP!</span>
@@ -202,7 +202,7 @@ export function PracticeGenerator() {
               </div>
             </div>
 
-            <div className="text-gray-200 leading-relaxed">
+            <div className="text-[#FFF5F5] leading-relaxed">
               <RichContent content={getDisplayContent(problem.raw, problem.showAnswer)} />
             </div>
 
@@ -213,7 +213,7 @@ export function PracticeGenerator() {
                 onClick={() =>
                   setProblem({ ...problem, showAnswer: !problem.showAnswer })
                 }
-                className="border-gray-600 text-gray-400 hover:text-white gap-2"
+                className="border-[#3A5253] text-[rgba(255,245,245,0.5)] hover:text-[#FFF5F5] gap-2"
               >
                 {problem.showAnswer ? (
                   <><EyeOff className="w-3.5 h-3.5" />Hide Answer</>
@@ -226,13 +226,13 @@ export function PracticeGenerator() {
                 <Button
                   size="sm"
                   onClick={handleMarkSolved}
-                  className="bg-green-600/20 border border-green-600/50 text-green-300 hover:bg-green-600/30 gap-2"
+                  className="bg-[#E07A5F]/20 border border-[#E07A5F]/50 text-[#E07A5F] hover:bg-[#E07A5F]/30 gap-2"
                 >
                   <Zap className="w-3.5 h-3.5" />
                   Mark as Solved (+{difficulty * 10} XP)
                 </Button>
               ) : (
-                <span className="text-green-400 text-sm font-medium">
+                <span className="text-[#81B29A] text-sm font-medium">
                   ✅ Problem solved!
                 </span>
               )}
@@ -241,7 +241,7 @@ export function PracticeGenerator() {
                 variant="ghost"
                 size="sm"
                 onClick={handleGenerate}
-                className="text-gray-500 hover:text-gray-300 ml-auto"
+                className="text-[rgba(255,245,245,0.4)] hover:text-[rgba(255,245,245,0.8)] ml-auto"
               >
                 Next Problem →
               </Button>

@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#0a0a0f] text-gray-100`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#27231E] text-[#FFF5F5]`}
       >
         <TooltipProvider>
           <div className="flex h-screen overflow-hidden">

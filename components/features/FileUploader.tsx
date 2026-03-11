@@ -75,18 +75,18 @@ export function FileUploader({ onFileProcessed, compact = false }: FileUploaderP
           className={cn(
             'border-2 border-dashed rounded-lg p-3 cursor-pointer transition-all text-center',
             isDragActive
-              ? 'border-purple-400 bg-purple-900/20'
-              : 'border-gray-700 hover:border-purple-600 hover:bg-purple-900/10'
+              ? 'border-[#81B29A] bg-[#81B29A]/10'
+              : 'border-[#3A5253] hover:border-[#81B29A] hover:bg-[#81B29A]/5'
           )}
         >
           <input {...getInputProps()} />
           {uploading ? (
-            <div className="flex items-center justify-center gap-2 text-sm text-gray-400">
+            <div className="flex items-center justify-center gap-2 text-sm text-[rgba(255,245,245,0.5)]">
               <Loader2 className="w-4 h-4 animate-spin" />
               <span>Processing...</span>
             </div>
           ) : (
-            <div className="flex items-center justify-center gap-2 text-sm text-gray-400">
+            <div className="flex items-center justify-center gap-2 text-sm text-[rgba(255,245,245,0.5)]">
               <Upload className="w-4 h-4" />
               <span>{isDragActive ? 'Drop here' : 'Upload PDF/TXT'}</span>
             </div>
@@ -97,13 +97,13 @@ export function FileUploader({ onFileProcessed, compact = false }: FileUploaderP
             {uploadedFiles.map((file) => (
               <div
                 key={file.id}
-                className="flex items-center gap-2 text-xs p-1.5 bg-gray-800/50 rounded"
+                className="flex items-center gap-2 text-xs p-1.5 bg-[#3A5253]/40 rounded"
               >
-                <FileText className="w-3 h-3 text-cyan-400 shrink-0" />
-                <span className="truncate text-gray-300 flex-1">{file.name}</span>
+                <FileText className="w-3 h-3 text-[#81B29A] shrink-0" />
+                <span className="truncate text-[rgba(255,245,245,0.7)] flex-1">{file.name}</span>
                 <button
                   onClick={() => removeFile(file.id)}
-                  className="text-gray-500 hover:text-red-400 transition-colors"
+                  className="text-[rgba(255,245,245,0.3)] hover:text-[#E07A5F] transition-colors"
                 >
                   <Trash2 className="w-3 h-3" />
                 </button>
@@ -122,29 +122,29 @@ export function FileUploader({ onFileProcessed, compact = false }: FileUploaderP
         className={cn(
           'border-2 border-dashed rounded-xl p-8 cursor-pointer transition-all text-center',
           isDragActive
-            ? 'border-purple-400 bg-purple-900/20 orbit-glow'
-            : 'border-gray-700 hover:border-purple-600 hover:bg-purple-900/10'
+            ? 'border-[#81B29A] bg-[#81B29A]/10 orbit-glow'
+            : 'border-[#3A5253] hover:border-[#81B29A] hover:bg-[#81B29A]/5'
         )}
       >
         <input {...getInputProps()} />
         <div className="flex flex-col items-center gap-3">
           {uploading ? (
             <>
-              <Loader2 className="w-10 h-10 text-purple-400 animate-spin" />
-              <p className="text-gray-300">Processing your file...</p>
+              <Loader2 className="w-10 h-10 text-[#81B29A] animate-spin" />
+              <p className="text-[rgba(255,245,245,0.7)]">Processing your file...</p>
             </>
           ) : (
             <>
-              <div className="w-12 h-12 rounded-full bg-purple-900/40 border border-purple-600/50 flex items-center justify-center">
-                <Upload className="w-6 h-6 text-purple-400" />
+              <div className="w-12 h-12 rounded-full bg-[#81B29A]/20 border border-[#81B29A]/50 flex items-center justify-center">
+                <Upload className="w-6 h-6 text-[#81B29A]" />
               </div>
               <div>
-                <p className="text-gray-200 font-medium">
+                <p className="text-[rgba(255,245,245,0.8)] font-medium">
                   {isDragActive ? 'Drop it here!' : 'Drag & drop your study materials'}
                 </p>
-                <p className="text-gray-500 text-sm mt-1">PDF or TXT files, up to 10MB</p>
+                <p className="text-[rgba(255,245,245,0.4)] text-sm mt-1">PDF or TXT files, up to 10MB</p>
               </div>
-              <Button variant="outline" size="sm" className="border-purple-600/50 text-purple-300">
+              <Button variant="outline" size="sm" className="border-[#81B29A]/50 text-[#81B29A]">
                 Browse Files
               </Button>
             </>
@@ -153,7 +153,7 @@ export function FileUploader({ onFileProcessed, compact = false }: FileUploaderP
       </div>
 
       {uploadError && (
-        <p className="text-red-400 text-sm text-center">{uploadError}</p>
+        <p className="text-[#E07A5F] text-sm text-center">{uploadError}</p>
       )}
 
       <AnimatePresence>
@@ -163,7 +163,7 @@ export function FileUploader({ onFileProcessed, compact = false }: FileUploaderP
             animate={{ opacity: 1, y: 0 }}
             className="space-y-2"
           >
-            <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wide">
+            <h3 className="text-sm font-semibold text-[rgba(255,245,245,0.5)] uppercase tracking-wide">
               Uploaded Files ({uploadedFiles.length})
             </h3>
             {uploadedFiles.map((file) => (
@@ -172,23 +172,23 @@ export function FileUploader({ onFileProcessed, compact = false }: FileUploaderP
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 10 }}
-                className="flex items-center gap-3 p-3 bg-gray-800/50 rounded-lg border border-gray-700/50"
+                className="flex items-center gap-3 p-3 bg-[#3A5253]/40 rounded-lg border border-[#3A5253]/50"
               >
-                <div className="w-8 h-8 rounded bg-cyan-900/40 border border-cyan-700/30 flex items-center justify-center shrink-0">
-                  <FileText className="w-4 h-4 text-cyan-400" />
+                <div className="w-8 h-8 rounded bg-[#81B29A]/20 border border-[#81B29A]/30 flex items-center justify-center shrink-0">
+                  <FileText className="w-4 h-4 text-[#81B29A]" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-white truncate">{file.name}</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-sm font-medium text-[#FFF5F5] truncate">{file.name}</p>
+                  <p className="text-xs text-[rgba(255,245,245,0.4)]">
                     {file.text.split(' ').length.toLocaleString()} words extracted
                   </p>
                 </div>
-                <CheckCircle className="w-4 h-4 text-green-400 shrink-0" />
+                <CheckCircle className="w-4 h-4 text-[#81B29A] shrink-0" />
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => removeFile(file.id)}
-                  className="text-gray-500 hover:text-red-400 h-8 w-8 p-0"
+                  className="text-[rgba(255,245,245,0.3)] hover:text-[#E07A5F] h-8 w-8 p-0"
                 >
                   <Trash2 className="w-4 h-4" />
                 </Button>

@@ -115,21 +115,21 @@ export function FormulaHub() {
   return (
     <div className="flex flex-col gap-5 max-w-4xl mx-auto">
       {/* Search & controls */}
-      <div className="bg-[#1a1a2e] border border-purple-900/30 rounded-xl p-4 space-y-4">
+      <div className="bg-[#2e2924] border border-[#3A5253] rounded-xl p-4 space-y-4">
         <div className="flex items-center gap-3">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[rgba(255,245,245,0.3)]" />
             <input
               type="text"
               placeholder="Search formulas..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#0d0d1a] border border-gray-700 rounded-lg pl-9 pr-4 py-2 text-sm text-white placeholder-gray-600 focus:border-purple-600 focus:outline-none"
+              className="w-full bg-[#27231E] border border-[#3A5253] rounded-lg pl-9 pr-4 py-2 text-sm text-[#FFF5F5] placeholder-[rgba(255,245,245,0.3)] focus:border-[#81B29A] focus:outline-none"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[rgba(255,245,245,0.3)] hover:text-[#FFF5F5]"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -139,7 +139,7 @@ export function FormulaHub() {
             variant="outline"
             size="sm"
             onClick={() => setShowUploader(!showUploader)}
-            className="border-purple-600/50 text-purple-300 hover:bg-purple-600/10 shrink-0 gap-1.5"
+            className="border-[#81B29A]/50 text-[#81B29A] hover:bg-[#81B29A]/10 shrink-0 gap-1.5"
           >
             <Upload className="w-3.5 h-3.5" />
             Extract from PDF
@@ -152,8 +152,8 @@ export function FormulaHub() {
             onClick={() => setActiveTopic(null)}
             className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
               !activeTopic
-                ? 'bg-purple-600/30 text-purple-300 border border-purple-600/50'
-                : 'text-gray-400 bg-gray-800/50 hover:text-gray-200'
+                ? 'bg-[#81B29A]/20 text-[#81B29A] border border-[#81B29A]/50'
+                : 'text-[rgba(255,245,245,0.5)] bg-[#3A5253]/40 hover:text-[rgba(255,245,245,0.8)]'
             }`}
           >
             All
@@ -164,8 +164,8 @@ export function FormulaHub() {
               onClick={() => setActiveTopic(activeTopic === topic ? null : topic)}
               className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
                 activeTopic === topic
-                  ? 'bg-purple-600/30 text-purple-300 border border-purple-600/50'
-                  : 'text-gray-400 bg-gray-800/50 hover:text-gray-200'
+                  ? 'bg-[#81B29A]/20 text-[#81B29A] border border-[#81B29A]/50'
+                  : 'text-[rgba(255,245,245,0.5)] bg-[#3A5253]/40 hover:text-[rgba(255,245,245,0.8)]'
               }`}
             >
               {topic}
@@ -174,14 +174,14 @@ export function FormulaHub() {
         </div>
 
         {showUploader && (
-          <div className="border border-gray-700/50 rounded-lg p-4 space-y-3">
+          <div className="border border-[#3A5253]/50 rounded-lg p-4 space-y-3">
             <FileUploader compact />
             {uploadedFiles.length > 0 && (
               <Button
                 onClick={handleExtractFromFiles}
                 disabled={extracting}
                 size="sm"
-                className="w-full bg-cyan-600/20 border border-cyan-600/50 text-cyan-300 hover:bg-cyan-600/30"
+                className="w-full bg-[#81B29A]/20 border border-[#81B29A]/50 text-[#81B29A] hover:bg-[#81B29A]/30"
               >
                 {extracting ? (
                   <><Loader2 className="w-3.5 h-3.5 mr-2 animate-spin" />Extracting...</>
@@ -196,7 +196,7 @@ export function FormulaHub() {
 
       {/* Formula groups */}
       {displayedFormulas.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">
+        <div className="text-center py-12 text-[rgba(255,245,245,0.3)]">
           <BookOpen className="w-10 h-10 mx-auto mb-3 opacity-30" />
           <p>No formulas found for &quot;{searchQuery}&quot;</p>
         </div>
@@ -206,11 +206,11 @@ export function FormulaHub() {
             key={group.topic}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-[#1a1a2e] border border-purple-900/30 rounded-xl overflow-hidden"
+            className="bg-[#2e2924] border border-[#3A5253] rounded-xl overflow-hidden"
           >
-            <div className="px-5 py-3 border-b border-purple-900/20 flex items-center justify-between">
-              <h3 className="font-semibold text-white">{group.topic}</h3>
-              <Badge variant="outline" className="text-xs border-purple-600/40 text-purple-300">
+            <div className="px-5 py-3 border-b border-[#3A5253]/50 flex items-center justify-between">
+              <h3 className="font-semibold text-[#FFF5F5]">{group.topic}</h3>
+              <Badge variant="outline" className="text-xs border-[#81B29A]/40 text-[#81B29A]">
                 {group.formulas.length} formulas
               </Badge>
             </div>
@@ -218,17 +218,17 @@ export function FormulaHub() {
               {group.formulas.map((formula) => (
                 <div
                   key={formula.id}
-                  className="p-4 bg-[#0d0d1a] rounded-lg border border-gray-800/50 hover:border-purple-800/40 transition-colors"
+                  className="p-4 bg-[#27231E] rounded-lg border border-[#3A5253]/50 hover:border-[#81B29A]/40 transition-colors"
                 >
                   <div className="flex items-start justify-between gap-3 mb-3">
-                    <h4 className="font-medium text-purple-300 text-sm">{formula.name}</h4>
+                    <h4 className="font-medium text-[#81B29A] text-sm">{formula.name}</h4>
                   </div>
                   <div className="overflow-x-auto py-2 text-center">
                     <BlockMath math={formula.latex} />
                   </div>
                   {formula.variables && (
-                    <p className="text-xs text-gray-500 mt-2 leading-relaxed">
-                      <span className="text-gray-400 font-medium">Where: </span>
+                    <p className="text-xs text-[rgba(255,245,245,0.4)] mt-2 leading-relaxed">
+                      <span className="text-[rgba(255,245,245,0.6)] font-medium">Where: </span>
                       {formula.variables}
                     </p>
                   )}

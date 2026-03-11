@@ -27,54 +27,54 @@ const features = [
     label: 'Step Solver',
     description: 'Break any problem into numbered steps with LaTeX math',
     icon: Footprints,
-    color: 'from-purple-600 to-purple-800',
-    border: 'border-purple-700/40',
-    iconColor: 'text-purple-300',
+    color: 'from-[#81B29A] to-[#3A5253]',
+    border: 'border-[#81B29A]/40',
+    iconColor: 'text-[#81B29A]',
   },
   {
     href: '/practice',
     label: 'Practice Problems',
     description: 'Generate practice problems with XP rewards',
     icon: FlaskConical,
-    color: 'from-cyan-600 to-cyan-800',
-    border: 'border-cyan-700/40',
-    iconColor: 'text-cyan-300',
+    color: 'from-[#E07A5F] to-[#3A5253]',
+    border: 'border-[#E07A5F]/40',
+    iconColor: 'text-[#E07A5F]',
   },
   {
     href: '/formulas',
     label: 'Formula Hub',
     description: 'Searchable formula reference with LaTeX rendering',
     icon: BookOpen,
-    color: 'from-blue-600 to-blue-800',
-    border: 'border-blue-700/40',
-    iconColor: 'text-blue-300',
+    color: 'from-[#81B29A] to-[#2e2924]',
+    border: 'border-[#81B29A]/30',
+    iconColor: 'text-[#81B29A]',
   },
   {
     href: '/tutor',
     label: 'AI Tutor',
     description: 'Socratic tutoring that guides you to the answer',
     icon: MessageCircle,
-    color: 'from-violet-600 to-violet-800',
-    border: 'border-violet-700/40',
-    iconColor: 'text-violet-300',
+    color: 'from-[#3A5253] to-[#81B29A]',
+    border: 'border-[#3A5253]/60',
+    iconColor: 'text-[#81B29A]',
   },
   {
     href: '/explain',
     label: 'Concept Explainer',
     description: 'Bite-sized explanations optimized for focus',
     icon: Lightbulb,
-    color: 'from-yellow-600 to-yellow-800',
-    border: 'border-yellow-700/40',
-    iconColor: 'text-yellow-300',
+    color: 'from-[#E07A5F] to-[#2e2924]',
+    border: 'border-[#E07A5F]/30',
+    iconColor: 'text-[#E07A5F]',
   },
   {
     href: '/check',
     label: 'Check My Work',
     description: 'Get detailed feedback on your problem-solving attempts',
     icon: CheckSquare,
-    color: 'from-green-600 to-green-800',
-    border: 'border-green-700/40',
-    iconColor: 'text-green-300',
+    color: 'from-[#81B29A] to-[#3A5253]',
+    border: 'border-[#81B29A]/40',
+    iconColor: 'text-[#81B29A]',
   },
 ];
 
@@ -91,12 +91,12 @@ export default function Home() {
         className="text-center py-10"
       >
         <div className="flex justify-center mb-4">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-600 to-cyan-500 flex items-center justify-center orbit-glow animate-float">
-            <Rocket className="w-8 h-8 text-white" />
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#81B29A] to-[#E07A5F] flex items-center justify-center orbit-glow animate-float">
+            <Rocket className="w-8 h-8 text-[#27231E]" />
           </div>
         </div>
         <h1 className="text-4xl font-bold gradient-text mb-3">OrbitStudy</h1>
-        <p className="text-gray-400 text-lg max-w-lg mx-auto">
+        <p className="text-[rgba(255,245,245,0.6)] text-lg max-w-lg mx-auto">
           AI-powered aerospace engineering study tool designed for ADHD brains.
           Stay focused, earn XP, master the stars.
         </p>
@@ -110,21 +110,21 @@ export default function Home() {
         className="grid grid-cols-2 md:grid-cols-4 gap-4"
       >
         {[
-          { icon: Star, label: 'Level', value: level, color: 'text-purple-400' },
-          { icon: Zap, label: 'Total XP', value: `${xp} XP`, color: 'text-yellow-400' },
-          { icon: Flame, label: 'Streak', value: `${streak} days`, color: 'text-orange-400' },
-          { icon: CheckSquare, label: 'Solved', value: completedProblems, color: 'text-green-400' },
+          { icon: Star, label: 'Level', value: level, color: 'text-[#81B29A]' },
+          { icon: Zap, label: 'Total XP', value: `${xp} XP`, color: 'text-[#E07A5F]' },
+          { icon: Flame, label: 'Streak', value: `${streak} days`, color: 'text-[#E07A5F]' },
+          { icon: CheckSquare, label: 'Solved', value: completedProblems, color: 'text-[#81B29A]' },
         ].map((stat) => (
           <div
             key={stat.label}
-            className="bg-[#1a1a2e] border border-purple-900/30 rounded-xl p-4 flex items-center gap-3"
+            className="bg-[#2e2924] border border-[#3A5253] rounded-xl p-4 flex items-center gap-3"
           >
-            <div className={`w-9 h-9 rounded-lg bg-gray-800 flex items-center justify-center`}>
+            <div className={`w-9 h-9 rounded-lg bg-[#3A5253] flex items-center justify-center`}>
               <stat.icon className={`w-4 h-4 ${stat.color}`} />
             </div>
             <div>
-              <div className="text-sm font-bold text-white">{stat.value}</div>
-              <div className="text-xs text-gray-500">{stat.label}</div>
+              <div className="text-sm font-bold text-[#FFF5F5]">{stat.value}</div>
+              <div className="text-xs text-[rgba(255,245,245,0.5)]">{stat.label}</div>
             </div>
           </div>
         ))}
@@ -135,14 +135,14 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.15 }}
-        className="bg-[#1a1a2e] border border-purple-900/30 rounded-xl p-5"
+        className="bg-[#2e2924] border border-[#3A5253] rounded-xl p-5"
       >
         <XPBar />
       </motion.div>
 
       {/* Feature cards */}
       <div>
-        <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-4">
+        <h2 className="text-sm font-semibold text-[rgba(255,245,245,0.5)] uppercase tracking-wide mb-4">
           Study Tools
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -155,17 +155,17 @@ export default function Home() {
             >
               <Link
                 href={feature.href}
-                className={`block bg-[#1a1a2e] border ${feature.border} rounded-xl p-5 hover:scale-[1.02] transition-all duration-200 hover:orbit-glow group`}
+                className={`block bg-[#2e2924] border ${feature.border} rounded-xl p-5 hover:scale-[1.02] transition-all duration-200 hover:orbit-glow group`}
               >
                 <div className="flex items-start gap-4">
                   <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center shrink-0`}>
-                    <feature.icon className="w-5 h-5 text-white" />
+                    <feature.icon className="w-5 h-5 text-[#FFF5F5]" />
                   </div>
                   <div>
-                    <h3 className={`font-semibold text-white mb-1 group-hover:${feature.iconColor} transition-colors`}>
+                    <h3 className={`font-semibold text-[#FFF5F5] mb-1 group-hover:${feature.iconColor} transition-colors`}>
                       {feature.label}
                     </h3>
-                    <p className="text-sm text-gray-500 leading-snug">{feature.description}</p>
+                    <p className="text-sm text-[rgba(255,245,245,0.5)] leading-snug">{feature.description}</p>
                   </div>
                 </div>
               </Link>
@@ -181,11 +181,11 @@ export default function Home() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="bg-[#1a1a2e] border border-purple-900/30 rounded-xl overflow-hidden"
+          className="bg-[#2e2924] border border-[#3A5253] rounded-xl overflow-hidden"
         >
-          <div className="px-5 py-3 border-b border-purple-900/20">
-            <h2 className="font-semibold text-white text-sm">Pomodoro Focus Timer</h2>
-            <p className="text-xs text-gray-500">25 min work / 5 min break</p>
+          <div className="px-5 py-3 border-b border-[#3A5253]/50">
+            <h2 className="font-semibold text-[#FFF5F5] text-sm">Pomodoro Focus Timer</h2>
+            <p className="text-xs text-[rgba(255,245,245,0.5)]">25 min work / 5 min break</p>
           </div>
           <PomodoroTimer />
         </motion.div>
@@ -195,18 +195,18 @@ export default function Home() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.55 }}
-          className="bg-[#1a1a2e] border border-purple-900/30 rounded-xl overflow-hidden"
+          className="bg-[#2e2924] border border-[#3A5253] rounded-xl overflow-hidden"
         >
-          <div className="px-5 py-3 border-b border-purple-900/20 flex items-center justify-between">
+          <div className="px-5 py-3 border-b border-[#3A5253]/50 flex items-center justify-between">
             <div>
-              <h2 className="font-semibold text-white text-sm flex items-center gap-2">
-                <Upload className="w-3.5 h-3.5 text-cyan-400" />
+              <h2 className="font-semibold text-[#FFF5F5] text-sm flex items-center gap-2">
+                <Upload className="w-3.5 h-3.5 text-[#81B29A]" />
                 Study Materials
               </h2>
-              <p className="text-xs text-gray-500">Upload PDFs to use as context</p>
+              <p className="text-xs text-[rgba(255,245,245,0.5)]">Upload PDFs to use as context</p>
             </div>
             {uploadedFiles.length > 0 && (
-              <span className="text-xs text-cyan-400 font-medium">
+              <span className="text-xs text-[#81B29A] font-medium">
                 {uploadedFiles.length} file{uploadedFiles.length !== 1 ? 's' : ''} loaded
               </span>
             )}

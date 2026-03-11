@@ -72,10 +72,10 @@ export function CheckWork() {
       {/* Input forms */}
       <div className="grid md:grid-cols-2 gap-4">
         {/* Problem input */}
-        <div className="bg-[#1a1a2e] border border-purple-900/30 rounded-xl p-5 space-y-3">
+        <div className="bg-[#2e2924] border border-[#3A5253] rounded-xl p-5 space-y-3">
           <div className="flex items-center justify-between">
-            <h3 className="font-semibold text-white text-sm flex items-center gap-2">
-              <span className="w-5 h-5 rounded bg-purple-600/30 flex items-center justify-center text-xs text-purple-300 font-bold">1</span>
+            <h3 className="font-semibold text-[#FFF5F5] text-sm flex items-center gap-2">
+              <span className="w-5 h-5 rounded bg-[#81B29A]/20 flex items-center justify-center text-xs text-[#81B29A] font-bold">1</span>
               The Problem
             </h3>
             <button
@@ -83,7 +83,7 @@ export function CheckWork() {
                 setProblem(exampleProblem.problem);
                 setUserAttempt(exampleProblem.attempt);
               }}
-              className="text-xs text-purple-400 hover:text-purple-300 underline underline-offset-2"
+              className="text-xs text-[#81B29A] hover:text-[#FFF5F5] underline underline-offset-2"
             >
               Use example
             </button>
@@ -92,21 +92,21 @@ export function CheckWork() {
             placeholder="Paste the problem statement here..."
             value={problem}
             onChange={(e) => setProblem(e.target.value)}
-            className="min-h-[160px] bg-[#0d0d1a] border-gray-700 text-white placeholder-gray-600 resize-none focus:border-purple-600 text-sm"
+            className="min-h-[160px] bg-[#27231E] border-[#3A5253] text-[#FFF5F5] placeholder-[rgba(255,245,245,0.3)] resize-none focus:border-[#81B29A] text-sm"
           />
         </div>
 
         {/* User's attempt */}
-        <div className="bg-[#1a1a2e] border border-purple-900/30 rounded-xl p-5 space-y-3">
-          <h3 className="font-semibold text-white text-sm flex items-center gap-2">
-            <span className="w-5 h-5 rounded bg-cyan-600/30 flex items-center justify-center text-xs text-cyan-300 font-bold">2</span>
+        <div className="bg-[#2e2924] border border-[#3A5253] rounded-xl p-5 space-y-3">
+          <h3 className="font-semibold text-[#FFF5F5] text-sm flex items-center gap-2">
+            <span className="w-5 h-5 rounded bg-[#E07A5F]/20 flex items-center justify-center text-xs text-[#E07A5F] font-bold">2</span>
             Your Work
           </h3>
           <Textarea
             placeholder="Show your work step by step...&#10;&#10;Include your approach, calculations, and answer."
             value={userAttempt}
             onChange={(e) => setUserAttempt(e.target.value)}
-            className="min-h-[160px] bg-[#0d0d1a] border-gray-700 text-white placeholder-gray-600 resize-none focus:border-cyan-600 text-sm"
+            className="min-h-[160px] bg-[#27231E] border-[#3A5253] text-[#FFF5F5] placeholder-[rgba(255,245,245,0.3)] resize-none focus:border-[#E07A5F] text-sm"
           />
         </div>
       </div>
@@ -114,7 +114,7 @@ export function CheckWork() {
       <Button
         onClick={handleCheck}
         disabled={!problem.trim() || !userAttempt.trim() || isLoading}
-        className="w-full bg-purple-600 hover:bg-purple-500 text-white gap-2 py-3"
+        className="w-full bg-[#81B29A] hover:bg-[#81B29A]/80 text-[#27231E] gap-2 py-3"
       >
         {isLoading ? (
           <><Loader2 className="w-4 h-4 animate-spin" />Analyzing your work...</>
@@ -129,33 +129,33 @@ export function CheckWork() {
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-[#1a1a2e] border border-purple-900/30 rounded-xl overflow-hidden"
+            className="bg-[#2e2924] border border-[#3A5253] rounded-xl overflow-hidden"
           >
-            <div className="px-5 py-3 border-b border-purple-900/20 flex items-center gap-2">
+            <div className="px-5 py-3 border-b border-[#3A5253]/50 flex items-center gap-2">
               {isLoading ? (
-                <Loader2 className="w-4 h-4 text-purple-400 animate-spin" />
+                <Loader2 className="w-4 h-4 text-[#81B29A] animate-spin" />
               ) : (
-                <CheckSquare className="w-4 h-4 text-green-400" />
+                <CheckSquare className="w-4 h-4 text-[#81B29A]" />
               )}
-              <h3 className="font-semibold text-white text-sm">
+              <h3 className="font-semibold text-[#FFF5F5] text-sm">
                 {isLoading ? 'Reviewing your work...' : 'Feedback'}
               </h3>
               {!isLoading && feedback && (
-                <span className="ml-auto text-xs text-yellow-400">+5 XP</span>
+                <span className="ml-auto text-xs text-[#E07A5F]">+5 XP</span>
               )}
             </div>
             <div className="p-5">
               {isLoading && !feedback && (
-                <div className="flex items-center gap-2 text-gray-400 text-sm">
-                  <AlertCircle className="w-4 h-4 text-purple-400" />
+                <div className="flex items-center gap-2 text-[rgba(255,245,245,0.5)] text-sm">
+                  <AlertCircle className="w-4 h-4 text-[#81B29A]" />
                   Carefully reviewing each step of your work...
                 </div>
               )}
               {feedback && (
-                <div className="text-gray-200 leading-relaxed">
+                <div className="text-[#FFF5F5] leading-relaxed">
                   <RichContent content={feedback} />
                   {isLoading && (
-                    <span className="inline-block w-2 h-4 bg-purple-400 ml-1 animate-pulse" />
+                    <span className="inline-block w-2 h-4 bg-[#81B29A] ml-1 animate-pulse" />
                   )}
                 </div>
               )}
@@ -165,10 +165,10 @@ export function CheckWork() {
       </AnimatePresence>
 
       {!feedback && !isLoading && (
-        <div className="text-center py-8 text-gray-600">
+        <div className="text-center py-8 text-[rgba(255,245,245,0.3)]">
           <CheckSquare className="w-10 h-10 mx-auto mb-3 opacity-30" />
           <p className="text-sm">Enter the problem and your work above</p>
-          <p className="text-xs mt-1 text-gray-700">
+          <p className="text-xs mt-1 text-[rgba(255,245,245,0.2)]">
             I&apos;ll identify any errors and show you the correct approach
           </p>
         </div>
