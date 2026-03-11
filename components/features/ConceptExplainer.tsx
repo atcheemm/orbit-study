@@ -74,8 +74,8 @@ export function ConceptExplainer() {
   return (
     <div className="flex flex-col gap-6 max-w-3xl mx-auto">
       {/* Input */}
-      <div className="bg-white border border-[#E0E0DA] p-5 space-y-4">
-        <h2 className="font-semibold text-[#1A1A1A]">What would you like to understand?</h2>
+      <div className="bg-[#ECEAE3] border border-[#D0CEC6] p-5 space-y-4">
+        <h2 className="font-semibold text-[#1C3A2A]">What would you like to understand?</h2>
 
         <div className="flex gap-3">
           <input
@@ -84,12 +84,12 @@ export function ConceptExplainer() {
             value={concept}
             onChange={(e) => setConcept(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleExplain()}
-            className="flex-1 bg-white border border-[#E0E0DA] px-4 py-2.5 text-sm text-[#1A1A1A] placeholder-[#6B6B6B] focus:border-[#2D4A3E] focus:outline-none"
+            className="flex-1 bg-[#ECEAE3] border border-[#D0CEC6] px-4 py-2.5 text-sm text-[#1C3A2A] placeholder-[#6B6B5A] focus:border-[#2D5A3D] focus:outline-none"
           />
           <Button
             onClick={() => handleExplain()}
             disabled={!concept.trim() || isLoading}
-            className="bg-[#2D4A3E] hover:bg-[#1e332a] text-white gap-2 shrink-0"
+            className="bg-[#2D5A3D] hover:bg-[#1C3A2A] text-white gap-2 shrink-0"
           >
             {isLoading ? (
               <><Loader2 className="w-4 h-4 animate-spin" />Explaining...</>
@@ -101,7 +101,7 @@ export function ConceptExplainer() {
 
         {/* Quick concept buttons */}
         <div className="space-y-2">
-          <p className="text-xs text-[#6B6B6B] uppercase tracking-widest font-medium">Quick picks:</p>
+          <p className="text-xs text-[#6B6B5A] uppercase tracking-widest font-medium">Quick picks:</p>
           <div className="flex flex-wrap gap-1.5">
             {QUICK_CONCEPTS.map((c) => (
               <button
@@ -113,8 +113,8 @@ export function ConceptExplainer() {
                 className={cn(
                   'px-3 py-1.5 text-xs font-medium transition-colors border',
                   currentConcept === c && !isLoading
-                    ? 'bg-[#F4F4F0] border-[#2D4A3E] text-[#2D4A3E]'
-                    : 'bg-white border-[#E0E0DA] text-[#6B6B6B] hover:border-[#2D4A3E] hover:text-[#1A1A1A]'
+                    ? 'bg-[#E4E2DA] border-[#2D5A3D] text-[#2D5A3D]'
+                    : 'bg-[#ECEAE3] border-[#D0CEC6] text-[#6B6B5A] hover:border-[#2D5A3D] hover:text-[#1C3A2A]'
                 )}
               >
                 {c}
@@ -130,15 +130,15 @@ export function ConceptExplainer() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white border border-[#E0E0DA] overflow-hidden"
+            className="bg-[#ECEAE3] border border-[#D0CEC6] overflow-hidden"
           >
             {/* Topic header */}
-            <div className="px-5 py-4 border-b border-[#E0E0DA] bg-[#F4F4F0] flex items-center gap-2">
-              <h3 className="font-semibold text-[#1A1A1A]">
+            <div className="px-5 py-4 border-b border-[#D0CEC6] bg-[#E4E2DA] flex items-center gap-2">
+              <h3 className="font-semibold text-[#1C3A2A]">
                 {currentConcept}
               </h3>
               {!isLoading && (
-                <span className="ml-auto text-xs text-[#6B6B6B]">
+                <span className="ml-auto text-xs text-[#6B6B5A]">
                   +5 XP earned
                 </span>
               )}
@@ -146,8 +146,8 @@ export function ConceptExplainer() {
 
             <div className="p-5">
               {isLoading && !explanation && (
-                <div className="flex items-center gap-3 text-[#6B6B6B]">
-                  <Loader2 className="w-4 h-4 animate-spin text-[#2D4A3E]" />
+                <div className="flex items-center gap-3 text-[#6B6B5A]">
+                  <Loader2 className="w-4 h-4 animate-spin text-[#2D5A3D]" />
                   <span className="text-sm">Preparing your explanation...</span>
                 </div>
               )}
@@ -156,7 +156,7 @@ export function ConceptExplainer() {
                 <div className="space-y-4">
                   <RichContent content={explanation} />
                   {isLoading && (
-                    <span className="inline-block w-2 h-4 bg-[#2D4A3E] animate-pulse" />
+                    <span className="inline-block w-2 h-4 bg-[#2D5A3D] animate-pulse" />
                   )}
                 </div>
               )}
@@ -167,9 +167,9 @@ export function ConceptExplainer() {
 
       {/* Empty state */}
       {!explanation && !isLoading && (
-        <div className="text-center py-8 text-[#6B6B6B]">
+        <div className="text-center py-8 text-[#6B6B5A]">
           <p className="text-sm">Select a concept above or type your own</p>
-          <p className="text-xs mt-1 text-[#6B6B6B]">Get bite-sized explanations optimized for focus</p>
+          <p className="text-xs mt-1 text-[#6B6B5A]">Get bite-sized explanations optimized for focus</p>
         </div>
       )}
     </div>

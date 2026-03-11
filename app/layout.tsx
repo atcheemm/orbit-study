@@ -30,7 +30,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-[#1A1A1A]`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        style={{ background: '#ECEAE3', color: '#1C3A2A' }}
       >
         <TooltipProvider>
           <div className="flex h-screen overflow-hidden">
@@ -45,7 +46,7 @@ export default function RootLayout({
               <Header />
 
               {/* Page content */}
-              <main className="flex-1 overflow-y-auto lg:pt-0 pt-14 bg-white">
+              <main className="flex-1 overflow-y-auto lg:pt-0 pt-14" style={{ background: '#ECEAE3' }}>
                 {children}
               </main>
             </div>

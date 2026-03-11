@@ -100,14 +100,14 @@ export function TutorChat() {
   return (
     <div className="flex flex-col h-[calc(100vh-10rem)] max-w-3xl mx-auto">
       {/* Header */}
-      <div className="bg-white border border-[#E0E0DA] border-b-0 p-4 flex items-center justify-between">
+      <div className="bg-[#ECEAE3] border border-[#D0CEC6] border-b-0 p-4 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 border border-[#E0E0DA] bg-[#F4F4F0] flex items-center justify-center">
-            <Bot className="w-4 h-4 text-[#2D4A3E]" />
+          <div className="w-8 h-8 border border-[#D0CEC6] bg-[#E4E2DA] flex items-center justify-center">
+            <Bot className="w-4 h-4 text-[#2D5A3D]" />
           </div>
           <div>
-            <h2 className="font-semibold text-[#1A1A1A] text-sm">Aerospace Study AI Tutor</h2>
-            <p className="text-xs text-[#5C7A6B]">Socratic method</p>
+            <h2 className="font-semibold text-[#1C3A2A] text-sm">Aerospace Study AI Tutor</h2>
+            <p className="text-xs text-[#4A7A50]">Socratic method</p>
           </div>
         </div>
         {messages.length > 0 && (
@@ -115,7 +115,7 @@ export function TutorChat() {
             variant="ghost"
             size="sm"
             onClick={() => setMessages([])}
-            className="text-[#6B6B6B] hover:text-[#1A1A1A] text-xs gap-1.5"
+            className="text-[#6B6B5A] hover:text-[#1C3A2A] text-xs gap-1.5"
           >
             <Trash2 className="w-3 h-3" />
             Clear
@@ -124,15 +124,15 @@ export function TutorChat() {
       </div>
 
       {/* Messages area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-white border border-[#E0E0DA] border-t-0 border-b-0">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#ECEAE3] border border-[#D0CEC6] border-t-0 border-b-0">
         {messages.length === 0 && !isStreaming && (
           <div className="flex flex-col items-center gap-6 pt-8 text-center">
-            <div className="w-16 h-16 border border-[#E0E0DA] bg-[#F4F4F0] flex items-center justify-center">
-              <MessageCircle className="w-8 h-8 text-[#2D4A3E]" />
+            <div className="w-16 h-16 border border-[#D0CEC6] bg-[#E4E2DA] flex items-center justify-center">
+              <MessageCircle className="w-8 h-8 text-[#2D5A3D]" />
             </div>
             <div>
-              <h3 className="text-[#1A1A1A] font-semibold mb-1">Ask me anything</h3>
-              <p className="text-[#6B6B6B] text-sm max-w-sm">
+              <h3 className="text-[#1C3A2A] font-semibold mb-1">Ask me anything</h3>
+              <p className="text-[#6B6B5A] text-sm max-w-sm">
                 I use the Socratic method to help you discover answers yourself.
                 {uploadedFiles.length > 0
                   ? ` I can see your ${uploadedFiles.length} uploaded file(s) for context.`
@@ -140,12 +140,12 @@ export function TutorChat() {
               </p>
             </div>
             <div className="w-full space-y-1.5">
-              <p className="text-xs text-[#6B6B6B] uppercase tracking-widest font-medium">Try asking:</p>
+              <p className="text-xs text-[#6B6B5A] uppercase tracking-widest font-medium">Try asking:</p>
               {suggestedQuestions.map((q, i) => (
                 <button
                   key={i}
                   onClick={() => setInput(q)}
-                  className="w-full text-left p-3 bg-white border border-[#E0E0DA] hover:border-[#2D4A3E] text-sm text-[#6B6B6B] hover:text-[#1A1A1A] transition-colors"
+                  className="w-full text-left p-3 bg-[#ECEAE3] border border-[#D0CEC6] hover:border-[#2D5A3D] text-sm text-[#6B6B5A] hover:text-[#1C3A2A] transition-colors"
                 >
                   {q}
                 </button>
@@ -163,8 +163,8 @@ export function TutorChat() {
               className={cn('flex gap-3', msg.role === 'user' ? 'justify-end' : 'justify-start')}
             >
               {msg.role === 'assistant' && (
-                <div className="w-7 h-7 border border-[#E0E0DA] bg-[#F4F4F0] flex items-center justify-center shrink-0 mt-1">
-                  <Bot className="w-3.5 h-3.5 text-[#2D4A3E]" />
+                <div className="w-7 h-7 border border-[#D0CEC6] bg-[#E4E2DA] flex items-center justify-center shrink-0 mt-1">
+                  <Bot className="w-3.5 h-3.5 text-[#2D5A3D]" />
                 </div>
               )}
               <div
@@ -182,8 +182,8 @@ export function TutorChat() {
                 )}
               </div>
               {msg.role === 'user' && (
-                <div className="w-7 h-7 border border-[#E0E0DA] bg-[#F4F4F0] flex items-center justify-center shrink-0 mt-1">
-                  <User className="w-3.5 h-3.5 text-[#6B6B6B]" />
+                <div className="w-7 h-7 border border-[#D0CEC6] bg-[#E4E2DA] flex items-center justify-center shrink-0 mt-1">
+                  <User className="w-3.5 h-3.5 text-[#6B6B5A]" />
                 </div>
               )}
             </motion.div>
@@ -195,27 +195,27 @@ export function TutorChat() {
               animate={{ opacity: 1, y: 0 }}
               className="flex gap-3 justify-start"
             >
-              <div className="w-7 h-7 border border-[#E0E0DA] bg-[#F4F4F0] flex items-center justify-center shrink-0 mt-1">
-                <Bot className="w-3.5 h-3.5 text-[#2D4A3E]" />
+              <div className="w-7 h-7 border border-[#D0CEC6] bg-[#E4E2DA] flex items-center justify-center shrink-0 mt-1">
+                <Bot className="w-3.5 h-3.5 text-[#2D5A3D]" />
               </div>
               <div className="max-w-[80%] chat-bubble-ai px-4 py-3 text-sm leading-relaxed">
                 <RichContent content={streamingContent} />
-                <span className="inline-block w-1.5 h-4 bg-[#2D4A3E] ml-1 animate-pulse" />
+                <span className="inline-block w-1.5 h-4 bg-[#2D5A3D] ml-1 animate-pulse" />
               </div>
             </motion.div>
           )}
 
           {isStreaming && !streamingContent && (
             <div className="flex gap-3 justify-start">
-              <div className="w-7 h-7 border border-[#E0E0DA] bg-[#F4F4F0] flex items-center justify-center">
-                <Bot className="w-3.5 h-3.5 text-[#2D4A3E]" />
+              <div className="w-7 h-7 border border-[#D0CEC6] bg-[#E4E2DA] flex items-center justify-center">
+                <Bot className="w-3.5 h-3.5 text-[#2D5A3D]" />
               </div>
               <div className="chat-bubble-ai px-4 py-3">
                 <div className="flex gap-1.5 items-center h-5">
                   {[0, 1, 2].map((i) => (
                     <div
                       key={i}
-                      className="w-1.5 h-1.5 bg-[#2D4A3E] animate-bounce"
+                      className="w-1.5 h-1.5 bg-[#2D5A3D] animate-bounce"
                       style={{ animationDelay: `${i * 0.15}s` }}
                     />
                   ))}
@@ -228,7 +228,7 @@ export function TutorChat() {
       </div>
 
       {/* Input area */}
-      <div className="bg-white border border-[#E0E0DA] border-t-0 p-3">
+      <div className="bg-[#ECEAE3] border border-[#D0CEC6] border-t-0 p-3">
         <div className="flex gap-2">
           <Textarea
             placeholder="Ask about any aerospace concept..."
@@ -240,13 +240,13 @@ export function TutorChat() {
                 handleSend();
               }
             }}
-            className="min-h-[44px] max-h-[120px] bg-white border-[#E0E0DA] text-[#1A1A1A] placeholder-[#6B6B6B] resize-none focus:border-[#2D4A3E] text-sm"
+            className="min-h-[44px] max-h-[120px] bg-[#ECEAE3] border-[#D0CEC6] text-[#1C3A2A] placeholder-[#6B6B5A] resize-none focus:border-[#2D5A3D] text-sm"
             rows={1}
           />
           <Button
             onClick={handleSend}
             disabled={!input.trim() || isStreaming}
-            className="bg-[#2D4A3E] hover:bg-[#1e332a] text-white shrink-0 self-end h-11 w-11 p-0"
+            className="bg-[#2D5A3D] hover:bg-[#1C3A2A] text-white shrink-0 self-end h-11 w-11 p-0"
           >
             {isStreaming ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -255,7 +255,7 @@ export function TutorChat() {
             )}
           </Button>
         </div>
-        <p className="text-xs text-[#6B6B6B] mt-1.5 pl-1">
+        <p className="text-xs text-[#6B6B5A] mt-1.5 pl-1">
           Press Enter to send, Shift+Enter for new line
         </p>
       </div>

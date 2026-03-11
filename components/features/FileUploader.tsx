@@ -75,18 +75,18 @@ export function FileUploader({ onFileProcessed, compact = false }: FileUploaderP
           className={cn(
             'border-2 border-dashed p-3 cursor-pointer transition-colors text-center',
             isDragActive
-              ? 'border-[#2D4A3E] bg-[#F4F4F0]'
-              : 'border-[#E0E0DA] hover:border-[#2D4A3E]'
+              ? 'border-[#2D5A3D] bg-[#E4E2DA]'
+              : 'border-[#D0CEC6] hover:border-[#2D5A3D]'
           )}
         >
           <input {...getInputProps()} />
           {uploading ? (
-            <div className="flex items-center justify-center gap-2 text-sm text-[#6B6B6B]">
+            <div className="flex items-center justify-center gap-2 text-sm text-[#6B6B5A]">
               <Loader2 className="w-4 h-4 animate-spin" />
               <span>Processing...</span>
             </div>
           ) : (
-            <div className="flex items-center justify-center gap-2 text-sm text-[#6B6B6B]">
+            <div className="flex items-center justify-center gap-2 text-sm text-[#6B6B5A]">
               <Upload className="w-4 h-4" />
               <span>{isDragActive ? 'Drop here' : 'Upload PDF/TXT'}</span>
             </div>
@@ -97,13 +97,13 @@ export function FileUploader({ onFileProcessed, compact = false }: FileUploaderP
             {uploadedFiles.map((file) => (
               <div
                 key={file.id}
-                className="flex items-center gap-2 text-xs p-1.5 bg-[#F4F4F0] border border-[#E0E0DA]"
+                className="flex items-center gap-2 text-xs p-1.5 bg-[#E4E2DA] border border-[#D0CEC6]"
               >
-                <FileText className="w-3 h-3 text-[#2D4A3E] shrink-0" />
-                <span className="truncate text-[#1A1A1A] flex-1">{file.name}</span>
+                <FileText className="w-3 h-3 text-[#2D5A3D] shrink-0" />
+                <span className="truncate text-[#1C3A2A] flex-1">{file.name}</span>
                 <button
                   onClick={() => removeFile(file.id)}
-                  className="text-[#6B6B6B] hover:text-[#1A1A1A] transition-colors"
+                  className="text-[#6B6B5A] hover:text-[#1C3A2A] transition-colors"
                 >
                   <Trash2 className="w-3 h-3" />
                 </button>
@@ -122,29 +122,29 @@ export function FileUploader({ onFileProcessed, compact = false }: FileUploaderP
         className={cn(
           'border-2 border-dashed p-8 cursor-pointer transition-colors text-center',
           isDragActive
-            ? 'border-[#2D4A3E] bg-[#F4F4F0]'
-            : 'border-[#E0E0DA] hover:border-[#2D4A3E]'
+            ? 'border-[#2D5A3D] bg-[#E4E2DA]'
+            : 'border-[#D0CEC6] hover:border-[#2D5A3D]'
         )}
       >
         <input {...getInputProps()} />
         <div className="flex flex-col items-center gap-3">
           {uploading ? (
             <>
-              <Loader2 className="w-10 h-10 text-[#2D4A3E] animate-spin" />
-              <p className="text-[#6B6B6B]">Processing your file...</p>
+              <Loader2 className="w-10 h-10 text-[#2D5A3D] animate-spin" />
+              <p className="text-[#6B6B5A]">Processing your file...</p>
             </>
           ) : (
             <>
-              <div className="w-12 h-12 border border-[#E0E0DA] bg-[#F4F4F0] flex items-center justify-center">
-                <Upload className="w-6 h-6 text-[#2D4A3E]" />
+              <div className="w-12 h-12 border border-[#D0CEC6] bg-[#E4E2DA] flex items-center justify-center">
+                <Upload className="w-6 h-6 text-[#2D5A3D]" />
               </div>
               <div>
-                <p className="text-[#1A1A1A] font-medium">
+                <p className="text-[#1C3A2A] font-medium">
                   {isDragActive ? 'Drop it here' : 'Drag & drop your study materials'}
                 </p>
-                <p className="text-[#6B6B6B] text-sm mt-1">PDF or TXT files, up to 10MB</p>
+                <p className="text-[#6B6B5A] text-sm mt-1">PDF or TXT files, up to 10MB</p>
               </div>
-              <Button variant="outline" size="sm" className="border-[#E0E0DA] text-[#2D4A3E] hover:border-[#2D4A3E]">
+              <Button variant="outline" size="sm" className="border-[#D0CEC6] text-[#2D5A3D] hover:border-[#2D5A3D]">
                 Browse Files
               </Button>
             </>
@@ -163,7 +163,7 @@ export function FileUploader({ onFileProcessed, compact = false }: FileUploaderP
             animate={{ opacity: 1, y: 0 }}
             className="space-y-2"
           >
-            <h3 className="text-xs font-semibold text-[#6B6B6B] uppercase tracking-widest">
+            <h3 className="text-xs font-semibold text-[#6B6B5A] uppercase tracking-widest">
               Uploaded Files ({uploadedFiles.length})
             </h3>
             {uploadedFiles.map((file) => (
@@ -172,23 +172,23 @@ export function FileUploader({ onFileProcessed, compact = false }: FileUploaderP
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 8 }}
-                className="flex items-center gap-3 p-3 bg-[#F4F4F0] border border-[#E0E0DA]"
+                className="flex items-center gap-3 p-3 bg-[#E4E2DA] border border-[#D0CEC6]"
               >
-                <div className="w-8 h-8 border border-[#E0E0DA] bg-white flex items-center justify-center shrink-0">
-                  <FileText className="w-4 h-4 text-[#2D4A3E]" />
+                <div className="w-8 h-8 border border-[#D0CEC6] bg-[#ECEAE3] flex items-center justify-center shrink-0">
+                  <FileText className="w-4 h-4 text-[#2D5A3D]" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-[#1A1A1A] truncate">{file.name}</p>
-                  <p className="text-xs text-[#6B6B6B]">
+                  <p className="text-sm font-medium text-[#1C3A2A] truncate">{file.name}</p>
+                  <p className="text-xs text-[#6B6B5A]">
                     {file.text.split(' ').length.toLocaleString()} words extracted
                   </p>
                 </div>
-                <CheckCircle className="w-4 h-4 text-[#2D4A3E] shrink-0" />
+                <CheckCircle className="w-4 h-4 text-[#2D5A3D] shrink-0" />
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => removeFile(file.id)}
-                  className="text-[#6B6B6B] hover:text-[#1A1A1A] h-8 w-8 p-0"
+                  className="text-[#6B6B5A] hover:text-[#1C3A2A] h-8 w-8 p-0"
                 >
                   <Trash2 className="w-4 h-4" />
                 </Button>

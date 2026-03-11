@@ -37,12 +37,19 @@ export function Sidebar({ onClose }: SidebarProps) {
   const { xp, streak } = useStore();
 
   return (
-    <div className="flex flex-col h-full bg-[#F4F4F0] border-r border-[#E0E0DA] w-64">
+    <div className="flex flex-col h-full bg-[#E4E2DA] border-r border-[#D0CEC6] w-64">
       {/* Brand */}
-      <div className="p-5 border-b border-[#E0E0DA] flex items-center justify-between">
-        <Image src="/logo.png" alt="Aerospace Study" height={32} width={120} style={{ height: 32, width: 'auto', borderRadius: 0 }} priority />
+      <div className="p-5 border-b border-[#D0CEC6] flex items-center justify-between">
+        <Image
+          src="/logo.png"
+          alt="Aerospace Study"
+          height={40}
+          width={150}
+          style={{ height: 40, width: 'auto', borderRadius: 0, mixBlendMode: 'multiply' }}
+          priority
+        />
         {onClose && (
-          <button onClick={onClose} className="text-[#6B6B6B] hover:text-[#1A1A1A] lg:hidden transition-colors">
+          <button onClick={onClose} className="text-[#6B6B5A] hover:text-[#1C3A2A] lg:hidden transition-colors">
             <X className="w-5 h-5" />
           </button>
         )}
@@ -61,14 +68,14 @@ export function Sidebar({ onClose }: SidebarProps) {
               className={cn(
                 'flex items-center gap-3 px-3 py-2.5 transition-colors duration-150 group relative',
                 isActive
-                  ? 'bg-white text-[#2D4A3E] border-l-2 border-[#2D4A3E]'
-                  : 'text-[#1A1A1A] hover:bg-white hover:text-[#2D4A3E] border-l-2 border-transparent'
+                  ? 'bg-[#ECEAE3] text-[#2D5A3D] border-l-2 border-[#2D5A3D]'
+                  : 'text-[#1C3A2A] hover:bg-[#ECEAE3] hover:text-[#2D5A3D] border-l-2 border-transparent'
               )}
             >
               <Icon
                 className={cn(
                   'w-4 h-4 shrink-0',
-                  isActive ? 'text-[#2D4A3E]' : 'text-[#6B6B6B] group-hover:text-[#2D4A3E]'
+                  isActive ? 'text-[#2D5A3D]' : 'text-[#6B6B5A] group-hover:text-[#2D5A3D]'
                 )}
               />
               <span className="text-sm font-medium">{item.label}</span>
@@ -78,9 +85,9 @@ export function Sidebar({ onClose }: SidebarProps) {
       </nav>
 
       {/* Bottom section */}
-      <div className="p-4 space-y-4 border-t border-[#E0E0DA]">
+      <div className="p-4 space-y-4 border-t border-[#D0CEC6]">
         {/* XP and streak understated */}
-        <div className="flex items-center justify-between text-xs text-[#6B6B6B]">
+        <div className="flex items-center justify-between text-xs text-[#6B6B5A]">
           <span>XP: {xp}</span>
           <span>Streak: {streak} days</span>
         </div>
@@ -91,8 +98,8 @@ export function Sidebar({ onClose }: SidebarProps) {
         </div>
 
         {/* Mini Pomodoro */}
-        <div className="pt-2 border-t border-[#E0E0DA]">
-          <p className="text-xs text-[#6B6B6B] uppercase tracking-widest mb-2 font-medium">Focus Timer</p>
+        <div className="pt-2 border-t border-[#D0CEC6]">
+          <p className="text-xs text-[#6B6B5A] uppercase tracking-widest mb-2 font-medium">Focus Timer</p>
           <PomodoroTimer mini />
         </div>
       </div>

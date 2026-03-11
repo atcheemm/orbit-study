@@ -72,10 +72,10 @@ export function CheckWork() {
       {/* Input forms */}
       <div className="grid md:grid-cols-2 gap-4">
         {/* Problem input */}
-        <div className="bg-white border border-[#E0E0DA] p-5 space-y-3">
+        <div className="bg-[#ECEAE3] border border-[#D0CEC6] p-5 space-y-3">
           <div className="flex items-center justify-between">
-            <h3 className="font-semibold text-[#1A1A1A] text-sm flex items-center gap-2">
-              <span className="w-5 h-5 bg-[#F4F4F0] border border-[#E0E0DA] flex items-center justify-center text-xs text-[#2D4A3E] font-bold">1</span>
+            <h3 className="font-semibold text-[#1C3A2A] text-sm flex items-center gap-2">
+              <span className="w-5 h-5 bg-[#E4E2DA] border border-[#D0CEC6] flex items-center justify-center text-xs text-[#2D5A3D] font-bold">1</span>
               The Problem
             </h3>
             <button
@@ -83,7 +83,7 @@ export function CheckWork() {
                 setProblem(exampleProblem.problem);
                 setUserAttempt(exampleProblem.attempt);
               }}
-              className="text-xs text-[#2D4A3E] hover:text-[#1A1A1A] underline underline-offset-2 transition-colors"
+              className="text-xs text-[#2D5A3D] hover:text-[#1C3A2A] underline underline-offset-2 transition-colors"
             >
               Use example
             </button>
@@ -92,21 +92,21 @@ export function CheckWork() {
             placeholder="Paste the problem statement here..."
             value={problem}
             onChange={(e) => setProblem(e.target.value)}
-            className="min-h-[160px] bg-white border-[#E0E0DA] text-[#1A1A1A] placeholder-[#6B6B6B] resize-none focus:border-[#2D4A3E] text-sm"
+            className="min-h-[160px] bg-[#ECEAE3] border-[#D0CEC6] text-[#1C3A2A] placeholder-[#6B6B5A] resize-none focus:border-[#2D5A3D] text-sm"
           />
         </div>
 
         {/* User's attempt */}
-        <div className="bg-white border border-[#E0E0DA] p-5 space-y-3">
-          <h3 className="font-semibold text-[#1A1A1A] text-sm flex items-center gap-2">
-            <span className="w-5 h-5 bg-[#F4F4F0] border border-[#E0E0DA] flex items-center justify-center text-xs text-[#2D4A3E] font-bold">2</span>
+        <div className="bg-[#ECEAE3] border border-[#D0CEC6] p-5 space-y-3">
+          <h3 className="font-semibold text-[#1C3A2A] text-sm flex items-center gap-2">
+            <span className="w-5 h-5 bg-[#E4E2DA] border border-[#D0CEC6] flex items-center justify-center text-xs text-[#2D5A3D] font-bold">2</span>
             Your Work
           </h3>
           <Textarea
             placeholder="Show your work step by step...&#10;&#10;Include your approach, calculations, and answer."
             value={userAttempt}
             onChange={(e) => setUserAttempt(e.target.value)}
-            className="min-h-[160px] bg-white border-[#E0E0DA] text-[#1A1A1A] placeholder-[#6B6B6B] resize-none focus:border-[#2D4A3E] text-sm"
+            className="min-h-[160px] bg-[#ECEAE3] border-[#D0CEC6] text-[#1C3A2A] placeholder-[#6B6B5A] resize-none focus:border-[#2D5A3D] text-sm"
           />
         </div>
       </div>
@@ -114,7 +114,7 @@ export function CheckWork() {
       <Button
         onClick={handleCheck}
         disabled={!problem.trim() || !userAttempt.trim() || isLoading}
-        className="w-full bg-[#2D4A3E] hover:bg-[#1e332a] text-white gap-2 py-3"
+        className="w-full bg-[#2D5A3D] hover:bg-[#1C3A2A] text-white gap-2 py-3"
       >
         {isLoading ? (
           <><Loader2 className="w-4 h-4 animate-spin" />Analyzing your work...</>
@@ -129,32 +129,32 @@ export function CheckWork() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white border border-[#E0E0DA] overflow-hidden"
+            className="bg-[#ECEAE3] border border-[#D0CEC6] overflow-hidden"
           >
-            <div className="px-5 py-3 border-b border-[#E0E0DA] bg-[#F4F4F0] flex items-center gap-2">
+            <div className="px-5 py-3 border-b border-[#D0CEC6] bg-[#E4E2DA] flex items-center gap-2">
               {isLoading ? (
-                <Loader2 className="w-4 h-4 text-[#2D4A3E] animate-spin" />
+                <Loader2 className="w-4 h-4 text-[#2D5A3D] animate-spin" />
               ) : (
-                <CheckSquare className="w-4 h-4 text-[#2D4A3E]" />
+                <CheckSquare className="w-4 h-4 text-[#2D5A3D]" />
               )}
-              <h3 className="font-semibold text-[#1A1A1A] text-sm">
+              <h3 className="font-semibold text-[#1C3A2A] text-sm">
                 {isLoading ? 'Reviewing your work...' : 'Feedback'}
               </h3>
               {!isLoading && feedback && (
-                <span className="ml-auto text-xs text-[#6B6B6B]">+5 XP</span>
+                <span className="ml-auto text-xs text-[#6B6B5A]">+5 XP</span>
               )}
             </div>
             <div className="p-5">
               {isLoading && !feedback && (
-                <div className="flex items-center gap-2 text-[#6B6B6B] text-sm">
+                <div className="flex items-center gap-2 text-[#6B6B5A] text-sm">
                   Carefully reviewing each step of your work...
                 </div>
               )}
               {feedback && (
-                <div className="text-[#1A1A1A] leading-relaxed">
+                <div className="text-[#1C3A2A] leading-relaxed">
                   <RichContent content={feedback} />
                   {isLoading && (
-                    <span className="inline-block w-2 h-4 bg-[#2D4A3E] ml-1 animate-pulse" />
+                    <span className="inline-block w-2 h-4 bg-[#2D5A3D] ml-1 animate-pulse" />
                   )}
                 </div>
               )}
@@ -164,7 +164,7 @@ export function CheckWork() {
       </AnimatePresence>
 
       {!feedback && !isLoading && (
-        <div className="text-center py-8 text-[#6B6B6B]">
+        <div className="text-center py-8 text-[#6B6B5A]">
           <p className="text-sm">Enter the problem and your work above</p>
           <p className="text-xs mt-1">
             I&apos;ll identify any errors and show you the correct approach

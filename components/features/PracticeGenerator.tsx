@@ -91,12 +91,12 @@ export function PracticeGenerator() {
   return (
     <div className="flex flex-col gap-6 max-w-3xl mx-auto">
       {/* Configuration */}
-      <div className="bg-white border border-[#E0E0DA] p-5 space-y-5">
-        <h2 className="font-semibold text-[#1A1A1A]">Configure Practice Problem</h2>
+      <div className="bg-[#ECEAE3] border border-[#D0CEC6] p-5 space-y-5">
+        <h2 className="font-semibold text-[#1C3A2A]">Configure Practice Problem</h2>
 
         {/* Topic selector */}
         <div className="space-y-2">
-          <label className="text-xs text-[#6B6B6B] uppercase tracking-widest font-medium">Topic</label>
+          <label className="text-xs text-[#6B6B5A] uppercase tracking-widest font-medium">Topic</label>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
             {TOPICS.map((topic) => (
               <button
@@ -104,8 +104,8 @@ export function PracticeGenerator() {
                 onClick={() => setSelectedTopic(topic.id)}
                 className={`p-2.5 text-sm font-medium transition-colors text-left border ${
                   selectedTopic === topic.id
-                    ? 'bg-[#F4F4F0] border-[#2D4A3E] text-[#2D4A3E]'
-                    : 'bg-white border-[#E0E0DA] text-[#6B6B6B] hover:border-[#2D4A3E] hover:text-[#1A1A1A]'
+                    ? 'bg-[#E4E2DA] border-[#2D5A3D] text-[#2D5A3D]'
+                    : 'bg-[#ECEAE3] border-[#D0CEC6] text-[#6B6B5A] hover:border-[#2D5A3D] hover:text-[#1C3A2A]'
                 }`}
               >
                 {topic.label}
@@ -117,10 +117,10 @@ export function PracticeGenerator() {
         {/* Difficulty slider */}
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <label className="text-xs text-[#6B6B6B] uppercase tracking-widest font-medium">Difficulty</label>
+            <label className="text-xs text-[#6B6B5A] uppercase tracking-widest font-medium">Difficulty</label>
             <Badge
               variant="outline"
-              className={`text-xs border-[#E0E0DA] text-[#1A1A1A]`}
+              className={`text-xs border-[#D0CEC6] text-[#1C3A2A]`}
             >
               {DIFFICULTY_LABELS[difficulty]}
             </Badge>
@@ -133,7 +133,7 @@ export function PracticeGenerator() {
             step={1}
             className="w-full"
           />
-          <div className="flex justify-between text-xs text-[#6B6B6B]">
+          <div className="flex justify-between text-xs text-[#6B6B5A]">
             {DIFFICULTY_LABELS.slice(1).map((label) => (
               <span key={label}>{label}</span>
             ))}
@@ -143,7 +143,7 @@ export function PracticeGenerator() {
         <Button
           onClick={handleGenerate}
           disabled={isLoading}
-          className="w-full bg-[#2D4A3E] hover:bg-[#1e332a] text-white gap-2"
+          className="w-full bg-[#2D5A3D] hover:bg-[#1C3A2A] text-white gap-2"
         >
           {isLoading ? (
             <>
@@ -165,30 +165,30 @@ export function PracticeGenerator() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white border border-[#E0E0DA] p-5 space-y-4"
+            className="bg-[#ECEAE3] border border-[#D0CEC6] p-5 space-y-4"
           >
             <div className="flex items-center justify-between">
-              <div className="text-sm font-semibold text-[#1A1A1A]">
+              <div className="text-sm font-semibold text-[#1C3A2A]">
                 {TOPICS.find((t) => t.id === selectedTopic)?.label} —{' '}
-                <span className="text-[#6B6B6B] font-normal">{DIFFICULTY_LABELS[difficulty]}</span>
+                <span className="text-[#6B6B5A] font-normal">{DIFFICULTY_LABELS[difficulty]}</span>
               </div>
               {problem.solved && (
-                <span className="text-xs text-[#6B6B6B]">+{xpGained} XP earned</span>
+                <span className="text-xs text-[#6B6B5A]">+{xpGained} XP earned</span>
               )}
             </div>
 
-            <div className="text-[#1A1A1A] leading-relaxed">
+            <div className="text-[#1C3A2A] leading-relaxed">
               <RichContent content={getDisplayContent(problem.raw, problem.showAnswer)} />
             </div>
 
-            <div className="flex items-center gap-3 pt-2 border-t border-[#E0E0DA]">
+            <div className="flex items-center gap-3 pt-2 border-t border-[#D0CEC6]">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() =>
                   setProblem({ ...problem, showAnswer: !problem.showAnswer })
                 }
-                className="border-[#E0E0DA] text-[#6B6B6B] hover:text-[#1A1A1A] hover:border-[#2D4A3E] gap-2"
+                className="border-[#D0CEC6] text-[#6B6B5A] hover:text-[#1C3A2A] hover:border-[#2D5A3D] gap-2"
               >
                 {problem.showAnswer ? (
                   <><EyeOff className="w-3.5 h-3.5" />Hide Answer</>
@@ -201,12 +201,12 @@ export function PracticeGenerator() {
                 <Button
                   size="sm"
                   onClick={handleMarkSolved}
-                  className="bg-[#2D4A3E] hover:bg-[#1e332a] text-white gap-2"
+                  className="bg-[#2D5A3D] hover:bg-[#1C3A2A] text-white gap-2"
                 >
                   Mark as Solved (+{difficulty * 10} XP)
                 </Button>
               ) : (
-                <span className="text-[#2D4A3E] text-sm font-medium">
+                <span className="text-[#2D5A3D] text-sm font-medium">
                   Problem solved
                 </span>
               )}
@@ -215,7 +215,7 @@ export function PracticeGenerator() {
                 variant="outline"
                 size="sm"
                 onClick={handleGenerate}
-                className="border-[#E0E0DA] text-[#6B6B6B] hover:text-[#1A1A1A] ml-auto"
+                className="border-[#D0CEC6] text-[#6B6B5A] hover:text-[#1C3A2A] ml-auto"
               >
                 Next Problem
               </Button>

@@ -49,38 +49,38 @@
 }
 
 :root {
-  --background: #FFFFFF;
-  --foreground: #1A1A1A;
-  --card: #FFFFFF;
-  --card-foreground: #1A1A1A;
-  --popover: #FFFFFF;
-  --popover-foreground: #1A1A1A;
-  --primary: #2D4A3E;
+  --background: #ECEAE3;
+  --foreground: #1C3A2A;
+  --card: #ECEAE3;
+  --card-foreground: #1C3A2A;
+  --popover: #ECEAE3;
+  --popover-foreground: #1C3A2A;
+  --primary: #2D5A3D;
   --primary-foreground: #FFFFFF;
-  --secondary: #F4F4F0;
-  --secondary-foreground: #1A1A1A;
-  --muted: #F4F4F0;
-  --muted-foreground: #6B6B6B;
-  --accent: #2D4A3E;
+  --secondary: #E4E2DA;
+  --secondary-foreground: #1C3A2A;
+  --muted: #E4E2DA;
+  --muted-foreground: #6B6B5A;
+  --accent: #2D5A3D;
   --accent-foreground: #FFFFFF;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #E0E0DA;
-  --input: #E0E0DA;
-  --ring: #2D4A3E;
-  --chart-1: #2D4A3E;
-  --chart-2: #5C7A6B;
-  --chart-3: #E0E0DA;
-  --chart-4: #6B6B6B;
-  --chart-5: #1A1A1A;
+  --border: #D0CEC6;
+  --input: #D0CEC6;
+  --ring: #2D5A3D;
+  --chart-1: #2D5A3D;
+  --chart-2: #4A7A50;
+  --chart-3: #D0CEC6;
+  --chart-4: #6B6B5A;
+  --chart-5: #1C3A2A;
   --radius: 0px;
-  --sidebar: #F4F4F0;
-  --sidebar-foreground: #1A1A1A;
-  --sidebar-primary: #2D4A3E;
+  --sidebar: #E4E2DA;
+  --sidebar-foreground: #1C3A2A;
+  --sidebar-primary: #2D5A3D;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #FFFFFF;
-  --sidebar-accent-foreground: #1A1A1A;
-  --sidebar-border: #E0E0DA;
-  --sidebar-ring: #2D4A3E;
+  --sidebar-accent: #ECEAE3;
+  --sidebar-accent-foreground: #1C3A2A;
+  --sidebar-border: #D0CEC6;
+  --sidebar-ring: #2D5A3D;
 }
 
 * {
@@ -93,6 +93,8 @@
   }
   body {
     @apply bg-background text-foreground;
+    background: #ECEAE3;
+    color: #1C3A2A;
     font-family: system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
   }
   html {
@@ -102,32 +104,32 @@
 
 /* Step card editorial style */
 .step-card {
-  border-left: 3px solid #2D4A3E;
-  background: #FFFFFF;
-  border: 1px solid #E0E0DA;
-  border-left: 3px solid #2D4A3E;
+  border-left: 3px solid #2D5A3D;
+  background: #ECEAE3;
+  border: 1px solid #D0CEC6;
+  border-left: 3px solid #2D5A3D;
   transition: border-left-color 0.2s ease;
 }
 
 .step-card:hover {
-  border-left-color: #5C7A6B;
+  border-left-color: #4A7A50;
 }
 
 /* XP bar fill */
 .xp-bar-fill {
-  background: #2D4A3E;
+  background: #2D5A3D;
   transition: width 0.6s ease;
 }
 
 /* Chat bubbles */
 .chat-bubble-ai {
-  background: #F4F4F0;
-  border: 1px solid #E0E0DA;
-  color: #1A1A1A;
+  background: #E4E2DA;
+  border: 1px solid #D0CEC6;
+  color: #1C3A2A;
 }
 
 .chat-bubble-user {
-  background: #2D4A3E;
+  background: #2D5A3D;
   color: #FFFFFF;
 }
 
@@ -138,25 +140,25 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #F4F4F0;
+  background: #E4E2DA;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #E0E0DA;
+  background: #D0CEC6;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6B6B6B;
+  background: #6B6B5A;
 }
 
 /* KaTeX override */
 .katex {
-  color: #1A1A1A;
+  color: #1C3A2A;
   font-size: 1.05em;
 }
 
 /* Focus state */
 :focus-visible {
-  outline: 2px solid #2D4A3E;
+  outline: 2px solid #2D5A3D;
   outline-offset: 2px;
 }

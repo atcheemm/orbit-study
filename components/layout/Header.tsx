@@ -17,19 +17,26 @@ export function Header({ title }: HeaderProps) {
 
   return (
     <>
-      <header className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b border-[#E0E0DA] h-14 flex items-center px-4 gap-3">
+      <header className="lg:hidden fixed top-0 left-0 right-0 z-50 border-b border-[#D0CEC6] h-14 flex items-center px-4 gap-3" style={{ background: '#ECEAE3' }}>
         <button
           onClick={() => setMobileMenuOpen(true)}
-          className="text-[#6B6B6B] hover:text-[#1A1A1A] transition-colors"
+          className="text-[#6B6B5A] hover:text-[#1C3A2A] transition-colors"
         >
           <Menu className="w-5 h-5" />
         </button>
 
         <div className="flex items-center flex-1">
-          <Image src="/logo.png" alt="Aerospace Study" height={28} width={105} style={{ height: 28, width: 'auto', borderRadius: 0 }} priority />
+          <Image
+            src="/logo.png"
+            alt="Aerospace Study"
+            height={28}
+            width={105}
+            style={{ height: 28, width: 'auto', borderRadius: 0, mixBlendMode: 'multiply' }}
+            priority
+          />
         </div>
 
-        <div className="flex items-center gap-4 text-xs text-[#6B6B6B]">
+        <div className="flex items-center gap-4 text-xs text-[#6B6B5A]">
           <span>XP: {xp}</span>
           <span>Streak: {streak}d</span>
         </div>
