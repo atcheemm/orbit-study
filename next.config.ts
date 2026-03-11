@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Allow server-side packages like pdf-parse
+  serverExternalPackages: ['pdf-parse'],
+
+  turbopack: {
+    root: __dirname,
+  },
 };
 
 export default nextConfig;
