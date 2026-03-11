@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { TutorChat } from '@/components/features/TutorChat';
 
 export const metadata: Metadata = {
-  title: 'AI Tutor — OrbitStudy',
+  title: 'AI Tutor — Aerospace Study',
 };
 
 export default function TutorPage() {

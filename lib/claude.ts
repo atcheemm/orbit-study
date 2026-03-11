@@ -9,7 +9,7 @@ export type Message = {
   content: string;
 };
 
-const AEROSPACE_SYSTEM_PROMPT = `You are OrbitStudy AI, an expert aerospace engineering tutor helping college students with ADHD master complex concepts.
+const AEROSPACE_SYSTEM_PROMPT = `You are Aerospace Study AI, an expert aerospace engineering tutor helping college students with ADHD master complex concepts.
 
 Your teaching style:
 - Break everything into clear, numbered steps

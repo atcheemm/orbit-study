@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { ConceptExplainer } from '@/components/features/ConceptExplainer';
 
 export const metadata: Metadata = {
-  title: 'Concept Explainer — OrbitStudy',
+  title: 'Concept Explainer — Aerospace Study',
 };
 
 export default function ExplainPage() {

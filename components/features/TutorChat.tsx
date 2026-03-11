@@ -106,7 +106,7 @@ export function TutorChat() {
             <Bot className="w-4 h-4 text-[#2D4A3E]" />
           </div>
           <div>
-            <h2 className="font-semibold text-[#1A1A1A] text-sm">OrbitStudy AI Tutor</h2>
+            <h2 className="font-semibold text-[#1A1A1A] text-sm">Aerospace Study AI Tutor</h2>
             <p className="text-xs text-[#5C7A6B]">Socratic method</p>
           </div>
         </div>

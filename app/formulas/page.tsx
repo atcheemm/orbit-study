@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { FormulaHub } from '@/components/features/FormulaHub';
 
 export const metadata: Metadata = {
-  title: 'Formula Hub — OrbitStudy',
+  title: 'Formula Hub — Aerospace Study',
 };
 
 export default function FormulasPage() {

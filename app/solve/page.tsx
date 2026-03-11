@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { StepSolver } from '@/components/features/StepSolver';
 
 export const metadata: Metadata = {
-  title: 'Step Solver — OrbitStudy',
+  title: 'Step Solver — Aerospace Study',
 };
 
 export default function SolvePage() {

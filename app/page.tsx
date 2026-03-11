@@ -63,7 +63,7 @@ export default function Home() {
     <div className="p-6 max-w-6xl mx-auto space-y-10">
       {/* Hero */}
       <div className="pt-10 pb-4 border-b border-[#E0E0DA]">
-        <h1 className="text-4xl font-extrabold tracking-tight text-[#1A1A1A] mb-3">OrbitStudy</h1>
+        <h1 className="text-4xl font-extrabold tracking-tight text-[#1A1A1A] mb-3">Aerospace Study</h1>
         <p className="text-[#6B6B6B] text-base max-w-xl">
           AI-powered aerospace engineering study tool designed for focused learning.
           Solve problems step-by-step, earn XP, and master the fundamentals.

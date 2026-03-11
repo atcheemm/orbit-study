@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { CheckWork } from '@/components/features/CheckWork';
 
 export const metadata: Metadata = {
-  title: 'Check My Work — OrbitStudy',
+  title: 'Check My Work — Aerospace Study',
 };
 
 export default function CheckPage() {

@@ -179,7 +179,7 @@ export const useStore = create<StudyStore>()(
         })),
     }),
     {
-      name: 'orbitstudy-storage',
+      name: 'aerospace-study-storage',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         xp: state.xp,

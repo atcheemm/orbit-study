@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "OrbitStudy — AI Aerospace Study Tool",
+  title: "Aerospace Study — AI Aerospace Study Tool",
   description:
     "AI-powered study tool for aerospace engineering students with ADHD. Step-by-step problem solving, Socratic tutoring, practice problems, and more.",
   keywords: ["aerospace engineering", "ADHD", "study tool", "AI tutor"],

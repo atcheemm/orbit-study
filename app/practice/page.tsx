@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { PracticeGenerator } from '@/components/features/PracticeGenerator';
 
 export const metadata: Metadata = {
-  title: 'Practice Problems — OrbitStudy',
+  title: 'Practice Problems — Aerospace Study',
 };
 
 export default function PracticePage() {

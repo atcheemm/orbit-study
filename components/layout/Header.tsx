@@ -26,7 +26,7 @@ export function Header({ title }: HeaderProps) {
         </button>
 
         <div className="flex items-center flex-1">
-          <Image src="/logo.png" alt="OrbitStudy" height={28} width={105} style={{ height: 28, width: 'auto', borderRadius: 0 }} priority />
+          <Image src="/logo.png" alt="Aerospace Study" height={28} width={105} style={{ height: 28, width: 'auto', borderRadius: 0 }} priority />
         </div>
 
         <div className="flex items-center gap-4 text-xs text-[#6B6B6B]">

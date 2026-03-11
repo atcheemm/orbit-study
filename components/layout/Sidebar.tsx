@@ -40,7 +40,7 @@ export function Sidebar({ onClose }: SidebarProps) {
     <div className="flex flex-col h-full bg-[#F4F4F0] border-r border-[#E0E0DA] w-64">
       {/* Brand */}
       <div className="p-5 border-b border-[#E0E0DA] flex items-center justify-between">
-        <Image src="/logo.png" alt="OrbitStudy" height={32} width={120} style={{ height: 32, width: 'auto', borderRadius: 0 }} priority />
+        <Image src="/logo.png" alt="Aerospace Study" height={32} width={120} style={{ height: 32, width: 'auto', borderRadius: 0 }} priority />
         {onClose && (
           <button onClick={onClose} className="text-[#6B6B6B] hover:text-[#1A1A1A] lg:hidden transition-colors">
             <X className="w-5 h-5" />
