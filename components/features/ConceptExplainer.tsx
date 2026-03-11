@@ -74,8 +74,8 @@ export function ConceptExplainer() {
   return (
     <div className="flex flex-col gap-6 max-w-3xl mx-auto">
       {/* Input */}
-      <div className="bg-[#ECEAE3] border border-[#D0CEC6] p-5 space-y-4">
-        <h2 className="font-semibold text-[#1C3A2A]">What would you like to understand?</h2>
+      <div style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)', padding: '20px' }} className="space-y-4">
+        <h2 className="font-semibold" style={{ color: '#0A1628' }}>What would you like to understand?</h2>
 
         <div className="flex gap-3">
           <input
@@ -84,12 +84,16 @@ export function ConceptExplainer() {
             value={concept}
             onChange={(e) => setConcept(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleExplain()}
-            className="flex-1 bg-[#ECEAE3] border border-[#D0CEC6] px-4 py-2.5 text-sm text-[#1C3A2A] placeholder-[#6B6B5A] focus:border-[#2D5A3D] focus:outline-none"
+            className="flex-1 px-4 py-2.5 text-sm focus:outline-none"
+            style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', color: '#37474F' }}
+            onFocus={(e) => (e.currentTarget.style.borderColor = '#1565C0')}
+            onBlur={(e) => (e.currentTarget.style.borderColor = '#B0BEC5')}
           />
           <Button
             onClick={() => handleExplain()}
             disabled={!concept.trim() || isLoading}
-            className="bg-[#2D5A3D] hover:bg-[#1C3A2A] text-white gap-2 shrink-0"
+            className="gap-2 shrink-0"
+            style={{ background: '#1565C0', color: '#FFFFFF' }}
           >
             {isLoading ? (
               <><Loader2 className="w-4 h-4 animate-spin" />Explaining...</>
@@ -101,7 +105,7 @@ export function ConceptExplainer() {
 
         {/* Quick concept buttons */}
         <div className="space-y-2">
-          <p className="text-xs text-[#6B6B5A] uppercase tracking-widest font-medium">Quick picks:</p>
+          <p className="text-xs uppercase tracking-widest font-medium" style={{ color: '#546E7A' }}>Quick picks:</p>
           <div className="flex flex-wrap gap-1.5">
             {QUICK_CONCEPTS.map((c) => (
               <button
@@ -110,12 +114,12 @@ export function ConceptExplainer() {
                   setConcept(c);
                   handleExplain(c);
                 }}
-                className={cn(
-                  'px-3 py-1.5 text-xs font-medium transition-colors border',
-                  currentConcept === c && !isLoading
-                    ? 'bg-[#E4E2DA] border-[#2D5A3D] text-[#2D5A3D]'
-                    : 'bg-[#ECEAE3] border-[#D0CEC6] text-[#6B6B5A] hover:border-[#2D5A3D] hover:text-[#1C3A2A]'
-                )}
+                className="px-3 py-1.5 text-xs font-medium transition-colors"
+                style={{
+                  border: currentConcept === c && !isLoading ? '1px solid #1565C0' : '1px solid #B0BEC5',
+                  background: currentConcept === c && !isLoading ? '#E3F2FD' : '#FFFFFF',
+                  color: currentConcept === c && !isLoading ? '#1565C0' : '#546E7A',
+                }}
               >
                 {c}
               </button>
@@ -130,15 +134,18 @@ export function ConceptExplainer() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-[#ECEAE3] border border-[#D0CEC6] overflow-hidden"
+            style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)', overflow: 'hidden' }}
           >
             {/* Topic header */}
-            <div className="px-5 py-4 border-b border-[#D0CEC6] bg-[#E4E2DA] flex items-center gap-2">
-              <h3 className="font-semibold text-[#1C3A2A]">
+            <div
+              className="px-5 py-4 flex items-center gap-2"
+              style={{ borderBottom: '1px solid #B0BEC5', background: '#F0F4F8' }}
+            >
+              <h3 className="font-semibold" style={{ color: '#0A1628' }}>
                 {currentConcept}
               </h3>
               {!isLoading && (
-                <span className="ml-auto text-xs text-[#6B6B5A]">
+                <span className="ml-auto text-xs" style={{ color: '#FF6D00', fontWeight: 600 }}>
                   +5 XP earned
                 </span>
               )}
@@ -146,8 +153,8 @@ export function ConceptExplainer() {
 
             <div className="p-5">
               {isLoading && !explanation && (
-                <div className="flex items-center gap-3 text-[#6B6B5A]">
-                  <Loader2 className="w-4 h-4 animate-spin text-[#2D5A3D]" />
+                <div className="flex items-center gap-3" style={{ color: '#546E7A' }}>
+                  <Loader2 className="w-4 h-4 animate-spin" style={{ color: '#1565C0' }} />
                   <span className="text-sm">Preparing your explanation...</span>
                 </div>
               )}
@@ -156,7 +163,7 @@ export function ConceptExplainer() {
                 <div className="space-y-4">
                   <RichContent content={explanation} />
                   {isLoading && (
-                    <span className="inline-block w-2 h-4 bg-[#2D5A3D] animate-pulse" />
+                    <span className="inline-block w-2 h-4 animate-pulse" style={{ background: '#1565C0' }} />
                   )}
                 </div>
               )}
@@ -167,9 +174,9 @@ export function ConceptExplainer() {
 
       {/* Empty state */}
       {!explanation && !isLoading && (
-        <div className="text-center py-8 text-[#6B6B5A]">
+        <div className="text-center py-8" style={{ color: '#546E7A' }}>
           <p className="text-sm">Select a concept above or type your own</p>
-          <p className="text-xs mt-1 text-[#6B6B5A]">Get bite-sized explanations optimized for focus</p>
+          <p className="text-xs mt-1" style={{ color: '#546E7A' }}>Get bite-sized explanations optimized for focus</p>
         </div>
       )}
     </div>

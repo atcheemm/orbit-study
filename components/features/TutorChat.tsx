@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Loader2, MessageCircle, Trash2, Bot, User } from 'lucide-react';
+import { Send, Loader2, MessageSquare, Trash2, Bot, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { RichContent } from '@/components/math/LatexRenderer';
@@ -100,14 +100,20 @@ export function TutorChat() {
   return (
     <div className="flex flex-col h-[calc(100vh-10rem)] max-w-3xl mx-auto">
       {/* Header */}
-      <div className="bg-[#ECEAE3] border border-[#D0CEC6] border-b-0 p-4 flex items-center justify-between">
+      <div
+        className="p-4 flex items-center justify-between"
+        style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', borderBottom: 'none' }}
+      >
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 border border-[#D0CEC6] bg-[#E4E2DA] flex items-center justify-center">
-            <Bot className="w-4 h-4 text-[#2D5A3D]" />
+          <div
+            className="w-8 h-8 flex items-center justify-center"
+            style={{ border: '1px solid #B0BEC5', background: '#E3F2FD' }}
+          >
+            <Bot className="w-4 h-4" style={{ color: '#1565C0' }} />
           </div>
           <div>
-            <h2 className="font-semibold text-[#1C3A2A] text-sm">Aerospace Study AI Tutor</h2>
-            <p className="text-xs text-[#4A7A50]">Socratic method</p>
+            <h2 className="font-semibold text-sm" style={{ color: '#0A1628' }}>Aerospace Study AI Tutor</h2>
+            <p className="text-xs" style={{ color: '#1565C0' }}>Socratic method</p>
           </div>
         </div>
         {messages.length > 0 && (
@@ -115,7 +121,8 @@ export function TutorChat() {
             variant="ghost"
             size="sm"
             onClick={() => setMessages([])}
-            className="text-[#6B6B5A] hover:text-[#1C3A2A] text-xs gap-1.5"
+            className="text-xs gap-1.5"
+            style={{ color: '#546E7A' }}
           >
             <Trash2 className="w-3 h-3" />
             Clear
@@ -124,15 +131,21 @@ export function TutorChat() {
       </div>
 
       {/* Messages area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#ECEAE3] border border-[#D0CEC6] border-t-0 border-b-0">
+      <div
+        className="flex-1 overflow-y-auto p-4 space-y-4"
+        style={{ background: '#F0F4F8', border: '1px solid #B0BEC5', borderTop: 'none', borderBottom: 'none' }}
+      >
         {messages.length === 0 && !isStreaming && (
           <div className="flex flex-col items-center gap-6 pt-8 text-center">
-            <div className="w-16 h-16 border border-[#D0CEC6] bg-[#E4E2DA] flex items-center justify-center">
-              <MessageCircle className="w-8 h-8 text-[#2D5A3D]" />
+            <div
+              className="w-16 h-16 flex items-center justify-center"
+              style={{ border: '1px solid #B0BEC5', background: '#FFFFFF' }}
+            >
+              <MessageSquare className="w-8 h-8" style={{ color: '#1565C0' }} />
             </div>
             <div>
-              <h3 className="text-[#1C3A2A] font-semibold mb-1">Ask me anything</h3>
-              <p className="text-[#6B6B5A] text-sm max-w-sm">
+              <h3 className="font-semibold mb-1" style={{ color: '#0A1628' }}>Ask me anything</h3>
+              <p className="text-sm max-w-sm" style={{ color: '#546E7A' }}>
                 I use the Socratic method to help you discover answers yourself.
                 {uploadedFiles.length > 0
                   ? ` I can see your ${uploadedFiles.length} uploaded file(s) for context.`
@@ -140,12 +153,15 @@ export function TutorChat() {
               </p>
             </div>
             <div className="w-full space-y-1.5">
-              <p className="text-xs text-[#6B6B5A] uppercase tracking-widest font-medium">Try asking:</p>
+              <p className="text-xs uppercase tracking-widest font-medium" style={{ color: '#546E7A' }}>Try asking:</p>
               {suggestedQuestions.map((q, i) => (
                 <button
                   key={i}
                   onClick={() => setInput(q)}
-                  className="w-full text-left p-3 bg-[#ECEAE3] border border-[#D0CEC6] hover:border-[#2D5A3D] text-sm text-[#6B6B5A] hover:text-[#1C3A2A] transition-colors"
+                  className="w-full text-left p-3 text-sm transition-colors"
+                  style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', color: '#546E7A' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.borderColor = '#1565C0')}
+                  onMouseLeave={(e) => (e.currentTarget.style.borderColor = '#B0BEC5')}
                 >
                   {q}
                 </button>
@@ -163,8 +179,11 @@ export function TutorChat() {
               className={cn('flex gap-3', msg.role === 'user' ? 'justify-end' : 'justify-start')}
             >
               {msg.role === 'assistant' && (
-                <div className="w-7 h-7 border border-[#D0CEC6] bg-[#E4E2DA] flex items-center justify-center shrink-0 mt-1">
-                  <Bot className="w-3.5 h-3.5 text-[#2D5A3D]" />
+                <div
+                  className="w-7 h-7 flex items-center justify-center shrink-0 mt-1"
+                  style={{ border: '1px solid #B0BEC5', background: '#E3F2FD' }}
+                >
+                  <Bot className="w-3.5 h-3.5" style={{ color: '#1565C0' }} />
                 </div>
               )}
               <div
@@ -182,8 +201,11 @@ export function TutorChat() {
                 )}
               </div>
               {msg.role === 'user' && (
-                <div className="w-7 h-7 border border-[#D0CEC6] bg-[#E4E2DA] flex items-center justify-center shrink-0 mt-1">
-                  <User className="w-3.5 h-3.5 text-[#6B6B5A]" />
+                <div
+                  className="w-7 h-7 flex items-center justify-center shrink-0 mt-1"
+                  style={{ border: '1px solid #B0BEC5', background: '#FFFFFF' }}
+                >
+                  <User className="w-3.5 h-3.5" style={{ color: '#546E7A' }} />
                 </div>
               )}
             </motion.div>
@@ -195,28 +217,34 @@ export function TutorChat() {
               animate={{ opacity: 1, y: 0 }}
               className="flex gap-3 justify-start"
             >
-              <div className="w-7 h-7 border border-[#D0CEC6] bg-[#E4E2DA] flex items-center justify-center shrink-0 mt-1">
-                <Bot className="w-3.5 h-3.5 text-[#2D5A3D]" />
+              <div
+                className="w-7 h-7 flex items-center justify-center shrink-0 mt-1"
+                style={{ border: '1px solid #B0BEC5', background: '#E3F2FD' }}
+              >
+                <Bot className="w-3.5 h-3.5" style={{ color: '#1565C0' }} />
               </div>
               <div className="max-w-[80%] chat-bubble-ai px-4 py-3 text-sm leading-relaxed">
                 <RichContent content={streamingContent} />
-                <span className="inline-block w-1.5 h-4 bg-[#2D5A3D] ml-1 animate-pulse" />
+                <span className="inline-block w-1.5 h-4 ml-1 animate-pulse" style={{ background: '#1565C0' }} />
               </div>
             </motion.div>
           )}
 
           {isStreaming && !streamingContent && (
             <div className="flex gap-3 justify-start">
-              <div className="w-7 h-7 border border-[#D0CEC6] bg-[#E4E2DA] flex items-center justify-center">
-                <Bot className="w-3.5 h-3.5 text-[#2D5A3D]" />
+              <div
+                className="w-7 h-7 flex items-center justify-center"
+                style={{ border: '1px solid #B0BEC5', background: '#E3F2FD' }}
+              >
+                <Bot className="w-3.5 h-3.5" style={{ color: '#1565C0' }} />
               </div>
               <div className="chat-bubble-ai px-4 py-3">
                 <div className="flex gap-1.5 items-center h-5">
                   {[0, 1, 2].map((i) => (
                     <div
                       key={i}
-                      className="w-1.5 h-1.5 bg-[#2D5A3D] animate-bounce"
-                      style={{ animationDelay: `${i * 0.15}s` }}
+                      className="w-1.5 h-1.5 animate-bounce"
+                      style={{ background: '#1565C0', animationDelay: `${i * 0.15}s` }}
                     />
                   ))}
                 </div>
@@ -228,7 +256,10 @@ export function TutorChat() {
       </div>
 
       {/* Input area */}
-      <div className="bg-[#ECEAE3] border border-[#D0CEC6] border-t-0 p-3">
+      <div
+        className="p-3"
+        style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', borderTop: 'none' }}
+      >
         <div className="flex gap-2">
           <Textarea
             placeholder="Ask about any aerospace concept..."
@@ -240,13 +271,15 @@ export function TutorChat() {
                 handleSend();
               }
             }}
-            className="min-h-[44px] max-h-[120px] bg-[#ECEAE3] border-[#D0CEC6] text-[#1C3A2A] placeholder-[#6B6B5A] resize-none focus:border-[#2D5A3D] text-sm"
+            className="min-h-[44px] max-h-[120px] resize-none text-sm"
+            style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', color: '#37474F' }}
             rows={1}
           />
           <Button
             onClick={handleSend}
             disabled={!input.trim() || isStreaming}
-            className="bg-[#2D5A3D] hover:bg-[#1C3A2A] text-white shrink-0 self-end h-11 w-11 p-0"
+            className="shrink-0 self-end h-11 w-11 p-0"
+            style={{ background: '#1565C0', color: '#FFFFFF' }}
           >
             {isStreaming ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -255,7 +288,7 @@ export function TutorChat() {
             )}
           </Button>
         </div>
-        <p className="text-xs text-[#6B6B5A] mt-1.5 pl-1">
+        <p className="text-xs mt-1.5 pl-1" style={{ color: '#546E7A' }}>
           Press Enter to send, Shift+Enter for new line
         </p>
       </div>

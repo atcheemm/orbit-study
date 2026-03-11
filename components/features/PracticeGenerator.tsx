@@ -91,22 +91,23 @@ export function PracticeGenerator() {
   return (
     <div className="flex flex-col gap-6 max-w-3xl mx-auto">
       {/* Configuration */}
-      <div className="bg-[#ECEAE3] border border-[#D0CEC6] p-5 space-y-5">
-        <h2 className="font-semibold text-[#1C3A2A]">Configure Practice Problem</h2>
+      <div style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)', padding: '20px' }} className="space-y-5">
+        <h2 className="font-semibold" style={{ color: '#0A1628' }}>Configure Practice Problem</h2>
 
         {/* Topic selector */}
         <div className="space-y-2">
-          <label className="text-xs text-[#6B6B5A] uppercase tracking-widest font-medium">Topic</label>
+          <label className="text-xs uppercase tracking-widest font-medium" style={{ color: '#546E7A' }}>Topic</label>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
             {TOPICS.map((topic) => (
               <button
                 key={topic.id}
                 onClick={() => setSelectedTopic(topic.id)}
-                className={`p-2.5 text-sm font-medium transition-colors text-left border ${
-                  selectedTopic === topic.id
-                    ? 'bg-[#E4E2DA] border-[#2D5A3D] text-[#2D5A3D]'
-                    : 'bg-[#ECEAE3] border-[#D0CEC6] text-[#6B6B5A] hover:border-[#2D5A3D] hover:text-[#1C3A2A]'
-                }`}
+                className="p-2.5 text-sm font-medium transition-colors text-left"
+                style={{
+                  border: selectedTopic === topic.id ? '1px solid #1565C0' : '1px solid #B0BEC5',
+                  background: selectedTopic === topic.id ? '#E3F2FD' : '#FFFFFF',
+                  color: selectedTopic === topic.id ? '#1565C0' : '#546E7A',
+                }}
               >
                 {topic.label}
               </button>
@@ -117,10 +118,11 @@ export function PracticeGenerator() {
         {/* Difficulty slider */}
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <label className="text-xs text-[#6B6B5A] uppercase tracking-widest font-medium">Difficulty</label>
+            <label className="text-xs uppercase tracking-widest font-medium" style={{ color: '#546E7A' }}>Difficulty</label>
             <Badge
               variant="outline"
-              className={`text-xs border-[#D0CEC6] text-[#1C3A2A]`}
+              className="text-xs"
+              style={{ borderColor: '#B0BEC5', color: '#0A1628' }}
             >
               {DIFFICULTY_LABELS[difficulty]}
             </Badge>
@@ -133,7 +135,7 @@ export function PracticeGenerator() {
             step={1}
             className="w-full"
           />
-          <div className="flex justify-between text-xs text-[#6B6B5A]">
+          <div className="flex justify-between text-xs" style={{ color: '#546E7A' }}>
             {DIFFICULTY_LABELS.slice(1).map((label) => (
               <span key={label}>{label}</span>
             ))}
@@ -143,7 +145,8 @@ export function PracticeGenerator() {
         <Button
           onClick={handleGenerate}
           disabled={isLoading}
-          className="w-full bg-[#2D5A3D] hover:bg-[#1C3A2A] text-white gap-2"
+          className="w-full gap-2"
+          style={{ background: '#1565C0', color: '#FFFFFF' }}
         >
           {isLoading ? (
             <>
@@ -165,30 +168,32 @@ export function PracticeGenerator() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-[#ECEAE3] border border-[#D0CEC6] p-5 space-y-4"
+            style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)', padding: '20px' }}
+            className="space-y-4"
           >
             <div className="flex items-center justify-between">
-              <div className="text-sm font-semibold text-[#1C3A2A]">
+              <div className="text-sm font-semibold" style={{ color: '#0A1628' }}>
                 {TOPICS.find((t) => t.id === selectedTopic)?.label} —{' '}
-                <span className="text-[#6B6B5A] font-normal">{DIFFICULTY_LABELS[difficulty]}</span>
+                <span className="font-normal" style={{ color: '#546E7A' }}>{DIFFICULTY_LABELS[difficulty]}</span>
               </div>
               {problem.solved && (
-                <span className="text-xs text-[#6B6B5A]">+{xpGained} XP earned</span>
+                <span className="text-xs" style={{ color: '#546E7A' }}>+{xpGained} XP earned</span>
               )}
             </div>
 
-            <div className="text-[#1C3A2A] leading-relaxed">
+            <div className="leading-relaxed" style={{ color: '#37474F' }}>
               <RichContent content={getDisplayContent(problem.raw, problem.showAnswer)} />
             </div>
 
-            <div className="flex items-center gap-3 pt-2 border-t border-[#D0CEC6]">
+            <div className="flex items-center gap-3 pt-2" style={{ borderTop: '1px solid #B0BEC5' }}>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() =>
                   setProblem({ ...problem, showAnswer: !problem.showAnswer })
                 }
-                className="border-[#D0CEC6] text-[#6B6B5A] hover:text-[#1C3A2A] hover:border-[#2D5A3D] gap-2"
+                className="gap-2"
+                style={{ borderColor: '#B0BEC5', color: '#546E7A' }}
               >
                 {problem.showAnswer ? (
                   <><EyeOff className="w-3.5 h-3.5" />Hide Answer</>
@@ -201,12 +206,13 @@ export function PracticeGenerator() {
                 <Button
                   size="sm"
                   onClick={handleMarkSolved}
-                  className="bg-[#2D5A3D] hover:bg-[#1C3A2A] text-white gap-2"
+                  className="gap-2"
+                  style={{ background: '#1565C0', color: '#FFFFFF' }}
                 >
                   Mark as Solved (+{difficulty * 10} XP)
                 </Button>
               ) : (
-                <span className="text-[#2D5A3D] text-sm font-medium">
+                <span className="text-sm font-medium" style={{ color: '#1565C0' }}>
                   Problem solved
                 </span>
               )}
@@ -215,7 +221,8 @@ export function PracticeGenerator() {
                 variant="outline"
                 size="sm"
                 onClick={handleGenerate}
-                className="border-[#D0CEC6] text-[#6B6B5A] hover:text-[#1C3A2A] ml-auto"
+                className="ml-auto"
+                style={{ borderColor: '#B0BEC5', color: '#546E7A' }}
               >
                 Next Problem
               </Button>

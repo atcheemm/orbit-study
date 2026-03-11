@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckSquare, Loader2 } from 'lucide-react';
+import { CheckCircle, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { RichContent } from '@/components/math/LatexRenderer';
@@ -72,10 +72,13 @@ export function CheckWork() {
       {/* Input forms */}
       <div className="grid md:grid-cols-2 gap-4">
         {/* Problem input */}
-        <div className="bg-[#ECEAE3] border border-[#D0CEC6] p-5 space-y-3">
+        <div style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)', padding: '20px' }} className="space-y-3">
           <div className="flex items-center justify-between">
-            <h3 className="font-semibold text-[#1C3A2A] text-sm flex items-center gap-2">
-              <span className="w-5 h-5 bg-[#E4E2DA] border border-[#D0CEC6] flex items-center justify-center text-xs text-[#2D5A3D] font-bold">1</span>
+            <h3 className="font-semibold text-sm flex items-center gap-2" style={{ color: '#0A1628' }}>
+              <span
+                className="w-5 h-5 flex items-center justify-center text-xs font-bold"
+                style={{ background: '#E3F2FD', border: '1px solid #B0BEC5', color: '#1565C0' }}
+              >1</span>
               The Problem
             </h3>
             <button
@@ -83,7 +86,8 @@ export function CheckWork() {
                 setProblem(exampleProblem.problem);
                 setUserAttempt(exampleProblem.attempt);
               }}
-              className="text-xs text-[#2D5A3D] hover:text-[#1C3A2A] underline underline-offset-2 transition-colors"
+              className="text-xs underline underline-offset-2 transition-colors"
+              style={{ color: '#1565C0' }}
             >
               Use example
             </button>
@@ -92,21 +96,26 @@ export function CheckWork() {
             placeholder="Paste the problem statement here..."
             value={problem}
             onChange={(e) => setProblem(e.target.value)}
-            className="min-h-[160px] bg-[#ECEAE3] border-[#D0CEC6] text-[#1C3A2A] placeholder-[#6B6B5A] resize-none focus:border-[#2D5A3D] text-sm"
+            className="min-h-[160px] resize-none text-sm"
+            style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', color: '#37474F' }}
           />
         </div>
 
         {/* User's attempt */}
-        <div className="bg-[#ECEAE3] border border-[#D0CEC6] p-5 space-y-3">
-          <h3 className="font-semibold text-[#1C3A2A] text-sm flex items-center gap-2">
-            <span className="w-5 h-5 bg-[#E4E2DA] border border-[#D0CEC6] flex items-center justify-center text-xs text-[#2D5A3D] font-bold">2</span>
+        <div style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)', padding: '20px' }} className="space-y-3">
+          <h3 className="font-semibold text-sm flex items-center gap-2" style={{ color: '#0A1628' }}>
+            <span
+              className="w-5 h-5 flex items-center justify-center text-xs font-bold"
+              style={{ background: '#E3F2FD', border: '1px solid #B0BEC5', color: '#1565C0' }}
+            >2</span>
             Your Work
           </h3>
           <Textarea
             placeholder="Show your work step by step...&#10;&#10;Include your approach, calculations, and answer."
             value={userAttempt}
             onChange={(e) => setUserAttempt(e.target.value)}
-            className="min-h-[160px] bg-[#ECEAE3] border-[#D0CEC6] text-[#1C3A2A] placeholder-[#6B6B5A] resize-none focus:border-[#2D5A3D] text-sm"
+            className="min-h-[160px] resize-none text-sm"
+            style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', color: '#37474F' }}
           />
         </div>
       </div>
@@ -114,12 +123,13 @@ export function CheckWork() {
       <Button
         onClick={handleCheck}
         disabled={!problem.trim() || !userAttempt.trim() || isLoading}
-        className="w-full bg-[#2D5A3D] hover:bg-[#1C3A2A] text-white gap-2 py-3"
+        className="w-full gap-2 py-3"
+        style={{ background: '#1565C0', color: '#FFFFFF' }}
       >
         {isLoading ? (
           <><Loader2 className="w-4 h-4 animate-spin" />Analyzing your work...</>
         ) : (
-          <><CheckSquare className="w-4 h-4" />Check My Work</>
+          <><CheckCircle className="w-4 h-4" />Check My Work</>
         )}
       </Button>
 
@@ -129,32 +139,32 @@ export function CheckWork() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-[#ECEAE3] border border-[#D0CEC6] overflow-hidden"
+            style={{ background: '#FFFFFF', border: '1px solid #B0BEC5', boxShadow: '0 1px 3px rgba(0,0,0,0.06)', overflow: 'hidden' }}
           >
-            <div className="px-5 py-3 border-b border-[#D0CEC6] bg-[#E4E2DA] flex items-center gap-2">
+            <div className="px-5 py-3 flex items-center gap-2" style={{ borderBottom: '1px solid #B0BEC5', background: '#F0F4F8' }}>
               {isLoading ? (
-                <Loader2 className="w-4 h-4 text-[#2D5A3D] animate-spin" />
+                <Loader2 className="w-4 h-4 animate-spin" style={{ color: '#1565C0' }} />
               ) : (
-                <CheckSquare className="w-4 h-4 text-[#2D5A3D]" />
+                <CheckCircle className="w-4 h-4" style={{ color: '#1565C0' }} />
               )}
-              <h3 className="font-semibold text-[#1C3A2A] text-sm">
+              <h3 className="font-semibold text-sm" style={{ color: '#0A1628' }}>
                 {isLoading ? 'Reviewing your work...' : 'Feedback'}
               </h3>
               {!isLoading && feedback && (
-                <span className="ml-auto text-xs text-[#6B6B5A]">+5 XP</span>
+                <span className="ml-auto text-xs font-semibold" style={{ color: '#FF6D00' }}>+5 XP</span>
               )}
             </div>
             <div className="p-5">
               {isLoading && !feedback && (
-                <div className="flex items-center gap-2 text-[#6B6B5A] text-sm">
+                <div className="flex items-center gap-2 text-sm" style={{ color: '#546E7A' }}>
                   Carefully reviewing each step of your work...
                 </div>
               )}
               {feedback && (
-                <div className="text-[#1C3A2A] leading-relaxed">
+                <div className="leading-relaxed" style={{ color: '#37474F' }}>
                   <RichContent content={feedback} />
                   {isLoading && (
-                    <span className="inline-block w-2 h-4 bg-[#2D5A3D] ml-1 animate-pulse" />
+                    <span className="inline-block w-2 h-4 ml-1 animate-pulse" style={{ background: '#1565C0' }} />
                   )}
                 </div>
               )}
@@ -164,7 +174,7 @@ export function CheckWork() {
       </AnimatePresence>
 
       {!feedback && !isLoading && (
-        <div className="text-center py-8 text-[#6B6B5A]">
+        <div className="text-center py-8" style={{ color: '#546E7A' }}>
           <p className="text-sm">Enter the problem and your work above</p>
           <p className="text-xs mt-1">
             I&apos;ll identify any errors and show you the correct approach

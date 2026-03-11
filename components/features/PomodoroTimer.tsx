@@ -60,16 +60,16 @@ export function PomodoroTimer({ mini = false }: PomodoroTimerProps) {
   if (mini) {
     return (
       <div className="flex items-center gap-2">
-        {/* Minimal inline progress bar */}
+        {/* Minimal inline progress ring */}
         <div className="relative w-8 h-8">
           <svg className="w-8 h-8 -rotate-90" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="45" fill="none" stroke="#D0CEC6" strokeWidth="8" />
+            <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="8" />
             <circle
               cx="50"
               cy="50"
               r="45"
               fill="none"
-              stroke="#2D5A3D"
+              stroke="#FF6D00"
               strokeWidth="8"
               strokeDasharray={circumference}
               strokeDashoffset={strokeDashoffset}
@@ -78,16 +78,19 @@ export function PomodoroTimer({ mini = false }: PomodoroTimerProps) {
           </svg>
         </div>
         <div>
-          <div className="text-xs font-mono font-bold text-[#1C3A2A]">
+          <div className="text-xs font-mono font-bold" style={{ color: '#E2E8F0' }}>
             {formatTime(pomodoro.timeLeft)}
           </div>
-          <div className="text-xs text-[#6B6B5A]">
+          <div className="text-xs" style={{ color: '#64748B' }}>
             {pomodoro.isBreak ? 'Break' : 'Focus'}
           </div>
         </div>
         <button
           onClick={() => setPomodoroRunning(!pomodoro.isRunning)}
-          className="w-6 h-6 bg-[#2D5A3D] hover:bg-[#1C3A2A] flex items-center justify-center transition-colors"
+          className="w-6 h-6 flex items-center justify-center transition-colors"
+          style={{ background: '#1565C0' }}
+          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = '#0D47A1')}
+          onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = '#1565C0')}
         >
           {pomodoro.isRunning ? (
             <Pause className="w-2.5 h-2.5 text-white" />
@@ -102,20 +105,20 @@ export function PomodoroTimer({ mini = false }: PomodoroTimerProps) {
   return (
     <div className="flex flex-col items-center gap-6 p-8">
       {/* Mode indicator */}
-      <div className="text-xs font-medium text-[#6B6B5A] uppercase tracking-widest">
+      <div className="text-xs font-medium uppercase tracking-widest" style={{ color: '#546E7A' }}>
         {pomodoro.isBreak ? 'Break Time' : 'Focus Mode'}
       </div>
 
-      {/* Timer ring — stroke only, no fill effects */}
+      {/* Timer ring */}
       <div className="relative w-48 h-48">
         <svg className="w-48 h-48 -rotate-90" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="45" fill="none" stroke="#D0CEC6" strokeWidth="4" />
+          <circle cx="50" cy="50" r="45" fill="none" stroke="#B0BEC5" strokeWidth="4" />
           <circle
             cx="50"
             cy="50"
             r="45"
             fill="none"
-            stroke="#2D5A3D"
+            stroke="#FF6D00"
             strokeWidth="4"
             strokeDasharray={circumference}
             strokeDashoffset={strokeDashoffset}
@@ -123,10 +126,10 @@ export function PomodoroTimer({ mini = false }: PomodoroTimerProps) {
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-4xl font-mono font-bold text-[#1C3A2A]">
+          <span className="text-4xl font-mono font-bold" style={{ color: '#0A1628' }}>
             {formatTime(pomodoro.timeLeft)}
           </span>
-          <span className="text-xs text-[#6B6B5A] mt-1">
+          <span className="text-xs mt-1" style={{ color: '#546E7A' }}>
             Session {pomodoro.sessionsCompleted + 1}
           </span>
         </div>
@@ -138,14 +141,15 @@ export function PomodoroTimer({ mini = false }: PomodoroTimerProps) {
           variant="outline"
           size="sm"
           onClick={resetPomodoro}
-          className="border-[#D0CEC6] text-[#6B6B5A] hover:text-[#1C3A2A] hover:border-[#2D5A3D]"
+          style={{ borderColor: '#B0BEC5', color: '#546E7A' }}
         >
           <RotateCcw className="w-4 h-4" />
         </Button>
         <Button
           size="lg"
           onClick={() => setPomodoroRunning(!pomodoro.isRunning)}
-          className="w-24 bg-[#2D5A3D] hover:bg-[#1C3A2A] text-white font-bold"
+          className="w-24 font-bold"
+          style={{ background: '#1565C0', color: '#FFFFFF' }}
         >
           {pomodoro.isRunning ? (
             <><Pause className="w-4 h-4 mr-2" />Pause</>
@@ -157,7 +161,8 @@ export function PomodoroTimer({ mini = false }: PomodoroTimerProps) {
           variant="outline"
           size="sm"
           onClick={() => setPomodoroBreak(!pomodoro.isBreak)}
-          className="border-[#D0CEC6] text-[#6B6B5A] hover:text-[#1C3A2A] hover:border-[#2D5A3D] text-xs"
+          className="text-xs"
+          style={{ borderColor: '#B0BEC5', color: '#546E7A' }}
         >
           {pomodoro.isBreak ? 'Work' : 'Break'}
         </Button>
@@ -168,14 +173,13 @@ export function PomodoroTimer({ mini = false }: PomodoroTimerProps) {
         {Array.from({ length: 4 }).map((_, i) => (
           <div
             key={i}
-            className={`w-2 h-2 transition-colors ${
-              i < pomodoro.sessionsCompleted % 4
-                ? 'bg-[#2D5A3D]'
-                : 'bg-[#D0CEC6]'
-            }`}
+            className="w-2 h-2 transition-colors"
+            style={{
+              background: i < pomodoro.sessionsCompleted % 4 ? '#FF6D00' : '#B0BEC5',
+            }}
           />
         ))}
-        <span className="text-xs text-[#6B6B5A] ml-1">
+        <span className="text-xs ml-1" style={{ color: '#546E7A' }}>
           {pomodoro.sessionsCompleted} completed
         </span>
       </div>

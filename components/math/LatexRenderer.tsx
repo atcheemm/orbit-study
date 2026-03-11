@@ -67,7 +67,7 @@ export function RichContent({ content, className }: LatexRendererProps) {
         if (isBoldHeader) {
           const cleaned = line.replace(/\*\*/g, '');
           return (
-            <div key={i} className="font-bold text-[#2D5A3D] mt-3">
+            <div key={i} className="font-bold mt-3" style={{ color: '#1565C0' }}>
               <LatexRenderer content={cleaned} />
             </div>
           );
@@ -78,7 +78,7 @@ export function RichContent({ content, className }: LatexRendererProps) {
         if (numberedMatch) {
           return (
             <div key={i} className="flex gap-2 items-start">
-              <span className="text-[#2D5A3D] font-bold min-w-[1.5rem]">{numberedMatch[1]}.</span>
+              <span className="font-bold min-w-[1.5rem]" style={{ color: '#1565C0' }}>{numberedMatch[1]}.</span>
               <LatexRenderer content={numberedMatch[2]} />
             </div>
           );
@@ -89,7 +89,7 @@ export function RichContent({ content, className }: LatexRendererProps) {
           const text = line.trim().slice(2);
           return (
             <div key={i} className="flex gap-2 items-start pl-2">
-              <span className="text-[#2D5A3D] mt-1">•</span>
+              <span className="mt-1" style={{ color: '#1565C0' }}>•</span>
               <LatexRenderer content={text} />
             </div>
           );
@@ -98,7 +98,7 @@ export function RichContent({ content, className }: LatexRendererProps) {
         // ## Headers
         if (line.startsWith('## ')) {
           return (
-            <h2 key={i} className="text-lg font-bold text-[#1C3A2A] mt-4 mb-2">
+            <h2 key={i} className="text-lg font-bold mt-4 mb-2" style={{ color: '#0A1628' }}>
               <LatexRenderer content={line.slice(3)} />
             </h2>
           );
@@ -107,7 +107,7 @@ export function RichContent({ content, className }: LatexRendererProps) {
         // ### Sub-headers
         if (line.startsWith('### ')) {
           return (
-            <h3 key={i} className="font-semibold text-[#2D5A3D] mt-3 mb-1">
+            <h3 key={i} className="font-semibold mt-3 mb-1" style={{ color: '#1565C0' }}>
               <LatexRenderer content={line.slice(4)} />
             </h3>
           );
@@ -115,7 +115,7 @@ export function RichContent({ content, className }: LatexRendererProps) {
 
         // Horizontal rule
         if (line.trim() === '---') {
-          return <hr key={i} className="border-[#D0CEC6] my-3" />;
+          return <hr key={i} className="my-3" style={{ borderColor: '#B0BEC5' }} />;
         }
 
         return (

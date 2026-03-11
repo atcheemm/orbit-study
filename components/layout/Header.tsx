@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { useState } from 'react';
 import { Menu } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -17,26 +16,25 @@ export function Header({ title }: HeaderProps) {
 
   return (
     <>
-      <header className="lg:hidden fixed top-0 left-0 right-0 z-50 border-b border-[#D0CEC6] h-14 flex items-center px-4 gap-3" style={{ background: '#ECEAE3' }}>
+      <header
+        className="lg:hidden fixed top-0 left-0 right-0 z-50 h-14 flex items-center px-4 gap-3"
+        style={{ background: '#0A1628', borderBottom: '1px solid rgba(255,255,255,0.08)' }}
+      >
         <button
           onClick={() => setMobileMenuOpen(true)}
-          className="text-[#6B6B5A] hover:text-[#1C3A2A] transition-colors"
+          className="transition-colors"
+          style={{ color: '#94A3B8' }}
         >
           <Menu className="w-5 h-5" />
         </button>
 
         <div className="flex items-center flex-1">
-          <Image
-            src="/logo.png"
-            alt="Aerospace Study"
-            height={28}
-            width={105}
-            style={{ height: 28, width: 'auto', borderRadius: 0, mixBlendMode: 'multiply' }}
-            priority
-          />
+          <span style={{ color: '#FFFFFF', fontSize: '15px', fontWeight: 700, letterSpacing: '-0.01em' }}>
+            Aerospace Study
+          </span>
         </div>
 
-        <div className="flex items-center gap-4 text-xs text-[#6B6B5A]">
+        <div className="flex items-center gap-4 text-xs" style={{ color: '#64748B' }}>
           <span>XP: {xp}</span>
           <span>Streak: {streak}d</span>
         </div>

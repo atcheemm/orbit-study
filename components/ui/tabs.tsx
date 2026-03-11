@@ -28,8 +28,8 @@ const tabsListVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-muted border border-border",
-        line: "gap-1 bg-transparent border-b border-border",
+        default: "bg-[#F0F4F8] border border-[#B0BEC5]",
+        line: "gap-1 bg-transparent border-b border-[#B0BEC5]",
       },
     },
     defaultVariants: {
@@ -58,7 +58,7 @@ function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
     <TabsPrimitive.Tab
       data-slot="tabs-trigger"
       className={cn(
-        "relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 border border-transparent px-3 py-0.5 text-sm font-medium whitespace-nowrap text-[#6B6B5A] transition-colors group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start hover:text-[#1C3A2A] focus-visible:border-ring focus-visible:ring-[2px] focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 data-active:text-[#1C3A2A] data-active:border-b-2 data-active:border-b-[#2D5A3D] [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 border border-transparent px-3 py-0.5 text-sm font-medium whitespace-nowrap text-[#546E7A] transition-colors group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start hover:text-[#37474F] focus-visible:border-ring focus-visible:ring-[2px] focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 data-active:text-[#0A1628] data-active:border-b-2 data-active:border-b-[#1565C0] [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}

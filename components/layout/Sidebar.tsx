@@ -1,15 +1,14 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-  Footprints,
+  Layers,
   BookOpen,
-  FlaskConical,
-  MessageCircle,
+  Target,
+  MessageSquare,
   Lightbulb,
-  CheckSquare,
+  CheckCircle,
   LayoutDashboard,
   X,
 } from 'lucide-react';
@@ -20,12 +19,12 @@ import { cn } from '@/lib/utils';
 
 const navItems = [
   { href: '/', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/solve', label: 'Step Solver', icon: Footprints },
-  { href: '/practice', label: 'Practice', icon: FlaskConical },
+  { href: '/solve', label: 'Step Solver', icon: Layers },
+  { href: '/practice', label: 'Practice', icon: Target },
   { href: '/formulas', label: 'Formula Hub', icon: BookOpen },
-  { href: '/tutor', label: 'AI Tutor', icon: MessageCircle },
+  { href: '/tutor', label: 'AI Tutor', icon: MessageSquare },
   { href: '/explain', label: 'Explain', icon: Lightbulb },
-  { href: '/check', label: 'Check Work', icon: CheckSquare },
+  { href: '/check', label: 'Check Work', icon: CheckCircle },
 ];
 
 interface SidebarProps {
@@ -37,26 +36,23 @@ export function Sidebar({ onClose }: SidebarProps) {
   const { xp, streak } = useStore();
 
   return (
-    <div className="flex flex-col h-full bg-[#E4E2DA] border-r border-[#D0CEC6] w-64">
+    <div className="flex flex-col h-full w-[240px]" style={{ background: '#0A1628', borderRight: '1px solid rgba(255,255,255,0.08)' }}>
       {/* Brand */}
-      <div className="p-5 border-b border-[#D0CEC6] flex items-center justify-between">
-        <Image
-          src="/logo.png"
-          alt="Aerospace Study"
-          height={40}
-          width={150}
-          style={{ height: 40, width: 'auto', borderRadius: 0, mixBlendMode: 'multiply' }}
-          priority
-        />
+      <div className="flex items-center justify-between px-4 py-5" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ borderLeft: '3px solid #1565C0', paddingLeft: '10px' }}>
+          <span style={{ color: '#FFFFFF', fontSize: '15px', fontWeight: 700, letterSpacing: '-0.01em' }}>
+            Aerospace Study
+          </span>
+        </div>
         {onClose && (
-          <button onClick={onClose} className="text-[#6B6B5A] hover:text-[#1C3A2A] lg:hidden transition-colors">
+          <button onClick={onClose} className="lg:hidden transition-colors" style={{ color: '#64748B' }}>
             <X className="w-5 h-5" />
           </button>
         )}
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-3 space-y-0.5 overflow-y-auto">
+      <nav className="flex-1 py-3 space-y-0.5 overflow-y-auto">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
           const Icon = item.icon;
@@ -66,17 +62,30 @@ export function Sidebar({ onClose }: SidebarProps) {
               href={item.href}
               onClick={onClose}
               className={cn(
-                'flex items-center gap-3 px-3 py-2.5 transition-colors duration-150 group relative',
-                isActive
-                  ? 'bg-[#ECEAE3] text-[#2D5A3D] border-l-2 border-[#2D5A3D]'
-                  : 'text-[#1C3A2A] hover:bg-[#ECEAE3] hover:text-[#2D5A3D] border-l-2 border-transparent'
+                'flex items-center gap-3 transition-colors duration-150 relative',
               )}
+              style={{
+                padding: '10px 16px',
+                backgroundColor: isActive ? 'rgba(21,101,192,0.2)' : 'transparent',
+                borderLeft: isActive ? '3px solid #1565C0' : '3px solid transparent',
+                color: isActive ? '#FFFFFF' : '#94A3B8',
+              }}
+              onMouseEnter={(e) => {
+                if (!isActive) {
+                  (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(255,255,255,0.06)';
+                  (e.currentTarget as HTMLElement).style.color = '#E2E8F0';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isActive) {
+                  (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent';
+                  (e.currentTarget as HTMLElement).style.color = '#94A3B8';
+                }
+              }}
             >
               <Icon
-                className={cn(
-                  'w-4 h-4 shrink-0',
-                  isActive ? 'text-[#2D5A3D]' : 'text-[#6B6B5A] group-hover:text-[#2D5A3D]'
-                )}
+                className="w-4 h-4 shrink-0"
+                style={{ color: isActive ? '#FFFFFF' : '#64748B' }}
               />
               <span className="text-sm font-medium">{item.label}</span>
             </Link>
@@ -85,9 +94,9 @@ export function Sidebar({ onClose }: SidebarProps) {
       </nav>
 
       {/* Bottom section */}
-      <div className="p-4 space-y-4 border-t border-[#D0CEC6]">
-        {/* XP and streak understated */}
-        <div className="flex items-center justify-between text-xs text-[#6B6B5A]">
+      <div className="p-4 space-y-4" style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+        {/* XP and streak */}
+        <div className="flex items-center justify-between text-xs" style={{ color: '#64748B' }}>
           <span>XP: {xp}</span>
           <span>Streak: {streak} days</span>
         </div>
@@ -98,8 +107,8 @@ export function Sidebar({ onClose }: SidebarProps) {
         </div>
 
         {/* Mini Pomodoro */}
-        <div className="pt-2 border-t border-[#D0CEC6]">
-          <p className="text-xs text-[#6B6B5A] uppercase tracking-widest mb-2 font-medium">Focus Timer</p>
+        <div className="pt-2" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+          <p className="text-xs uppercase tracking-widest mb-2 font-medium" style={{ color: '#64748B' }}>Focus Timer</p>
           <PomodoroTimer mini />
         </div>
       </div>

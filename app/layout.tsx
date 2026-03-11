@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Header } from "@/components/layout/Header";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -18,8 +20,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Aerospace Study — AI Aerospace Study Tool",
   description:
-    "AI-powered study tool for aerospace engineering students with ADHD. Step-by-step problem solving, Socratic tutoring, practice problems, and more.",
-  keywords: ["aerospace engineering", "ADHD", "study tool", "AI tutor"],
+    "AI-powered study tool for aerospace engineering students. Step-by-step problem solving, Socratic tutoring, practice problems, and more.",
+  keywords: ["aerospace engineering", "study tool", "AI tutor"],
 };
 
 export default function RootLayout({
@@ -30,8 +32,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{ background: '#ECEAE3', color: '#1C3A2A' }}
+        className={`${inter.variable} ${geistMono.variable} antialiased`}
+        style={{ background: '#F0F4F8', color: '#37474F' }}
       >
         <TooltipProvider>
           <div className="flex h-screen overflow-hidden">
@@ -46,7 +48,7 @@ export default function RootLayout({
               <Header />
 
               {/* Page content */}
-              <main className="flex-1 overflow-y-auto lg:pt-0 pt-14" style={{ background: '#ECEAE3' }}>
+              <main className="flex-1 overflow-y-auto lg:pt-0 pt-14" style={{ background: '#F0F4F8' }}>
                 {children}
               </main>
             </div>
