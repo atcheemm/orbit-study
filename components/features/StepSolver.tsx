@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Loader2, ChevronRight, Lightbulb, FileText } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Send, Loader2, ChevronRight, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { RichContent } from '@/components/math/LatexRenderer';
@@ -29,7 +29,6 @@ export function StepSolver() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [steps]);
 
-  // Use combined text from uploaded files as context
   useEffect(() => {
     if (uploadedFiles.length > 0) {
       const combined = uploadedFiles
@@ -41,11 +40,9 @@ export function StepSolver() {
   }, [uploadedFiles]);
 
   const parseStepsFromText = (text: string): string[] => {
-    // Split on step headers like **Step 1:**, **Step 2:** etc.
     const stepPattern = /(?=\*\*Step \d+)/g;
     const parts = text.split(stepPattern).filter(Boolean);
     if (parts.length <= 1) {
-      // No step markers - split by double newlines as fallback
       return text.split('\n\n').filter((p) => p.trim().length > 0);
     }
     return parts;
@@ -83,7 +80,6 @@ export function StepSolver() {
         const chunk = decoder.decode(value, { stream: true });
         fullText += chunk;
 
-        // Parse into steps dynamically
         const parsed = parseStepsFromText(fullText);
         const newSteps = parsed.map((content, i) => ({
           id: `step-${i}`,
@@ -93,7 +89,6 @@ export function StepSolver() {
         setSteps(newSteps);
       }
 
-      // Finalize - mark all as done
       setSteps((prev) =>
         prev.map((s) => ({ ...s, isStreaming: false }))
       );
@@ -103,7 +98,7 @@ export function StepSolver() {
       setSteps([
         {
           id: 'error',
-          content: '⚠️ Failed to get a response. Please check your API key in `.env.local`.',
+          content: 'Failed to get a response. Please check your API key in `.env.local`.',
           isStreaming: false,
         },
       ]);
@@ -121,27 +116,22 @@ export function StepSolver() {
   return (
     <div className="flex flex-col gap-6 max-w-4xl mx-auto">
       {/* Input section */}
-      <div className="bg-[#2e2924] border border-[#3A5253] rounded-xl p-5 space-y-4">
+      <div className="bg-white border border-[#E0E0DA] p-5 space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="font-semibold text-[#FFF5F5] flex items-center gap-2">
-            <Lightbulb className="w-4 h-4 text-[#E07A5F]" />
-            Problem Input
-          </h2>
-          <Button
-            variant="ghost"
-            size="sm"
+          <h2 className="font-semibold text-[#1A1A1A]">Problem Input</h2>
+          <button
             onClick={() => setShowUploader(!showUploader)}
-            className="text-[rgba(255,245,245,0.5)] hover:text-[#FFF5F5] text-xs"
+            className="text-xs text-[#6B6B6B] hover:text-[#2D4A3E] flex items-center gap-1.5 transition-colors"
           >
-            <FileText className="w-3.5 h-3.5 mr-1.5" />
+            <FileText className="w-3.5 h-3.5" />
             {uploadedFiles.length > 0
               ? `${uploadedFiles.length} file(s) loaded`
               : 'Add context files'}
-          </Button>
+          </button>
         </div>
 
         {showUploader && (
-          <div className="border border-[#3A5253]/50 rounded-lg p-4">
+          <div className="border border-[#E0E0DA] p-4">
             <FileUploader compact />
           </div>
         )}
@@ -150,19 +140,19 @@ export function StepSolver() {
           placeholder="Enter your aerospace engineering problem here...&#10;&#10;Example: A gas turbine has a compression ratio of 15:1. The intake air temperature is 300K. Find the temperature after isentropic compression (γ = 1.4)."
           value={problem}
           onChange={(e) => setProblem(e.target.value)}
-          className="min-h-[120px] bg-[#27231E] border-[#3A5253] text-[#FFF5F5] placeholder-[rgba(255,245,245,0.3)] resize-none focus:border-[#81B29A]"
+          className="min-h-[120px] bg-white border-[#E0E0DA] text-[#1A1A1A] placeholder-[#6B6B6B] resize-none focus:border-[#2D4A3E]"
           onKeyDown={(e) => {
             if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) handleSolve();
           }}
         />
 
         <div className="flex items-center justify-between gap-3">
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-3 flex-wrap">
             {exampleProblems.slice(0, 2).map((ex, i) => (
               <button
                 key={i}
                 onClick={() => setProblem(ex)}
-                className="text-xs text-[#81B29A] hover:text-[#FFF5F5] underline underline-offset-2 transition-colors"
+                className="text-xs text-[#2D4A3E] hover:text-[#1A1A1A] underline underline-offset-2 transition-colors"
               >
                 Example {i + 1}
               </button>
@@ -171,7 +161,7 @@ export function StepSolver() {
           <Button
             onClick={handleSolve}
             disabled={!problem.trim() || isLoading}
-            className="bg-[#81B29A] hover:bg-[#81B29A]/80 text-[#27231E] gap-2 min-w-[120px]"
+            className="bg-[#2D4A3E] hover:bg-[#1e332a] text-white gap-2 min-w-[120px]"
           >
             {isLoading ? (
               <>
@@ -186,36 +176,33 @@ export function StepSolver() {
             )}
           </Button>
         </div>
-        <p className="text-xs text-[rgba(255,245,245,0.3)]">Tip: Press Cmd/Ctrl + Enter to solve</p>
+        <p className="text-xs text-[#6B6B6B]">Tip: Press Cmd/Ctrl + Enter to solve</p>
       </div>
 
       {/* Steps output */}
       <AnimatePresence>
         {steps.length > 0 && (
           <div className="space-y-3">
-            <h2 className="text-sm font-semibold text-[rgba(255,245,245,0.5)] uppercase tracking-wide flex items-center gap-2">
-              <ChevronRight className="w-4 h-4 text-[#81B29A]" />
+            <h2 className="text-xs font-semibold text-[#6B6B6B] uppercase tracking-widest flex items-center gap-2">
+              <ChevronRight className="w-3.5 h-3.5 text-[#2D4A3E]" />
               Solution Steps
             </h2>
             {steps.map((step, index) => (
               <motion.div
                 key={step.id}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-                className={cn(
-                  'step-card rounded-xl p-5',
-                  step.isStreaming && 'animate-pulse-glow'
-                )}
+                transition={{ delay: index * 0.04 }}
+                className="step-card p-5"
               >
                 <div className="flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-full bg-[#81B29A]/20 border border-[#81B29A]/50 flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-xs font-bold text-[#81B29A]">{index + 1}</span>
+                  <div className="w-7 h-7 border border-[#E0E0DA] flex items-center justify-center shrink-0 mt-0.5 bg-[#F4F4F0]">
+                    <span className="text-xs font-bold text-[#2D4A3E]">{index + 1}</span>
                   </div>
-                  <div className="flex-1 min-w-0 text-[#FFF5F5] leading-relaxed">
+                  <div className="flex-1 min-w-0 text-[#1A1A1A] leading-relaxed">
                     <RichContent content={step.content} />
                     {step.isStreaming && (
-                      <span className="inline-block w-2 h-4 bg-[#81B29A] ml-1 animate-pulse" />
+                      <span className="inline-block w-2 h-4 bg-[#2D4A3E] ml-1 animate-pulse" />
                     )}
                   </div>
                 </div>

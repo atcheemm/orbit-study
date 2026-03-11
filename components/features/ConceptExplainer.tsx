@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Lightbulb, Loader2, Sparkles, ChevronRight } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { RichContent } from '@/components/math/LatexRenderer';
 import { useStore } from '@/lib/store';
@@ -65,7 +65,7 @@ export function ConceptExplainer() {
 
       addXP(5);
     } catch {
-      setExplanation('⚠️ Failed to explain. Please check your API key.');
+      setExplanation('Failed to explain. Please check your API key.');
     } finally {
       setIsLoading(false);
     }
@@ -74,11 +74,8 @@ export function ConceptExplainer() {
   return (
     <div className="flex flex-col gap-6 max-w-3xl mx-auto">
       {/* Input */}
-      <div className="bg-[#2e2924] border border-[#3A5253] rounded-xl p-5 space-y-4">
-        <h2 className="font-semibold text-[#FFF5F5] flex items-center gap-2">
-          <Lightbulb className="w-4 h-4 text-[#E07A5F]" />
-          What would you like to understand?
-        </h2>
+      <div className="bg-white border border-[#E0E0DA] p-5 space-y-4">
+        <h2 className="font-semibold text-[#1A1A1A]">What would you like to understand?</h2>
 
         <div className="flex gap-3">
           <input
@@ -87,25 +84,25 @@ export function ConceptExplainer() {
             value={concept}
             onChange={(e) => setConcept(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleExplain()}
-            className="flex-1 bg-[#27231E] border border-[#3A5253] rounded-lg px-4 py-2.5 text-sm text-[#FFF5F5] placeholder-[rgba(255,245,245,0.3)] focus:border-[#81B29A] focus:outline-none"
+            className="flex-1 bg-white border border-[#E0E0DA] px-4 py-2.5 text-sm text-[#1A1A1A] placeholder-[#6B6B6B] focus:border-[#2D4A3E] focus:outline-none"
           />
           <Button
             onClick={() => handleExplain()}
             disabled={!concept.trim() || isLoading}
-            className="bg-[#81B29A] hover:bg-[#81B29A]/80 text-[#27231E] gap-2 shrink-0"
+            className="bg-[#2D4A3E] hover:bg-[#1e332a] text-white gap-2 shrink-0"
           >
             {isLoading ? (
               <><Loader2 className="w-4 h-4 animate-spin" />Explaining...</>
             ) : (
-              <><Sparkles className="w-4 h-4" />Explain</>
+              <>Explain</>
             )}
           </Button>
         </div>
 
         {/* Quick concept buttons */}
         <div className="space-y-2">
-          <p className="text-xs text-[rgba(255,245,245,0.3)] uppercase tracking-wide">Quick picks:</p>
-          <div className="flex flex-wrap gap-2">
+          <p className="text-xs text-[#6B6B6B] uppercase tracking-widest font-medium">Quick picks:</p>
+          <div className="flex flex-wrap gap-1.5">
             {QUICK_CONCEPTS.map((c) => (
               <button
                 key={c}
@@ -114,10 +111,10 @@ export function ConceptExplainer() {
                   handleExplain(c);
                 }}
                 className={cn(
-                  'px-3 py-1.5 rounded-lg text-xs font-medium transition-all border',
+                  'px-3 py-1.5 text-xs font-medium transition-colors border',
                   currentConcept === c && !isLoading
-                    ? 'bg-[#81B29A]/20 border-[#81B29A]/60 text-[#81B29A]'
-                    : 'bg-[#3A5253]/40 border-[#3A5253]/50 text-[rgba(255,245,245,0.5)] hover:border-[#81B29A]/40 hover:text-[rgba(255,245,245,0.8)]'
+                    ? 'bg-[#F4F4F0] border-[#2D4A3E] text-[#2D4A3E]'
+                    : 'bg-white border-[#E0E0DA] text-[#6B6B6B] hover:border-[#2D4A3E] hover:text-[#1A1A1A]'
                 )}
               >
                 {c}
@@ -131,19 +128,17 @@ export function ConceptExplainer() {
       <AnimatePresence>
         {(explanation || isLoading) && (
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-[#2e2924] border border-[#3A5253] rounded-xl overflow-hidden"
+            className="bg-white border border-[#E0E0DA] overflow-hidden"
           >
             {/* Topic header */}
-            <div className="px-5 py-4 border-b border-[#3A5253]/50 flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-[#E07A5F]" />
-              <h3 className="font-semibold text-[#FFF5F5]">
+            <div className="px-5 py-4 border-b border-[#E0E0DA] bg-[#F4F4F0] flex items-center gap-2">
+              <h3 className="font-semibold text-[#1A1A1A]">
                 {currentConcept}
               </h3>
               {!isLoading && (
-                <span className="ml-auto text-xs text-[#81B29A] flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#81B29A]" />
+                <span className="ml-auto text-xs text-[#6B6B6B]">
                   +5 XP earned
                 </span>
               )}
@@ -151,8 +146,8 @@ export function ConceptExplainer() {
 
             <div className="p-5">
               {isLoading && !explanation && (
-                <div className="flex items-center gap-3 text-[rgba(255,245,245,0.5)]">
-                  <Loader2 className="w-4 h-4 animate-spin text-[#81B29A]" />
+                <div className="flex items-center gap-3 text-[#6B6B6B]">
+                  <Loader2 className="w-4 h-4 animate-spin text-[#2D4A3E]" />
                   <span className="text-sm">Preparing your explanation...</span>
                 </div>
               )}
@@ -161,7 +156,7 @@ export function ConceptExplainer() {
                 <div className="space-y-4">
                   <RichContent content={explanation} />
                   {isLoading && (
-                    <span className="inline-block w-2 h-4 bg-[#81B29A] animate-pulse" />
+                    <span className="inline-block w-2 h-4 bg-[#2D4A3E] animate-pulse" />
                   )}
                 </div>
               )}
@@ -172,12 +167,9 @@ export function ConceptExplainer() {
 
       {/* Empty state */}
       {!explanation && !isLoading && (
-        <div className="text-center py-8 text-[rgba(255,245,245,0.3)]">
-          <div className="w-16 h-16 rounded-full bg-[#E07A5F]/10 border border-[#E07A5F]/20 flex items-center justify-center mx-auto mb-4">
-            <Lightbulb className="w-8 h-8 text-[#E07A5F]/40" />
-          </div>
+        <div className="text-center py-8 text-[#6B6B6B]">
           <p className="text-sm">Select a concept above or type your own</p>
-          <p className="text-xs mt-1 text-[rgba(255,245,245,0.2)]">Get bite-sized explanations optimized for focus</p>
+          <p className="text-xs mt-1 text-[#6B6B6B]">Get bite-sized explanations optimized for focus</p>
         </div>
       )}
     </div>

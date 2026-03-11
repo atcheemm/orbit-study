@@ -28,9 +28,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#27231E] text-[#FFF5F5]`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-[#1A1A1A]`}
       >
         <TooltipProvider>
           <div className="flex h-screen overflow-hidden">
@@ -45,7 +45,7 @@ export default function RootLayout({
               <Header />
 
               {/* Page content */}
-              <main className="flex-1 overflow-y-auto lg:pt-0 pt-14 star-bg">
+              <main className="flex-1 overflow-y-auto lg:pt-0 pt-14 bg-white">
                 {children}
               </main>
             </div>

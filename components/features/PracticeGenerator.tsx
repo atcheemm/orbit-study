@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FlaskConical, Loader2, Eye, EyeOff, Zap, RefreshCw } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Loader2, Eye, EyeOff, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { Badge } from '@/components/ui/badge';
@@ -10,14 +10,14 @@ import { RichContent } from '@/components/math/LatexRenderer';
 import { useStore } from '@/lib/store';
 
 const TOPICS = [
-  { id: 'aerodynamics', label: 'Aerodynamics', emoji: '✈️' },
-  { id: 'thermodynamics', label: 'Thermodynamics', emoji: '🔥' },
-  { id: 'orbital-mechanics', label: 'Orbital Mechanics', emoji: '🪐' },
-  { id: 'structures', label: 'Structures', emoji: '🔩' },
-  { id: 'propulsion', label: 'Propulsion', emoji: '🚀' },
-  { id: 'flight-dynamics', label: 'Flight Dynamics', emoji: '🛩️' },
-  { id: 'controls', label: 'Controls', emoji: '🎮' },
-  { id: 'fluid-mechanics', label: 'Fluid Mechanics', emoji: '💧' },
+  { id: 'aerodynamics', label: 'Aerodynamics' },
+  { id: 'thermodynamics', label: 'Thermodynamics' },
+  { id: 'orbital-mechanics', label: 'Orbital Mechanics' },
+  { id: 'structures', label: 'Structures' },
+  { id: 'propulsion', label: 'Propulsion' },
+  { id: 'flight-dynamics', label: 'Flight Dynamics' },
+  { id: 'controls', label: 'Controls' },
+  { id: 'fluid-mechanics', label: 'Fluid Mechanics' },
 ];
 
 const DIFFICULTY_LABELS = ['', 'Introductory', 'Basic', 'Intermediate', 'Advanced', 'Expert'];
@@ -64,7 +64,7 @@ export function PracticeGenerator() {
       setProblem({ raw: data.problem, showAnswer: false, solved: false });
     } catch {
       setProblem({
-        raw: '⚠️ Failed to generate problem. Check your API key.',
+        raw: 'Failed to generate problem. Check your API key.',
         showAnswer: false,
         solved: false,
       });
@@ -81,38 +81,33 @@ export function PracticeGenerator() {
     setProblem({ ...problem, solved: true });
   };
 
-  // Strip the hidden answer markers for display
   const getDisplayContent = (raw: string, showAnswer: boolean) => {
     if (showAnswer) {
       return raw.replace(/\|\|HIDDEN\|\|/g, '');
     }
-    return raw.replace(/\|\|HIDDEN\|\|[\s\S]*?\|\|HIDDEN\|\|/g, '[ Answer hidden - reveal when ready ]');
+    return raw.replace(/\|\|HIDDEN\|\|[\s\S]*?\|\|HIDDEN\|\|/g, '[ Answer hidden — reveal when ready ]');
   };
 
   return (
     <div className="flex flex-col gap-6 max-w-3xl mx-auto">
       {/* Configuration */}
-      <div className="bg-[#2e2924] border border-[#3A5253] rounded-xl p-5 space-y-5">
-        <h2 className="font-semibold text-[#FFF5F5] flex items-center gap-2">
-          <FlaskConical className="w-4 h-4 text-[#E07A5F]" />
-          Configure Practice Problem
-        </h2>
+      <div className="bg-white border border-[#E0E0DA] p-5 space-y-5">
+        <h2 className="font-semibold text-[#1A1A1A]">Configure Practice Problem</h2>
 
         {/* Topic selector */}
         <div className="space-y-2">
-          <label className="text-sm text-[rgba(255,245,245,0.5)]">Topic</label>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <label className="text-xs text-[#6B6B6B] uppercase tracking-widest font-medium">Topic</label>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
             {TOPICS.map((topic) => (
               <button
                 key={topic.id}
                 onClick={() => setSelectedTopic(topic.id)}
-                className={`p-2.5 rounded-lg text-sm font-medium transition-all text-left ${
+                className={`p-2.5 text-sm font-medium transition-colors text-left border ${
                   selectedTopic === topic.id
-                    ? 'bg-[#81B29A]/20 border border-[#81B29A]/60 text-[#FFF5F5]'
-                    : 'bg-[#3A5253]/40 border border-[#3A5253]/50 text-[rgba(255,245,245,0.5)] hover:border-[#81B29A]/40 hover:text-[rgba(255,245,245,0.8)]'
+                    ? 'bg-[#F4F4F0] border-[#2D4A3E] text-[#2D4A3E]'
+                    : 'bg-white border-[#E0E0DA] text-[#6B6B6B] hover:border-[#2D4A3E] hover:text-[#1A1A1A]'
                 }`}
               >
-                <span className="mr-1.5">{topic.emoji}</span>
                 {topic.label}
               </button>
             ))}
@@ -122,16 +117,10 @@ export function PracticeGenerator() {
         {/* Difficulty slider */}
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <label className="text-sm text-[rgba(255,245,245,0.5)]">Difficulty</label>
+            <label className="text-xs text-[#6B6B6B] uppercase tracking-widest font-medium">Difficulty</label>
             <Badge
               variant="outline"
-              className={`text-xs border-[#81B29A]/50 ${
-                difficulty >= 4
-                  ? 'text-[#E07A5F] border-[#E07A5F]/40'
-                  : difficulty >= 3
-                  ? 'text-[#E07A5F] border-[#E07A5F]/30'
-                  : 'text-[#81B29A] border-[#81B29A]/40'
-              }`}
+              className={`text-xs border-[#E0E0DA] text-[#1A1A1A]`}
             >
               {DIFFICULTY_LABELS[difficulty]}
             </Badge>
@@ -144,7 +133,7 @@ export function PracticeGenerator() {
             step={1}
             className="w-full"
           />
-          <div className="flex justify-between text-xs text-[rgba(255,245,245,0.3)]">
+          <div className="flex justify-between text-xs text-[#6B6B6B]">
             {DIFFICULTY_LABELS.slice(1).map((label) => (
               <span key={label}>{label}</span>
             ))}
@@ -154,7 +143,7 @@ export function PracticeGenerator() {
         <Button
           onClick={handleGenerate}
           disabled={isLoading}
-          className="w-full bg-[#81B29A] hover:bg-[#81B29A]/80 text-[#27231E] gap-2"
+          className="w-full bg-[#2D4A3E] hover:bg-[#1e332a] text-white gap-2"
         >
           {isLoading ? (
             <>
@@ -174,46 +163,32 @@ export function PracticeGenerator() {
       <AnimatePresence>
         {problem && (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-[#2e2924] border border-[#3A5253] rounded-xl p-5 space-y-4"
+            className="bg-white border border-[#E0E0DA] p-5 space-y-4"
           >
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-semibold text-[#FFF5F5]">
-                  {TOPICS.find((t) => t.id === selectedTopic)?.emoji}{' '}
-                  {TOPICS.find((t) => t.id === selectedTopic)?.label} —{' '}
-                  {DIFFICULTY_LABELS[difficulty]}
-                </span>
+              <div className="text-sm font-semibold text-[#1A1A1A]">
+                {TOPICS.find((t) => t.id === selectedTopic)?.label} —{' '}
+                <span className="text-[#6B6B6B] font-normal">{DIFFICULTY_LABELS[difficulty]}</span>
               </div>
-              <div className="flex items-center gap-2">
-                {problem.solved && (
-                  <AnimatePresence>
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      className="flex items-center gap-1 text-[#E07A5F]"
-                    >
-                      <Zap className="w-4 h-4" />
-                      <span className="text-sm font-bold">+{xpGained} XP!</span>
-                    </motion.div>
-                  </AnimatePresence>
-                )}
-              </div>
+              {problem.solved && (
+                <span className="text-xs text-[#6B6B6B]">+{xpGained} XP earned</span>
+              )}
             </div>
 
-            <div className="text-[#FFF5F5] leading-relaxed">
+            <div className="text-[#1A1A1A] leading-relaxed">
               <RichContent content={getDisplayContent(problem.raw, problem.showAnswer)} />
             </div>
 
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex items-center gap-3 pt-2 border-t border-[#E0E0DA]">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() =>
                   setProblem({ ...problem, showAnswer: !problem.showAnswer })
                 }
-                className="border-[#3A5253] text-[rgba(255,245,245,0.5)] hover:text-[#FFF5F5] gap-2"
+                className="border-[#E0E0DA] text-[#6B6B6B] hover:text-[#1A1A1A] hover:border-[#2D4A3E] gap-2"
               >
                 {problem.showAnswer ? (
                   <><EyeOff className="w-3.5 h-3.5" />Hide Answer</>
@@ -226,24 +201,23 @@ export function PracticeGenerator() {
                 <Button
                   size="sm"
                   onClick={handleMarkSolved}
-                  className="bg-[#E07A5F]/20 border border-[#E07A5F]/50 text-[#E07A5F] hover:bg-[#E07A5F]/30 gap-2"
+                  className="bg-[#2D4A3E] hover:bg-[#1e332a] text-white gap-2"
                 >
-                  <Zap className="w-3.5 h-3.5" />
                   Mark as Solved (+{difficulty * 10} XP)
                 </Button>
               ) : (
-                <span className="text-[#81B29A] text-sm font-medium">
-                  ✅ Problem solved!
+                <span className="text-[#2D4A3E] text-sm font-medium">
+                  Problem solved
                 </span>
               )}
 
               <Button
-                variant="ghost"
+                variant="outline"
                 size="sm"
                 onClick={handleGenerate}
-                className="text-[rgba(255,245,245,0.4)] hover:text-[rgba(255,245,245,0.8)] ml-auto"
+                className="border-[#E0E0DA] text-[#6B6B6B] hover:text-[#1A1A1A] ml-auto"
               >
-                Next Problem →
+                Next Problem
               </Button>
             </div>
           </motion.div>

@@ -2,16 +2,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
 import {
-  Rocket,
   Footprints,
   BookOpen,
   FlaskConical,
   MessageCircle,
   Lightbulb,
   CheckSquare,
-  Flame,
+  LayoutDashboard,
   X,
 } from 'lucide-react';
 import { useStore } from '@/lib/store';
@@ -20,7 +18,7 @@ import { PomodoroTimer } from '@/components/features/PomodoroTimer';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { href: '/', label: 'Dashboard', icon: Rocket },
+  { href: '/', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/solve', label: 'Step Solver', icon: Footprints },
   { href: '/practice', label: 'Practice', icon: FlaskConical },
   { href: '/formulas', label: 'Formula Hub', icon: BookOpen },
@@ -35,30 +33,22 @@ interface SidebarProps {
 
 export function Sidebar({ onClose }: SidebarProps) {
   const pathname = usePathname();
-  const { streak } = useStore();
+  const { xp, streak } = useStore();
 
   return (
-    <div className="flex flex-col h-full bg-[#3A5253] border-r border-[#3A5253]/60 w-64">
-      {/* Logo */}
-      <div className="p-5 border-b border-[#27231E]/40 flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#81B29A] to-[#E07A5F] flex items-center justify-center orbit-glow">
-            <Rocket className="w-5 h-5 text-[#27231E]" />
-          </div>
-          <div>
-            <h1 className="font-bold text-[#FFF5F5] text-lg leading-none">OrbitStudy</h1>
-            <p className="text-xs text-[rgba(255,245,245,0.5)] leading-none mt-0.5">Aerospace AI</p>
-          </div>
-        </div>
+    <div className="flex flex-col h-full bg-[#F4F4F0] border-r border-[#E0E0DA] w-64">
+      {/* Brand */}
+      <div className="p-5 border-b border-[#E0E0DA] flex items-center justify-between">
+        <h1 className="font-extrabold text-[#1A1A1A] text-lg tracking-tight">OrbitStudy</h1>
         {onClose && (
-          <button onClick={onClose} className="text-[rgba(255,245,245,0.5)] hover:text-[#FFF5F5] lg:hidden">
+          <button onClick={onClose} className="text-[#6B6B6B] hover:text-[#1A1A1A] lg:hidden transition-colors">
             <X className="w-5 h-5" />
           </button>
         )}
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
+      <nav className="flex-1 p-3 space-y-0.5 overflow-y-auto">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
           const Icon = item.icon;
@@ -68,52 +58,40 @@ export function Sidebar({ onClose }: SidebarProps) {
               href={item.href}
               onClick={onClose}
               className={cn(
-                'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group relative',
+                'flex items-center gap-3 px-3 py-2.5 transition-colors duration-150 group relative',
                 isActive
-                  ? 'bg-[#81B29A]/20 text-[#FFF5F5] border border-[#81B29A]/40'
-                  : 'text-[rgba(255,245,245,0.6)] hover:text-[#FFF5F5] hover:bg-[#27231E]/20'
+                  ? 'bg-white text-[#2D4A3E] border-l-2 border-[#2D4A3E]'
+                  : 'text-[#1A1A1A] hover:bg-white hover:text-[#2D4A3E] border-l-2 border-transparent'
               )}
             >
-              {isActive && (
-                <motion.div
-                  layoutId="sidebar-active"
-                  className="absolute inset-0 bg-[#81B29A]/10 rounded-lg"
-                  transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
-                />
-              )}
               <Icon
                 className={cn(
-                  'w-4 h-4 shrink-0 relative',
-                  isActive ? 'text-[#81B29A]' : 'text-[rgba(255,245,245,0.4)] group-hover:text-[#81B29A]'
+                  'w-4 h-4 shrink-0',
+                  isActive ? 'text-[#2D4A3E]' : 'text-[#6B6B6B] group-hover:text-[#2D4A3E]'
                 )}
               />
-              <span className="text-sm font-medium relative">{item.label}</span>
-              {isActive && (
-                <div className="ml-auto w-1.5 h-1.5 rounded-full bg-[#81B29A] relative" />
-              )}
+              <span className="text-sm font-medium">{item.label}</span>
             </Link>
           );
         })}
       </nav>
 
       {/* Bottom section */}
-      <div className="p-4 space-y-4 border-t border-[#27231E]/40">
-        {/* Streak */}
-        <div className="flex items-center gap-2 px-2">
-          <Flame className="w-4 h-4 text-[#E07A5F]" />
-          <span className="text-sm text-[rgba(255,245,245,0.8)]">
-            <span className="font-bold text-[#E07A5F]">{streak}</span> day streak
-          </span>
+      <div className="p-4 space-y-4 border-t border-[#E0E0DA]">
+        {/* XP and streak understated */}
+        <div className="flex items-center justify-between text-xs text-[#6B6B6B]">
+          <span>XP: {xp}</span>
+          <span>Streak: {streak} days</span>
         </div>
 
         {/* XP Bar */}
-        <div className="px-2">
-          <XPBar />
+        <div>
+          <XPBar compact />
         </div>
 
         {/* Mini Pomodoro */}
-        <div className="px-2 py-3 bg-[#27231E]/40 rounded-lg border border-[#27231E]/50">
-          <p className="text-xs text-[rgba(255,245,245,0.4)] uppercase tracking-wide mb-2">Focus Timer</p>
+        <div className="pt-2 border-t border-[#E0E0DA]">
+          <p className="text-xs text-[#6B6B6B] uppercase tracking-widest mb-2 font-medium">Focus Timer</p>
           <PomodoroTimer mini />
         </div>
       </div>
