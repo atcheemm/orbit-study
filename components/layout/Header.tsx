@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
 import { Menu } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -25,9 +26,7 @@ export function Header({ title }: HeaderProps) {
         </button>
 
         <div className="flex items-center flex-1">
-          <span className="font-extrabold text-[#1A1A1A] tracking-tight">
-            {title || 'OrbitStudy'}
-          </span>
+          <Image src="/logo.png" alt="OrbitStudy" height={28} width={105} style={{ height: 28, width: 'auto', borderRadius: 0 }} priority />
         </div>
 
         <div className="flex items-center gap-4 text-xs text-[#6B6B6B]">
